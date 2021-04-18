@@ -1,16 +1,22 @@
 import {IncomingMessage, ServerResponse} from "http";
-
+import {URL} from "url";
+import VesselQueryBuilder from './VesselQueryBuilder';
 const MongoClient = require('mongodb').MongoClient;
+
 const dbName = 'ais_project';
 
-exports.getVessels = (_request: IncomingMessage, response: ServerResponse) => {
+exports.getVessels = (_request: IncomingMessage, response: ServerResponse, requestUrl: URL) => {
     const client = new MongoClient('mongodb://localhost:27017', {useUnifiedTopology: true});
+
 
     try {
         client.connect().then((client: any) => {
             const vessels = client.db(dbName).collection('vessels');
+            const vesselQueryBuilder = new VesselQueryBuilder(requestUrl);
 
-            vessels.find().limit(10).toArray().then((vessels: any) => {
+            let query = vesselQueryBuilder.buildQuery();
+
+            vessels.find(query).limit(10).toArray().then((vessels: any) => {
                 response.statusCode = 200;
                 response.setHeader('content-Type', 'Application/json');
                 response.end(JSON.stringify(vessels));
