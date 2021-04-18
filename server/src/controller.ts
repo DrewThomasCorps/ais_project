@@ -10,7 +10,7 @@ exports.getVessels = (_request: IncomingMessage, response: ServerResponse) => {
         client.connect().then((client: any) => {
             const vessels = client.db(dbName).collection('vessels');
 
-            vessels.find().toArray().then((vessels: any) => {
+            vessels.find().limit(10).toArray().then((vessels: any) => {
                 response.statusCode = 200;
                 response.setHeader('content-Type', 'Application/json');
                 response.end(JSON.stringify(vessels));
