@@ -124,3 +124,7 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/webstorm,react
 
 .idea
+
+build/
+.nyc_output/
+.env
