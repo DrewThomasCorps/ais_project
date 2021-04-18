@@ -125,6 +125,10 @@ fabric.properties
 
 .idea
 
+build/
+.nyc_output/
+.env
+
 # dependencies
 /client/node_modules
 /client/.pnp
