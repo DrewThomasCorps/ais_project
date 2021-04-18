@@ -1,5 +1,8 @@
-export default class Vessel {
+import Model from "./Model";
+
+export default class Vessel implements Model{
     imo: number = 0;
+    id: string | null = null;
     flag: string | null = null;
     name: string | null = null;
     built: number | null = null;
