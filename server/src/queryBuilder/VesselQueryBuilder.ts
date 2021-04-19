@@ -1,16 +1,20 @@
+import QueryBuilder from "./QueryBuilder";
+
 const { ObjectID } = require('mongodb');
 import {URL} from "url";
+import Vessel from "../models/Vessel";
 
-export default class VesselQueryBuilder {
+export default // @ts-ignore
+class VesselQueryBuilder implements QueryBuilder<Vessel>{
     private readonly imo: string | null;
     private readonly id: string | undefined;
-    private flag: string | null;
-    private name: string | null;
-    private vesselType: string | null;
-    private built: string | null;
-    private length: string | null;
-    private breadth: string | null;
-    private tonnage: string | null;
+    private readonly flag: string | null;
+    private readonly name: string | null;
+    private readonly vesselType: string | null;
+    private readonly built: string | null;
+    private readonly length: string | null;
+    private readonly breadth: string | null;
+    private readonly tonnage: string | null;
 
     constructor(requestUrl: URL) {
         this.id = requestUrl.pathname.split('/')[2];

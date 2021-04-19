@@ -21,8 +21,8 @@ export default abstract class DaoMongoCrud<T extends Model> {
         return this.mongoModel.constructor.fromJson(JSON.stringify(document));
     }
 
-    async findAll(): Promise<T[]> {
-        const documents = await this.database.collection(this.collectionName).find().toArray();
+    async findAll(queryBuilder: any): Promise<T[]> {
+        const documents = await this.database.collection(this.collectionName).find(queryBuilder.buildQuery()).toArray();
         return documents.map((document: any) => {
             // @ts-ignore
             // Cannot use reflection with typescript, so the ModelImpl prototype is used to call its static method.

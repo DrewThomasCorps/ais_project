@@ -4,7 +4,7 @@ const http = require('http');
 const { URL } = require('url');
 
 module.exports = http.createServer((request: IncomingMessage, response: ServerResponse) => {
-    let vesselController = require('./vesselController.ts');
+    let vesselController = require('./controllers/vesselController.ts');
 
     const requestUrl =  new URL(request.url, 'http://localhost:3000/');
 

@@ -1,8 +1,10 @@
-const hostname = '127.0.0.1';
-const port = 3000;
+import EnvironmentHandler from './EnvironmentHandler';
+
+const environmentHandler = new EnvironmentHandler('.env');
+environmentHandler.setUp();
 
 const server = require('./router.ts');
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(process.env['NODE_PORT'], process.env['NODE_HOSTNAME'], () => {
+    console.log(`Server running at http://${process.env['NODE_HOSTNAME']}:${process.env['NODE_PORT']}/`);
 });
