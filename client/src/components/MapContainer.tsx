@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
-import Map from './Map'
+import Map from './Map';
+import SearchMenu from './SearchMenu';
 
 const MapContainer = () => {
     const [currentZoom, setCurrentZoom] = useState(1);
@@ -74,6 +75,7 @@ const MapContainer = () => {
 
     return (
         <section className={`map-container`}>
+            <SearchMenu />
             {currentImage.filename && <Map currentImageName={currentImage.filename} handleClick={handleClick}/> }
         </section>
     )
