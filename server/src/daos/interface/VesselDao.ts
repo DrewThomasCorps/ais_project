@@ -1,7 +1,7 @@
 import Vessel from "../../models/Vessel";
-import Dao from "./Dao";
+import CrudDao from "./CrudDao";
 
-export interface VesselDao extends Dao {
+export interface VesselDao extends CrudDao {
     delete(id: string): Promise<void>;
 
     find(id: string): Promise<Vessel>;

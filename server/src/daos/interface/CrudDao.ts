@@ -1,6 +1,6 @@
 import Model from "../../models/Model";
 
-export default interface Dao {
+export default interface CrudDao {
     insert(model: Model): Promise<Model>;
     find(id: string): Promise<Model>;
     findAll(): Promise<Model[]>;

@@ -18,9 +18,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.3.0
+      with:
+        mongodb-version: 4.4
+
     - name: Install dependencies
       working-directory: ./server
       run: yarn --frozen-lockfile
+
     - name: Run Tests
       working-directory: ./server
       run: yarn test

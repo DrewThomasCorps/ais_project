@@ -9,9 +9,9 @@ export default class VesselDaoFactory {
     {
         switch (databaseConfig.type) {
             case 'mongo':
-                return new VesselDaoMongo(await Mongo.getDatabase(databaseConfig))
+                return new VesselDaoMongo(await Mongo.getDatabase(databaseConfig));
             default:
-                throw new InvalidDatabaseConfigException(`${databaseConfig.type} is not a valid database type`)
+                throw new InvalidDatabaseConfigException(`${databaseConfig.type} is not a valid database type.`);
         }
 
     }
