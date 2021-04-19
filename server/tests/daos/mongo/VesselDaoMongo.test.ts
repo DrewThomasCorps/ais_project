@@ -1,4 +1,3 @@
-import VesselDaoMongo from "../../../src/daos/mongo/VesselDaoMongo";
 import VesselDaoFactory from "../../../src/daos/factory/VesselDaoFactory";
 import {VesselDao} from "../../../src/daos/interface/VesselDao";
 import Vessel from "../../../src/models/Vessel";
@@ -112,8 +111,8 @@ describe('VesselDaoMongo', function () {
             ])
             const vessels = await vesselDaoMongo.findAll();
             expect(vessels.length).to.be.equal(2);
-            expect(vessels[0].name).to.be.equal('before');
-            expect(vessels[1].imo).to.be.equal(101);
+            expect(vessels[0]?.name).to.equal('before');
+            expect(vessels[1]?.imo).to.be.equal(101);
         });
     });
 });
