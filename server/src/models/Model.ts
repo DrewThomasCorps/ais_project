@@ -1,3 +1,3 @@
-export default interface Model {
-
+export declare class Model {
+    static fromJson(jsonString: string): Model
 }
