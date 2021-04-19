@@ -3,7 +3,6 @@ import Mongo from "../databases/Mongo";
 import {VesselDao} from "../interface/VesselDao";
 import {DatabaseConfig} from "../../config/DatabaseConfig";
 import InvalidDatabaseConfigException from "../exceptions/InvalidDatabaseConfigException";
-// import InvalidDatabaseConfigException from "../exceptions/InvalidDatabaseConfigException";
 
 export default class VesselDaoFactory {
     static async getVesselDao(databaseConfig: DatabaseConfig) : Promise<VesselDao>
