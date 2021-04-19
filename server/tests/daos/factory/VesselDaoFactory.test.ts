@@ -1,7 +1,5 @@
 import VesselDaoFactory from "../../../src/daos/factory/VesselDaoFactory";
-import Mongo from "../../../src/daos/databases/Mongo";
-import {Done} from "mocha";
-import { expect } from "chai";
+import {expect} from "chai";
 import InvalidDatabaseConfigException from "../../../src/daos/exceptions/InvalidDatabaseConfigException";
 
 describe('VesselDaoFactory', function () {
