@@ -1,14 +1,14 @@
 import VesselDaoFactory from "../../../src/daos/factory/VesselDaoFactory";
-import {VesselDao} from "../../../src/daos/interface/VesselDao";
 import Vessel from "../../../src/models/Vessel";
 import {Collection, Db, ObjectId} from "mongodb";
 import {expect} from "chai";
 import {readFileSync} from "fs";
 import Mongo from "../../../src/daos/databases/Mongo";
+import CrudDao from "../../../src/daos/interface/CrudDao";
 
 describe('VesselDaoMongo', function () {
     let database: Db;
-    let vesselDaoMongo: VesselDao;
+    let vesselDaoMongo: CrudDao<Vessel>;
 
     const url = 'mongodb://localhost:27017';
     const databaseName = 'test_ais_project';

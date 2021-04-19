@@ -1,9 +1,7 @@
-import Model from "../../models/Model";
-
-export default interface CrudDao {
-    insert(model: Model): Promise<Model>;
-    find(id: string): Promise<Model>;
-    findAll(): Promise<Model[]>;
+export default interface CrudDao<T> {
+    insert(model: T): Promise<T>;
+    find(id: string): Promise<T>;
+    findAll(): Promise<T[]>;
     delete(id: string): Promise<void>;
-    update(id: string, model: Model): Promise<Model>;
+    update(id: string, model: T): Promise<T>;
 }
