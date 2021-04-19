@@ -1,6 +1,5 @@
 import VesselDaoFactory from "../../../src/daos/factory/VesselDaoFactory";
 import {expect} from "chai";
-import InvalidDatabaseConfigException from "../../../src/daos/exceptions/InvalidDatabaseConfigException";
 
 describe('VesselDaoFactory', function () {
     const databaseConfig = {
