@@ -19,7 +19,8 @@ export default class Vessel implements Model {
     public static fromJson(jsonString: string): Vessel {
         const json = JSON.parse(jsonString)
         const builder = new this.Builder();
-        return builder.setImo(json["IMO"])
+        return builder.setId(json["_id"] ?? null)
+            .setImo(json["IMO"])
             .setFlag(json["Flag"] ?? null)
             .setName(json["Name"] ?? null)
             .setBuilt(json["Built"] ?? null)
@@ -39,6 +40,11 @@ export default class Vessel implements Model {
 
         constructor() {
             this.vessel = new Vessel();
+        }
+
+        setId(id: string) {
+            this.vessel.id  = id;
+            return this;
         }
 
         setImo(imo: number) {
