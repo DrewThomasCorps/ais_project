@@ -61,6 +61,7 @@ describe('VesselDaoMongo', function () {
             expect(insertedVessel.former_names).to.deep.equal(
                 ["LADY K II (2012, Panama)", "RADIANT II (2009)", "PRINCESS TANYA (1961)", "COLUMBINE"]
             );
+            expect(insertedVessel.id).to.not.be.equal(null)
         });
     });
 
@@ -113,6 +114,53 @@ describe('VesselDaoMongo', function () {
             expect(vessels.length).to.be.equal(2);
             expect(vessels[0]?.name).to.equal('before');
             expect(vessels[1]?.imo).to.be.equal(101);
+        });
+
+        it('should return filtered vessels when filtered on 1 param', async function () {
+            await database.collection('vessels').insertMany([
+                {
+                    'IMO': 10,
+                    'Name': 'before'
+                },
+                {
+                    'IMO': 101,
+                    'Name': 'another'
+                }
+            ])
+            let vessels = await vesselDaoMongo.findAll(Vessel.fromJson(
+                JSON.stringify({IMO: 10})
+            ));
+            expect(vessels.length).to.be.equal(1);
+            expect(vessels[0]?.name).to.equal('before');
+            vessels = await vesselDaoMongo.findAll(Vessel.fromJson(
+                JSON.stringify({Name: 'another'})
+            ));
+            expect(vessels.length).to.be.equal(1);
+            expect(vessels[0]?.imo).to.equal(101);
+        });
+
+        it('should return filtered vessels when filtered on multiple params', async function () {
+            await database.collection('vessels').insertMany([
+                {
+                    '_id': new ObjectId('b2-c3-d4-e5z'),
+                    'IMO': 10,
+                    'Name': 'before'
+                },
+                {
+                    'IMO': 101,
+                    'Name': 'another'
+                },
+                {
+                    '_id': new ObjectId('a1-c3-d4-e5z'),
+                    'IMO': 10,
+                    'Name': 'third'
+                }
+            ])
+            let vessels = await vesselDaoMongo.findAll(Vessel.fromJson(
+                JSON.stringify({IMO: 10, _id: 'a1-c3-d4-e5z'})
+            ));
+            expect(vessels.length).to.be.equal(1);
+            expect(vessels[0]?.name).to.equal('third');
         });
     });
 });

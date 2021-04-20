@@ -8,7 +8,7 @@ exports.getVessels = async (_request: IncomingMessage, response: ServerResponse,
     const vesselQueryBuilder = new VesselQueryBuilder(_requestUrl);
     const vesselDao = await VesselDaoFactory.getVesselDao(DatabaseConfig.Mongo);
 
-    console.log(vesselQueryBuilder.buildQuery());
+    console.log(vesselQueryBuilder.buildFilterModel());
 
     const vessels = await vesselDao.findAll(vesselQueryBuilder);
 
