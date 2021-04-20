@@ -35,6 +35,5 @@
   "exclude": [
     "./build/",
     "./node_modules/",
-    "./tests/",
   ]
 }
