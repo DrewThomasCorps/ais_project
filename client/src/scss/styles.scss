@@ -1,3 +1,14 @@
+$light-color: #e9e9e9;
+$water-color: #1a00fd;
+$menu-height: 75vh;
+$primary-font: 'Work Sans', sans-serif;
+
+body {
+  margin: 0;
+  background-color: $light-color;
+  font-family: $primary-font;
+}
+
 .map-container {
   max-width: 100%;
 }
@@ -6,6 +17,7 @@
   width: 100%;
   display: inline-block;
   vertical-align: top;
+  box-shadow: 0px 1px 5px darken($light-color, 15%);
 }
 
 .map-image-container {
@@ -14,3 +26,158 @@
   height: auto;
   background: #94c1e1;
 }
+
+.search-menu-container {
+  position: relative;
+}
+
+.search-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  height: $menu-height;
+  background-color: darken($light-color, 2%);
+  box-shadow: 0px -1px 5px darken($light-color, 15%);
+  transition-duration: .5s;
+}
+
+.search-menu.closed {
+  height: 0;
+  padding-top: 0;
+}
+
+.search-menu-buttons-container {
+  z-index: 2;
+  position: relative;
+}
+
+.search-menu-buttons {
+  z-index: 1;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.search-menu-button {
+  height: 25px;
+  width: 25px;
+  overflow-x: hidden;
+  margin: 5px;
+  display: inline-block;
+  z-index: 5;
+}
+
+.display-hidden {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.background-dark {
+  background: darken($light-color, 50%);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.vessel-search {
+  height: 100%;
+}
+
+.search-menu-panel {
+  color: white;
+  font-weight: bold;
+  padding-top: 2rem;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+.menu-button, .zoom-button {
+  display: inline-block;
+  font-weight: bold;
+  border: none;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin: .25rem;
+  text-decoration: none;
+  background: $water-color;
+  color: white;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out,
+  transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.menu-button {
+  padding: 10px 30px;
+  margin: .25rem;
+  width: auto;
+  height: auto;
+  border-radius: 100px 100px 100px 100px;
+}
+
+.zoom-button:hover,
+.zoom-button:focus,
+.menu-button:hover,
+.menu-button:focus {
+  background: #0053ba;
+  transform: scale(1.10);
+}
+
+.menu-button:focus, .zoom-button:focus {
+  outline: none;
+  outline-offset: -4px;
+}
+
+.menu-button:active, .zoom-button:active {
+  transform: scale(1.10);
+}
+
+.text-panel {
+  font-weight: bold;
+  font-size: 5rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+.search-panel {
+  margin-top: 1.5rem;
+  width: 100%;
+  display: inline-block;
+}
+
+input[type="text"] {
+  display: block;
+  margin: auto;
+  margin-top: 1.5rem;
+  border: none;
+  padding: 1rem;
+  width: 50vw;
+}
+
+@media only screen and (max-width: 768px) {
+  input[type="text"] {
+    width: 90vw;
+  }
+}
+
