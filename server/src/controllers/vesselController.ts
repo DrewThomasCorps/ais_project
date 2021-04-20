@@ -7,10 +7,7 @@ import VesselQueryBuilder from "../queryBuilder/VesselQueryBuilder";
 exports.getVessels = async (_request: IncomingMessage, response: ServerResponse, _requestUrl: URL) => {
     const vesselQueryBuilder = new VesselQueryBuilder(_requestUrl);
     const vesselDao = await VesselDaoFactory.getVesselDao(DatabaseConfig.Mongo);
-
-    console.log(vesselQueryBuilder.buildFilterModel());
-
-    const vessels = await vesselDao.findAll(vesselQueryBuilder);
+    const vessels = await vesselDao.findAll(vesselQueryBuilder.buildFilterModel());
 
     response.statusCode = 200;
     response.setHeader('Content-Type', 'application/json');
