@@ -1,6 +1,6 @@
 import Vessel from "../../models/Vessel";
 import DaoMongoCrud from "./DaoMongoCrud";
-import {Db, ObjectId} from "mongodb";
+import {Db} from "mongodb";
 import CrudDao from "../interface/CrudDao";
 
 export default class VesselDaoMongo extends DaoMongoCrud<Vessel> implements CrudDao<Vessel> {
