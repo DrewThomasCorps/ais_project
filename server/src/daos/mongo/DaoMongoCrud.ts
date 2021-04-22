@@ -1,6 +1,7 @@
 import {Db, ObjectId} from "mongodb";
 import {Model} from "../../models/Model";
 
+
 export default abstract class DaoMongoCrud<T extends Model> {
     private database: Db;
     protected collectionName!: string;

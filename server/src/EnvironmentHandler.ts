@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 export default class EnvironmentHandler {
     private readonly filePath: string;
@@ -8,12 +8,14 @@ export default class EnvironmentHandler {
     }
 
     public setUp() {
-        const data = fs.readFileSync(this.filePath);
-        data.toString().split('\n').forEach((line: string) => {
-            const [key, value] = line.split('=', 2);
-            if (key && process.env[key] === undefined) {
-                process.env[key] = value;
-            }
-        })
+        if (fs.existsSync(this.filePath)) {
+            const data = fs.readFileSync(this.filePath);
+            data.toString().split('\n').forEach((line: string) => {
+                const [key, value] = line.split('=', 2);
+                if (key && process.env[key] === undefined) {
+                    process.env[key] = value;
+                }
+            })
+        }
     }
 }

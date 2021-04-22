@@ -6,7 +6,6 @@ import Vessel from "../models/Vessel";
 export default class VesselQueryBuilder implements QueryBuilder<Vessel>{
     private readonly imo: string | null;
     private readonly mmsi: string | null;
-    private readonly id: string | undefined;
     private readonly flag: string | null;
     private readonly name: string | null;
     private readonly vesselType: string | null;
@@ -17,7 +16,6 @@ export default class VesselQueryBuilder implements QueryBuilder<Vessel>{
     private readonly owner: string | null;
 
     constructor(requestUrl: URL) {
-        this.id = requestUrl.pathname.split('/')[2];
         this.imo = requestUrl.searchParams.get('imo');
         this.mmsi = requestUrl.searchParams.get('mmsi');
         this.flag = requestUrl.searchParams.get('flag');
@@ -33,9 +31,6 @@ export default class VesselQueryBuilder implements QueryBuilder<Vessel>{
     buildFilterModel() :Vessel
     {
         let query: any = {};
-        if (this.id !== undefined) {
-            query["_id"] = this.id;
-        }
         if (this.imo !== null) {
             query["IMO"] = parseInt(this.imo,10);
         }
