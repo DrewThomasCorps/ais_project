@@ -3,7 +3,7 @@ import {Model} from "../../models/Model";
 
 
 export default abstract class DaoMongoCrud<T extends Model> {
-    private database: Db;
+    protected database: Db;
     protected collectionName!: string;
     protected mongoModel!: Model;
 
@@ -17,6 +17,7 @@ export default abstract class DaoMongoCrud<T extends Model> {
 
     async find(id: string): Promise<T> {
         const document = await this.database.collection(this.collectionName).findOne({_id: new ObjectId(id)});
+
         // @ts-ignore
         // Cannot use reflection with typescript, so the ModelImpl prototype is used to call its static method.
         return this.mongoModel.constructor.fromJson(JSON.stringify(document));
@@ -24,6 +25,7 @@ export default abstract class DaoMongoCrud<T extends Model> {
 
     async findAll(filterModel?: T): Promise<T[]> {
         const documents = await this.database.collection(this.collectionName).find(this.toDocument(filterModel)).toArray();
+
         return documents.map((document: any) => {
             // @ts-ignore
             // Cannot use reflection with typescript, so the ModelImpl prototype is used to call its static method.

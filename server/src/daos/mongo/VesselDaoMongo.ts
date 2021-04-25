@@ -15,7 +15,9 @@ export default class VesselDaoMongo extends DaoMongoCrud<Vessel> implements Crud
         if (model === undefined) {
             return {}
         }
+
         let document: any = {};
+
         if (model.imo) {
             document.IMO = model.imo;
         }

@@ -21,9 +21,14 @@
     "build": "rm -rf ./build && tsc",
     "start": "yarn run build && node build/index.js",
     "start:dev": "nodemon",
-    "test": "env mocha -r ts-node/register 'tests/**/*.ts'"
+    "test": "env mocha -r ts-node/register 'tests/**/*.ts'",
+    "client": "cd ../client && yarn start",
+    "client:install": "cd ../client && yarn",
+    "setup": "concurrently \"yarn\" \"yarn client:install\"",
+    "dev": "concurrently \"yarn run start:dev\" \"yarn run client\""
   },
   "dependencies": {
+    "concurrently": "^6.0.2",
     "mongodb": "^3.6.6"
   }
 }
