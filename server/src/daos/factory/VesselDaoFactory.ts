@@ -8,11 +8,11 @@ import Vessel from "../../models/Vessel";
 export default class VesselDaoFactory {
     static async getVesselDao(databaseConfig: DatabaseConfig) : Promise<CrudDao<Vessel>>
     {
-        switch (databaseConfig.type) {
+        switch (databaseConfig.getType()) {
             case 'mongo':
                 return new VesselDaoMongo(await Mongo.getDatabase(databaseConfig));
             default:
-                throw new InvalidDatabaseConfigException(`${databaseConfig.type} is not a valid database type.`);
+                throw new InvalidDatabaseConfigException(`${databaseConfig.getType()} is not a valid database type.`);
         }
 
     }

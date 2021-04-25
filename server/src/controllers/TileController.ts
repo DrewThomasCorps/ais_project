@@ -15,7 +15,7 @@ export default class TileController {
         });
 
         request.on('end', async () => {
-            const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Mongo);
+            const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
             const tile = await tileDao.insert(Tile.fromJson(body));
             response.statusCode = 201;
             response.setHeader('Content-Type', 'application/json');
@@ -32,7 +32,7 @@ export default class TileController {
 
         request.on('end', async () => {
             const id = requestUrl.pathname.split('/')[2] ?? ''
-            const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Mongo);
+            const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
             const tile = await tileDao.update(id, Tile.fromJson(body));
             response.statusCode = 200;
             response.setHeader('Content-Type', 'application/json');
@@ -42,7 +42,7 @@ export default class TileController {
 
     static deleteTile = async (_request: IncomingMessage, response: ServerResponse, requestUrl: URL) => {
         const id = requestUrl.pathname.split('/')[2] ?? '';
-        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Mongo);
+        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
         await tileDao.delete(id);
         response.statusCode = 204;
         response.setHeader('Content-Type', 'application/json');
@@ -50,7 +50,7 @@ export default class TileController {
     }
 
     static getTiles = async (_request: IncomingMessage, response: ServerResponse, _requestUrl: URL) => {
-        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Mongo);
+        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
         const tiles = await tileDao.findAll();
 
         response.statusCode = 200;
@@ -58,14 +58,12 @@ export default class TileController {
         response.end(JSON.stringify(tiles));
     }
 
-    static getTileImage = async (_request: IncomingMessage, response: ServerResponse, _requestUrl: URL) => {
-        const parentTileId = _requestUrl.pathname.split('/')[2];
-        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Mongo);
-        const tile = await tileDao.getTileImage(parseInt(<string>parentTileId, 10));
+    static getTileImage = async (_request: IncomingMessage, response: ServerResponse, requestUrl: URL) => {
+        const parentTileId = requestUrl.pathname.split('/')[2];
+        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
+        const tile = await tileDao.getTileImage(parseInt(parentTileId ?? '', 10));
 
-        // @ts-ignore
-        // TODO Fix no overload matches
-        const buffer = Buffer.from(tile.image_file, 'binary');
+        const buffer = Buffer.from(tile.image_file ?? '', 'binary');
         const readable = new Readable();
         readable._read = () => {}; // _read is required but you can noop it
         readable.push(buffer);
@@ -82,7 +80,7 @@ export default class TileController {
 
     static findContainedTiles = async (_request: IncomingMessage, response: ServerResponse, _requestUrl: URL) => {
         const parentTileId = _requestUrl.pathname.split('/')[2];
-        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Mongo);
+        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
         const tiles = await tileDao.findContainedTiles(parseInt(<string>parentTileId, 10));
 
         response.statusCode = 200;
@@ -103,7 +101,7 @@ const scale = parseInt(<string>_requestUrl.searchParams.get("scale"), 10);
             image_south: {$lte: latitude},
             scale: scale }
 
-        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Mongo);
+        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
         const tiles = await tileDao.findTilesByCoordinates(queryObject);
 
         response.statusCode = 200;
@@ -114,7 +112,7 @@ const scale = parseInt(<string>_requestUrl.searchParams.get("scale"), 10);
 
     static findTile = async (_request: IncomingMessage, response: ServerResponse, requestUrl: URL) => {
         const id = requestUrl.pathname.split('/')[2] ?? '';
-        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Mongo);
+        const tileDao = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
         const tile = await tileDao.find(id);
         response.statusCode = 200;
         response.setHeader('Content-Type', 'application/json');

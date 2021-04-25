@@ -99,7 +99,6 @@ export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<
     }
 
     async findTilesByCoordinates(queryObject: object): Promise<Tile[]> {
-        // @ts-ignore
         const tiles = await this.database.collection(this.collectionName).find(queryObject, {projection: {image_file: 0}}).toArray();
 
         return tiles.map((tile: any) => {
