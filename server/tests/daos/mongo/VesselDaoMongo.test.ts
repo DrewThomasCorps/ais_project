@@ -42,6 +42,21 @@ describe('VesselDaoMongo', function () {
         await Mongo.closeDatabase();
     })
 
+    const insertTestVessels = async () => {
+        await database.collection('vessels').insertMany([
+            {
+                '_id': new ObjectId('a1-b2-c3-d4z'),
+                'IMO': 10,
+                'Name': 'before'
+            },
+            {
+                '_id': new ObjectId('b2-c3-d4-e5z'),
+                'IMO': 101,
+                'Name': 'another'
+            }
+        ])
+    }
+
     describe('insert()', function () {
         it('should insert a new document', async function () {
             const vesselToInsert = Vessel.fromJson(readFileSync('tests/resources/models/vessel_one.json').toString());
@@ -67,11 +82,7 @@ describe('VesselDaoMongo', function () {
 
     describe('update()', function () {
         it('should update an existing document', async function () {
-            await database.collection('vessels').insertOne({
-                '_id': new ObjectId('a1-b2-c3-d4z'),
-                'IMO': 10,
-                'Name': 'before'
-            })
+            await insertTestVessels();
             const updatedVesselModel = Vessel.fromJson(JSON.stringify({IMO: 12, Name: 'after'}));
             const updatedVessel = await vesselDaoMongo.update('a1-b2-c3-d4z', updatedVesselModel);
             expect(updatedVessel.name).to.be.equal('after');
@@ -80,18 +91,7 @@ describe('VesselDaoMongo', function () {
 
     describe('delete()', function () {
         it('should delete an existing document', async function () {
-            await database.collection('vessels').insertMany([
-                {
-                    '_id': new ObjectId('a1-b2-c3-d4z'),
-                    'IMO': 10,
-                    'Name': 'before'
-                },
-                {
-                    '_id': new ObjectId('b2-c3-d4-e5z'),
-                    'IMO': 101,
-                    'Name': 'another'
-                }
-            ])
+            await insertTestVessels();
             await vesselDaoMongo.delete('a1-b2-c3-d4z');
             const vesselCount = await database.collection('vessels').countDocuments();
             expect(vesselCount).to.be.equal(1);
@@ -100,16 +100,7 @@ describe('VesselDaoMongo', function () {
 
     describe('findAll()', function () {
         it('should return all vessels in collection', async function () {
-            await database.collection('vessels').insertMany([
-                {
-                    'IMO': 10,
-                    'Name': 'before'
-                },
-                {
-                    'IMO': 101,
-                    'Name': 'another'
-                }
-            ])
+            await insertTestVessels();
             const vessels = await vesselDaoMongo.findAll();
             expect(vessels.length).to.be.equal(2);
             expect(vessels[0]?.name).to.equal('before');
@@ -117,16 +108,7 @@ describe('VesselDaoMongo', function () {
         });
 
         it('should return filtered vessels when filtered on 1 param', async function () {
-            await database.collection('vessels').insertMany([
-                {
-                    'IMO': 10,
-                    'Name': 'before'
-                },
-                {
-                    'IMO': 101,
-                    'Name': 'another'
-                }
-            ])
+            await insertTestVessels();
             let vessels = await vesselDaoMongo.findAll(Vessel.fromJson(
                 JSON.stringify({IMO: 10})
             ));
@@ -140,27 +122,28 @@ describe('VesselDaoMongo', function () {
         });
 
         it('should return filtered vessels when filtered on multiple params', async function () {
-            await database.collection('vessels').insertMany([
-                {
-                    '_id': new ObjectId('b2-c3-d4-e5z'),
-                    'IMO': 10,
-                    'Name': 'before'
-                },
-                {
-                    'IMO': 101,
-                    'Name': 'another'
-                },
-                {
-                    '_id': new ObjectId('a1-c3-d4-e5z'),
-                    'IMO': 10,
-                    'Name': 'third'
-                }
-            ])
+            await insertTestVessels();
+            await database.collection('vessels').insertOne({
+                '_id': new ObjectId('a1-c3-d4-e5z'),
+                'IMO': 10,
+                'Name': 'third'
+            })
             let vessels = await vesselDaoMongo.findAll(Vessel.fromJson(
-                JSON.stringify({IMO: 10, _id: 'a1-c3-d4-e5z'})
+                JSON.stringify({IMO: 10, Name: 'third'})
             ));
             expect(vessels.length).to.be.equal(1);
             expect(vessels[0]?.name).to.equal('third');
+            expect(vessels[0]?.id).to.equal(new ObjectId('a1-c3-d4-e5z').toHexString());
         });
+    });
+
+    describe('find()', function () {
+        it('should return vessels in collection by id', async function () {
+            await insertTestVessels();
+            const vessel = await vesselDaoMongo.find('a1-b2-c3-d4z');
+            expect(vessel.name).to.equal('before');
+            expect(vessel.imo).to.be.equal(10);
+        });
+
     });
 });

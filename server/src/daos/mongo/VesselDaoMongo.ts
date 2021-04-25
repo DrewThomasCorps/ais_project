@@ -1,6 +1,6 @@
 import Vessel from "../../models/Vessel";
 import DaoMongoCrud from "./DaoMongoCrud";
-import {Db, ObjectId} from "mongodb";
+import {Db} from "mongodb";
 import CrudDao from "../interface/CrudDao";
 
 export default class VesselDaoMongo extends DaoMongoCrud<Vessel> implements CrudDao<Vessel> {
@@ -16,9 +16,6 @@ export default class VesselDaoMongo extends DaoMongoCrud<Vessel> implements Crud
             return {}
         }
         let document: any = {};
-        if (model.id) {
-            document._id = new ObjectId(model.id)
-        }
         if (model.imo) {
             document.IMO = model.imo;
         }

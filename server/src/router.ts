@@ -1,29 +1,27 @@
-import {IncomingMessage, ServerResponse} from "http";
+import http, {IncomingMessage, ServerResponse} from "http";
+import VesselController from "./controllers/VesselController";
+import {URL} from "url";
 
-const http = require('http');
-const { URL } = require('url');
+export default http.createServer(async (request: IncomingMessage, response: ServerResponse) => {
+    const requestUrl = new URL(request.url ?? '', 'http://localhost:3000');
 
-module.exports = http.createServer((request: IncomingMessage, response: ServerResponse) => {
-    let vesselController = require('./controllers/vesselController.ts');
-
-    const requestUrl =  new URL(request.url, 'http://localhost:3000/');
-
-    if (/^\/vessels\/*/.test(requestUrl.pathname) && request.method === 'GET') {
-        vesselController.getVessels(request, response, requestUrl);
+    if (requestUrl.pathname == '/vessels' && request.method === 'GET') {
+        await VesselController.getVessels(request, response, requestUrl);
+    } else if (/^\/vessels\/*/.test(requestUrl.pathname) && request.method === 'GET') {
+        await VesselController.findVessel(request, response, requestUrl);
+    } else if (/^\/vessels\/*/.test(requestUrl.pathname) && request.method === 'PUT') {
+        await VesselController.updateVessel(request, response, requestUrl);
+    } else if (/^\/vessels\/*/.test(requestUrl.pathname) && request.method === 'DELETE') {
+        await VesselController.deleteVessel(request, response, requestUrl);
     } else if (requestUrl.pathname == '/vessels' && request.method === 'POST') {
-        vesselController.createVessel(request, response);
+        await VesselController.createVessel(request, response);
     } else {
         invalidUrl(request, response);
     }
 });
 
 const invalidUrl = (_request: IncomingMessage, response: ServerResponse) => {
-    let responseData = [
-        {
-            "message": "Invalid endpoint"
-        }
-    ]
-
+    let responseData = {"message": "Invalid endpoint"}
     response.statusCode = 404;
     response.setHeader('content-Type', 'Application/json');
     response.end(JSON.stringify(responseData))

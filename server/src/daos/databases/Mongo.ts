@@ -8,7 +8,7 @@ export default class Mongo {
 
     static async getDatabase(databaseConfig: DatabaseConfig)  : Promise<Db>
     {
-        if (this.database === undefined) {
+        if (this.database === undefined || !this.client.isConnected()) {
             const url = databaseConfig.getUrl();
             assert(typeof url === 'string')
             this.client = new MongoClient(url, {useUnifiedTopology: true})

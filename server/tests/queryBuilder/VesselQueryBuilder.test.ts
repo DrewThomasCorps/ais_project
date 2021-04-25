@@ -18,9 +18,8 @@ describe('VesselQueryBuilder', function() {
                 owner: '11',
             }
             const searchParams = new URLSearchParams(vesselQueryObject);
-            const queryBuilder = new VesselQueryBuilder(new URL("https://example.com/endpoint/1?" + searchParams.toString()));
+            const queryBuilder = new VesselQueryBuilder(new URL("https://example.com/endpoint?" + searchParams.toString()));
             const vessel = queryBuilder.buildFilterModel();
-            expect(vessel.id).to.be.equal('1');
             expect(vessel.imo).to.be.equal(2)
             expect(vessel.flag).to.be.equal('3');
             expect(vessel.name).to.be.equal('4');
@@ -40,7 +39,6 @@ describe('VesselQueryBuilder', function() {
             const searchParams = new URLSearchParams(vesselQueryObject);
             const queryBuilder = new VesselQueryBuilder(new URL("https://example.com/endpoint?" + searchParams.toString()));
             const vessel = queryBuilder.buildFilterModel();
-            expect(vessel.id).to.be.equal(null);
             expect(vessel.imo).to.be.equal(2)
             expect(vessel.flag).to.be.equal(null);
             expect(vessel.name).to.be.equal(null);
