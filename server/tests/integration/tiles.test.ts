@@ -13,9 +13,10 @@ describe('TileIntegration', function () {
     const databaseName = 'test_ais_project';
 
     before(async function () {
-        process.env["MONGO_DATABASE_NAME"] = databaseName;
-        process.env["MONGO_DATABASE_URL"] = url;
-        const databaseConfig = DatabaseConfig.Mongo;
+        process.env["DATABASE_NAME"] = databaseName;
+        process.env["DATABASE_URL"] = url;
+        process.env["DATABASE_TYPE"] = 'mongo';
+        const databaseConfig = DatabaseConfig.Config;
         database = await Mongo.getDatabase(databaseConfig);
         chai.use(chaiHttp);
     })
@@ -120,8 +121,6 @@ describe('TileIntegration', function () {
         it('should get inserted tile from database', async function () {
             await insertTestTiles();
             const response = await chai.request(app).get('/tiles/' + new ObjectId('a1-b2-c3-d4z').toHexString());
-
-            console.log(response.body);
 
             expect(response.body.ICESName).to.be.equal('43F9');
             expect(response.body.filename).to.be.equal('43F9.png');

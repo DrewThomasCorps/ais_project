@@ -15,7 +15,9 @@ describe('VesselDaoMongo', function () {
 
     before(async function () {
         const databaseConfig = {
-            type: 'mongo',
+            getType() {
+                return 'mongo';
+            },
             getUrl() {
                 return url
             },
