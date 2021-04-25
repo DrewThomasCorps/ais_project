@@ -2,7 +2,7 @@ import chai, {expect} from 'chai';
 import chaiHttp from 'chai-http'
 import {Collection, Db, ObjectId} from "mongodb";
 import Mongo from "../../src/daos/databases/Mongo";
-import app from '../../src/index';
+import app from '../../src';
 import {DatabaseConfig} from "../../src/config/DatabaseConfig";
 
 describe('VesselIntegration', function () {

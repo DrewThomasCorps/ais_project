@@ -1,6 +1,6 @@
 $light-color: #e9e9e9;
-$water-color: #1a00fd;
-$menu-height: 75vh;
+$water-color: #94c1e1;
+$menu-height: 50vh;
 $primary-font: 'Work Sans', sans-serif;
 
 body {
@@ -11,6 +11,14 @@ body {
 
 .map-container {
   max-width: 100%;
+}
+
+.map-container.in {
+  cursor: zoom-in;
+}
+
+.map-container.out {
+  cursor: zoom-out;
 }
 
 .map-image {
@@ -24,7 +32,7 @@ body {
   position: relative;
   width: 100%;
   height: auto;
-  background: #94c1e1;
+  background: $water-color;
 }
 
 .search-menu-container {
@@ -38,7 +46,7 @@ body {
   width: 100%;
   z-index: 2;
   height: $menu-height;
-  background-color: darken($light-color, 2%);
+  background-color: lighten($light-color, 10%);
   box-shadow: 0px -1px 5px darken($light-color, 15%);
   transition-duration: .5s;
 }
@@ -78,7 +86,7 @@ body {
 }
 
 .background-dark {
-  background: darken($light-color, 50%);
+  background: darken($light-color, 10%);
 }
 
 .text-center {
@@ -105,18 +113,18 @@ body {
   text-transform: uppercase;
 }
 
-.menu-button, .zoom-button {
-  display: inline-block;
+.zoom-button, .menu-button {
+  display: block;
   font-weight: bold;
   border: none;
   height: 2rem;
   width: 2rem;
-  border-radius: 50%;
-  border: 2px solid white;
+  border-radius: .25rem;
+  border: 1px solid darken($light-color, 20%);
   margin: .25rem;
   text-decoration: none;
-  background: $water-color;
-  color: white;
+  background: $light-color;
+  color: darken($light-color, 60%);
   font-family: sans-serif;
   font-size: 1rem;
   cursor: pointer;
@@ -127,29 +135,23 @@ body {
   -moz-appearance: none;
 }
 
-.menu-button {
-  padding: 10px 30px;
-  margin: .25rem;
-  width: auto;
-  height: auto;
-  border-radius: 100px 100px 100px 100px;
-}
-
-.zoom-button:hover,
-.zoom-button:focus,
-.menu-button:hover,
-.menu-button:focus {
-  background: #0053ba;
+.menu-button:active {
+  background: darken($light-color, 60%);
+  color: $light-color;
   transform: scale(1.10);
 }
 
-.menu-button:focus, .zoom-button:focus {
+.zoom-button:hover, .zoom-button.zoom-in.in, .zoom-button.zoom-out.out {
+  background: darken($light-color, 60%);
+  color: $light-color;
+  transform: scale(1.10);
   outline: none;
   outline-offset: -4px;
 }
 
-.menu-button:active, .zoom-button:active {
-  transform: scale(1.10);
+.ghost-button, .ghost-button:hover, .ghost-button:active, .ghost-button:focus {
+  background: none;
+  border: none;
 }
 
 .text-panel {
@@ -170,14 +172,31 @@ input[type="text"] {
   display: block;
   margin: auto;
   margin-top: 1.5rem;
-  border: none;
+  border: 1px solid darken($light-color,10%);
   padding: 1rem;
-  width: 50vw;
+}
+
+.panel-container {
+  display: inline-block;
+  width: 50%;
+}
+
+.panel-inner {
 }
 
 @media only screen and (max-width: 768px) {
-  input[type="text"] {
-    width: 90vw;
+
+  .panel-container {
+    width: 100%;
+  }
+
+  .map-image, .map-image-container {
+    background: $water-color;
+    width: auto;
+    height: 100vh;
   }
 }
 
+.p-2 {
+  padding: 2rem;
+}
