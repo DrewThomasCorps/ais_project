@@ -7,6 +7,7 @@ body {
   margin: 0;
   background-color: $light-color;
   font-family: $primary-font;
+  font-size: 12px;
 }
 
 .map-container {
@@ -199,4 +200,10 @@ input[type="text"] {
 
 .p-2 {
   padding: 2rem;
+}
+
+.small {
+  font-size: .05rem;
+  font-family: $primary-font;
+  font-weight: 600;
 }
