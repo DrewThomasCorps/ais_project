@@ -1,56 +1,69 @@
 import React, {useState, useEffect} from 'react';
 import Map from './Map';
 import SearchMenu from './SearchMenu';
-import ImageData from "../interfaces/ImageData";
+import TileData from "../interfaces/TileData";
 import MapObject from "../interfaces/MapObject";
 import CurrentFocusCoordinates from "../interfaces/CurrentFocusCoordinates";
 import VesselMapObject from "../interfaces/VesselMapObject";
+import PortMapObject from "../interfaces/PortMapObject";
 
 const MapContainer = () => {
-    const [currentZoom, setCurrentZoom] = useState<number>(1);
-    const [zoomMode, setZoomMode] = useState<string>('');
-    const [currentFocus, setCurrentFocus] = useState<CurrentFocusCoordinates>({ longitude: 0, latitude: 0 });
-
-    const rootImage = {"id": 1, "ICESName": "-1", "west": 7.0, "south": 54.5, "east": 13.0, "north": 57.5,
+    const rootTile = {"id": 1, "ICESName": "-1", "west": 7.0, "south": 54.5, "east": 13.0, "north": 57.5,
         "scale": 1, "filename": "ROOT.png", "image_width": 2000, "image_height": 2000, "image_west": 7.0,
         "image_south": 54.31614, "image_east": 13.0, "image_north": 57.669343, "contained_by": -1}
 
-    const [currentImageId, setCurrentImageId] = useState<number>(1);
-    const [currentImageData, setCurrentImageData] = useState<ImageData>(rootImage);
-
+    const [currentZoom, setCurrentZoom] = useState<number>(1);
+    const [zoomMode, setZoomMode] = useState<string>('');
+    const [currentFocus, setCurrentFocus] = useState<CurrentFocusCoordinates>({ longitude: 0, latitude: 0 });
+    const [tile, setTile] = useState<TileData>(rootTile);
     const [vessels, setVessels] = useState<VesselMapObject[]>([{imo: '123456', longitude: 8.204047217537942, latitude: 56.913153456998316}]);
-    const [ports, setPorts] = useState<MapObject[]>([{longitude: 9.885278, latitude: 55.269167},
-        {longitude: 10.053333, latitude: 56.684722},
-        {longitude: 10.670556, latitude: 56.194444},
-        {longitude: 10.234722, latitude: 55.095278}
-    ]);
+    const [ports, setPorts] = useState<PortMapObject[]>([]);
 
     useEffect(() => {
-        getVesselPositions()
-        const interval = setInterval(() => getVesselPositions(), 30000)
+        getPorts();
+        updateVesselPositions();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
+
+    const getPorts = () => {
+        fetch(`http://localhost:3001/ports?mapview_1=1`)
+            .then(response => response.json())
+            // .then(data => setPorts(data));
+            .then(data => setPorts(mapPorts(data)));
+    }
+
+    const updateVesselPositions = ()  => {
+        getVesselPositions();
+        const interval = setInterval(() => getVesselPositions(), 20000)
         return () => {
             clearInterval(interval);
         }
-    }, [])
+    }
 
     useEffect(() => {
         if (currentFocus["longitude"] !== 0 && currentFocus["latitude"] !== 0) {
-            getNewImage();
+            getTile();
         }
-    }, [currentZoom, currentFocus]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentZoom]);
 
     useEffect(() => {
-        if (currentImageData !== undefined) {
-            setCurrentImageId(currentImageData.id);
+        if (tile !== undefined) {
             mapVessels();
-            mapPorts();
+            updatePortLocations();
         } else {
             // TODO Create alert component
             console.log('Target image does not exist');
-            setCurrentImageData(rootImage);
+            setDefaultState();
         }
 
-    }, [currentImageData]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [tile]);
+
+    const setDefaultState = () => {
+        setCurrentZoom(1);
+        setTile(rootTile);
+    }
 
     const mapVessels = () => {
         let newVessels: VesselMapObject[];
@@ -60,35 +73,27 @@ const MapContainer = () => {
         setVessels(newVessels);
     }
 
-    const mapPorts = () => {
-        let newPorts: MapObject[];
+    const updatePortLocations = () => {
+        let newPorts: PortMapObject[];
 
-        newPorts = ports.map( port => { return { longitude: port["longitude"], latitude: port["latitude"], xPosition: calculateObjectXPosition(port), yPosition: calculateObjectYPosition(port) }});
+        newPorts = ports.map( port => { return { ...port, xPosition: calculateObjectXPosition(port), yPosition: calculateObjectYPosition(port) }});
 
         setPorts(newPorts);
     }
 
     const calculateObjectXPosition = (targetObject: MapObject) => {
-        return (targetObject["longitude"] - currentImageData.image_west) / (currentImageData.image_east - currentImageData.image_west) * 100
+        return (targetObject["longitude"] - tile.image_west) / (tile.image_east - tile.image_west) * 100
     };
 
     const calculateObjectYPosition = (targetObject: MapObject) => {
-        return (currentImageData.image_north - targetObject["latitude"]) / (currentImageData.image_north - currentImageData.image_south) * 100
+        return (tile.image_north - targetObject["latitude"]) / (tile.image_north - tile.image_south) * 100
     };
 
     const handleClick = (e: { preventDefault: () => void; pageX: number; pageY: number;}) => {
-        e.preventDefault();
+        let newFocus = { longitude: calculateMapX(e), latitude: calculateMapY(e)};
 
-        if (currentImageData !== undefined) {
-            let newFocus = {
-                longitude: calculateMapX(e),
-                latitude: calculateMapY(e)
-            }
-
-            setCurrentFocus(newFocus);
-
-            changeZoom();
-        }
+        setCurrentFocus(newFocus);
+        changeZoom();
     }
 
     const calculateMapX = (e: any): number => {
@@ -97,7 +102,7 @@ const MapContainer = () => {
         divLeft = document.getElementById('map')!.offsetLeft;
         divWidth = document.getElementById('map')!.offsetWidth;
 
-        return currentImageData.west + (currentImageData.east - currentImageData.west) * ((e.pageX - divLeft) / divWidth);
+        return tile.west + (tile.east - tile.west) * ((e.pageX - divLeft) / divWidth);
     }
 
     const calculateMapY = (e: any): number => {
@@ -106,7 +111,7 @@ const MapContainer = () => {
         divTop = document.getElementById('map')!.offsetTop;
         divHeight = document.getElementById('map')!.offsetHeight;
 
-        return currentImageData.south + (currentImageData.north - currentImageData.south) * (1 - ((e.pageY - divTop) / divHeight));
+        return tile.south + (tile.north - tile.south) * (1 - ((e.pageY - divTop) / divHeight));
     }
 
     const changeZoom = () => {
@@ -144,12 +149,22 @@ const MapContainer = () => {
         }
     }
 
-    const getNewImage = () => {
+    const getTile = () => {
         fetch(`http://localhost:3001/tiles?longitude=${currentFocus.longitude}&latitude=${currentFocus.latitude}&scale=${currentZoom}`)
             .then(response => response.json())
-            .then(data => setCurrentImageData(data[0]));
+            .then(data => setTile(data[0]));
     }
 
+    const mapPorts = (portArray: []) => {
+        let newPorts: PortMapObject[];
+
+        newPorts = portArray.map( port => {
+            // @ts-ignore
+            // spread operator can only be used on object types
+            return { ...port, xPosition: calculateObjectXPosition(port), yPosition: calculateObjectYPosition(port) }});
+
+        return newPorts;
+    }
 
     const getVesselPositions = () => {
         console.log('Getting updated vessel positions from AIS message endpoint.');
@@ -158,7 +173,7 @@ const MapContainer = () => {
     return (
         <section className={`map-container ${zoomMode}`}>
             <SearchMenu zoomMode={zoomMode} setZoomMode={setZoomMode}/>
-            {currentImageId && <Map currentImageId={currentImageId} ports={ports} vessels={vessels} handleClick={handleClick}/> }
+            {tile && <Map currentImageId={tile.id} ports={ports} vessels={vessels} currentZoom={currentZoom} handleClick={handleClick}/> }
         </section>
     )
 }

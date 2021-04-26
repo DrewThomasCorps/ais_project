@@ -10,10 +10,10 @@ export default class Mongo {
     {
         if (this.database === undefined || !this.client.isConnected()) {
             const url = databaseConfig.getUrl();
-            assert(typeof url === 'string')
-            this.client = new MongoClient(url, {useUnifiedTopology: true})
+            assert(typeof url === 'string');
+            this.client = new MongoClient(url, {useUnifiedTopology: true});
             const mongoClient = await this.client.connect();
-            this.database = mongoClient.db(databaseConfig.getName())
+            this.database = mongoClient.db(databaseConfig.getName());
         }
         return this.database;
     }

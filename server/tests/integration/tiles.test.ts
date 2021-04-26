@@ -4,7 +4,6 @@ import {Collection, Db, ObjectId} from "mongodb";
 import Mongo from "../../src/daos/databases/Mongo";
 import app from '../../src';
 import {DatabaseConfig} from "../../src/config/DatabaseConfig";
-// import fs from "fs";
 
 describe('TileIntegration', function () {
     let database: Db;
@@ -83,7 +82,7 @@ describe('TileIntegration', function () {
                     east: null,
                     filename: '43F9.png'
 
-        },{
+                }, {
                     id: 2,
                     ICESName: '43F91',
                     west: null,
@@ -109,7 +108,10 @@ describe('TileIntegration', function () {
 
     describe('createTile', function () {
         it('should get inserted tile from database', async function () {
-            const response = await chai.request(app).post('/tiles').send(JSON.stringify({ICESName: '43F92', id: 52372}));
+            const response = await chai.request(app).post('/tiles').send(JSON.stringify({
+                ICESName: '43F92',
+                id: 52372
+            }));
 
             expect(response.body.ICESName).to.be.equal('43F92');
             expect(response.body.id).to.be.equal(52372);
@@ -235,6 +237,5 @@ describe('TileIntegration', function () {
             ]);
             expect(response.status).to.be.equal(200);
         });
-    })
-
+    });
 });
