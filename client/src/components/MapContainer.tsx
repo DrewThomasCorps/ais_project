@@ -5,6 +5,7 @@ import ImageData from "../interfaces/ImageData";
 import MapObject from "../interfaces/MapObject";
 import CurrentFocusCoordinates from "../interfaces/CurrentFocusCoordinates";
 import VesselMapObject from "../interfaces/VesselMapObject";
+import Requests from "../Requests";
 
 const MapContainer = () => {
     const [currentZoom, setCurrentZoom] = useState<number>(1);
@@ -144,10 +145,9 @@ const MapContainer = () => {
         }
     }
 
-    const getNewImage = () => {
-        fetch(`http://localhost:3001/tiles?longitude=${currentFocus.longitude}&latitude=${currentFocus.latitude}&scale=${currentZoom}`)
-            .then(response => response.json())
-            .then(data => setCurrentImageData(data[0]));
+    const getNewImage = async () => {
+        const imageData: ImageData = await Requests.getImageData(currentFocus, currentZoom);
+        setCurrentImageData(imageData);
     }
 
 
