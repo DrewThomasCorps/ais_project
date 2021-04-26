@@ -152,3 +152,4 @@ build/
 /client/yarn-error.log*
 
 /server/build
+!client/.env

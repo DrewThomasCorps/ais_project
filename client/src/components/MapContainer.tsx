@@ -6,6 +6,8 @@ import MapObject from "../interfaces/MapObject";
 import CurrentFocusCoordinates from "../interfaces/CurrentFocusCoordinates";
 import VesselMapObject from "../interfaces/VesselMapObject";
 import PortMapObject from "../interfaces/PortMapObject";
+import ImageData from "../interfaces/ImageData";
+import Requests from "../Requests";
 
 const MapContainer = () => {
     const rootTile = {"id": 1, "ICESName": "-1", "west": 7.0, "south": 54.5, "east": 13.0, "north": 57.5,
@@ -22,14 +24,11 @@ const MapContainer = () => {
     useEffect(() => {
         getPorts();
         updateVesselPositions();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
-    const getPorts = () => {
-        fetch(`http://localhost:3001/ports?mapview_1=1`)
-            .then(response => response.json())
-            // .then(data => setPorts(data));
-            .then(data => setPorts(mapPorts(data)));
+    const getPorts = async () => {
+        const ports: PortMapObject[] = await Requests.getPorts();
+        setPorts(ports);
     }
 
     const updateVesselPositions = ()  => {
@@ -44,7 +43,6 @@ const MapContainer = () => {
         if (currentFocus["longitude"] !== 0 && currentFocus["latitude"] !== 0) {
             getTile();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentZoom]);
 
     useEffect(() => {
@@ -56,8 +54,6 @@ const MapContainer = () => {
             console.log('Target image does not exist');
             setDefaultState();
         }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tile]);
 
     const setDefaultState = () => {
@@ -149,10 +145,9 @@ const MapContainer = () => {
         }
     }
 
-    const getTile = () => {
-        fetch(`http://localhost:3001/tiles?longitude=${currentFocus.longitude}&latitude=${currentFocus.latitude}&scale=${currentZoom}`)
-            .then(response => response.json())
-            .then(data => setTile(data[0]));
+    const getTile = async () => {
+        const imageData: ImageData = await Requests.getImageData(currentFocus, currentZoom);
+        setTile(imageData);
     }
 
     const mapPorts = (portArray: []) => {
