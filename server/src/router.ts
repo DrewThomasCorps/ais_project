@@ -4,6 +4,9 @@ import TileController from "./controllers/TileController";
 import {URL} from "url";
 import PortController from "./controllers/PortController";
 
+/**
+ * `router` is responsible for routing all requests to the correct controller method for Vessels, Tiles, Ports, and AIS Messages.
+ */
 export default http.createServer(async (request: IncomingMessage, response: ServerResponse) => {
     const requestUrl = new URL(request.url ?? '', 'http://localhost:3000');
 
@@ -48,6 +51,11 @@ export default http.createServer(async (request: IncomingMessage, response: Serv
     }
 });
 
+/**
+ * Handles the default response when a user tries to hit an invalid endpoint.
+ * @param _request
+ * @param response
+ */
 const invalidUrl = (_request: IncomingMessage, response: ServerResponse) => {
     let responseData = {"message": "Invalid endpoint"}
     response.statusCode = 404;

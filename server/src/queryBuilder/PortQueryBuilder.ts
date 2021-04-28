@@ -3,6 +3,9 @@ import QueryBuilder from "./QueryBuilder";
 import {URL} from "url";
 import Port from "../models/Port";
 
+/**
+ * Constructs a QueryBuilder object from a Port that can be used to create a MongoDB query.
+ */
 export default class PortQueryBuilder implements QueryBuilder<Port>{
     private readonly name: string | null;
     private readonly country: string | null;
@@ -18,6 +21,11 @@ export default class PortQueryBuilder implements QueryBuilder<Port>{
         this.mapview_3 = requestUrl.searchParams.get('mapview_3');
     }
 
+
+    /**
+     * Converts request search parameters to a JSON string that can be used to query MongoDB.
+     * @returns jsonString contains keys and pairs used to query the port collection in MongoDB.
+     */
     buildFilterModel() :Port
     {
         let query: any = {};

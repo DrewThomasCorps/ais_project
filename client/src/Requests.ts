@@ -1,5 +1,5 @@
 import CurrentFocusCoordinates from "./interfaces/CurrentFocusCoordinates";
-import ImageData from "./interfaces/ImageData";
+import TileData from "./interfaces/TileData";
 import PortMapObject from "./interfaces/PortMapObject";
 
 export default class Requests {
@@ -13,9 +13,9 @@ export default class Requests {
         return await response.json();
     }
 
-    static async getImageData(currentFocus: CurrentFocusCoordinates, currentZoom: number): Promise<ImageData>
+    static async getTileData(currentFocus: CurrentFocusCoordinates, currentZoom: number): Promise<TileData>
     {
-        const data: ImageData[] = await Requests.getResponseData(`tiles?longitude=${currentFocus.longitude}&latitude=${currentFocus.latitude}&scale=${currentZoom}`);
+        const data: TileData[] = await Requests.getResponseData(`tiles?longitude=${currentFocus.longitude}&latitude=${currentFocus.latitude}&scale=${currentZoom}`);
         return data[0];
     }
 

@@ -4,6 +4,9 @@ import {DatabaseConfig} from "../../config/DatabaseConfig";
 import InvalidDatabaseConfigException from "../exceptions/InvalidDatabaseConfigException";
 import PortDao from "../interface/PortDao";
 
+/**
+ * Retrieves the appropriate DAO for environment database type.
+ */
 export default class PortDaoFactory {
     static async getPortDao(databaseConfig: DatabaseConfig): Promise<PortDao>
     {

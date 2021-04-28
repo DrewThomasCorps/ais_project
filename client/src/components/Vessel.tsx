@@ -1,5 +1,11 @@
 import React, {Fragment} from 'react';
 
+/**
+ * Renders a `Vessel` component with the given `xPosition` and `yPosition`.
+ * @param xPosition
+ * @param yPosition
+ * @constructor
+ */
 const Vessel = ({ xPosition, yPosition }: {xPosition: number, yPosition: any}) => {
     const animationDuration = '3.0s'
     const color = '#F2423688'

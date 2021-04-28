@@ -3,6 +3,9 @@ import QueryBuilder from "./QueryBuilder";
 import {URL} from "url";
 import Vessel from "../models/Vessel";
 
+/**
+ * Constructs a QueryBuilder object from a Vessel that can be used to create a MongoDB query.
+ */
 export default class VesselQueryBuilder implements QueryBuilder<Vessel>{
     private readonly imo: string | null;
     private readonly mmsi: string | null;
@@ -28,6 +31,10 @@ export default class VesselQueryBuilder implements QueryBuilder<Vessel>{
         this.owner = requestUrl.searchParams.get('owner')
     }
 
+    /**
+     * Converts request search parameters to a JSON string that can be used to query MongoDB.
+     * @returns jsonString contains keys and pairs used to query the vessel collection in MongoDB.
+     */
     buildFilterModel() :Vessel
     {
         let query: any = {};
