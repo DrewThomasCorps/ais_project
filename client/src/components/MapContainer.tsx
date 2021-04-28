@@ -22,19 +22,22 @@ const MapContainer = () => {
     const [ports, setPorts] = useState<PortMapObject[]>([]);
 
     useEffect(() => {
-        getPorts().then();
+        getPorts();
+        updateVesselPositions();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            getVesselPositions();
-        }, 20 * 1000)
-        return () => clearInterval(interval);
-    }, [])
 
     const getPorts = async () => {
         const ports: PortMapObject[] = await Requests.getPorts();
-        setPorts(ports);
+        setPorts(mapPorts(ports));
+    }
+
+    const updateVesselPositions = ()  => {
+        getVesselPositions();
+        const interval = setInterval(() => getVesselPositions(), 20000)
+        return () => {
+            clearInterval(interval);
+        }
     }
 
     useEffect(() => {
@@ -149,7 +152,7 @@ const MapContainer = () => {
     const mapPorts = (portArray: PortMapObject[]) => {
         let newPorts: PortMapObject[];
 
-        newPorts = portArray.map( (port) => {
+        newPorts = portArray.map( port => {
             return { ...port, xPosition: calculateObjectXPosition(port), yPosition: calculateObjectYPosition(port) }});
 
         return newPorts;
