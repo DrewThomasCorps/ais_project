@@ -18,7 +18,7 @@ const Port = ({ port, currentZoom }: {port: PortMapObject, currentZoom: number})
                 <text x={port.xPosition && port.xPosition + .50}
                       y={port.yPosition && port.yPosition + .24}
                       className="small"
-                      stroke-width={`.018`}
+                      strokeWidth={`.018`}
                       stroke={`#ffa200`}>
                     {port.port_location}
                  </text>

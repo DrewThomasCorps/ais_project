@@ -48,7 +48,8 @@ const MapContainer = () => {
      */
     useEffect(() => {
         getPorts();
-        updateVesselPositions();
+        return updateVesselPositions();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     /**
@@ -58,7 +59,8 @@ const MapContainer = () => {
         if (currentFocus["longitude"] !== 0 && currentFocus["latitude"] !== 0) {
             getTile();
         }
-    }, [currentZoom]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentZoom, currentFocus]);
 
     /**
      * This hook runs the methods that update vessel and port locations based on the current tile data.
@@ -72,6 +74,7 @@ const MapContainer = () => {
             console.log('Target image does not exist');
             setDefaultState();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tile]);
 
     /**
@@ -182,8 +185,6 @@ const MapContainer = () => {
         let newPorts: PortMapObject[];
 
         newPorts = portArray.map( port => {
-            // @ts-ignore
-            // spread operator can only be used on object types
             return { ...port,
                 xPosition: MapHelpers.getXPosition(port["longitude"], tile),
                 yPosition: MapHelpers.getYPosition(port["latitude"], tile) }});

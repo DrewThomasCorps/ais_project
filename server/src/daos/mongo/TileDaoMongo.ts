@@ -12,7 +12,7 @@ export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<
 
     constructor(database: Db) {
         super(database);
-        this.collectionName = 'tiles';
+        this.collectionName = 'mapviews';
         this.mongoModel = Tile.prototype;
     }
 

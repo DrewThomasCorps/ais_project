@@ -23,11 +23,11 @@ describe('TileIntegration', function () {
     beforeEach(async function () {
         const collections = await database.collections();
         if (collections.find((collection: Collection) => {
-            return collection.collectionName === 'tiles';
+            return collection.collectionName === 'mapviews';
         })) {
-            await database.dropCollection('tiles');
+            await database.dropCollection('mapviews');
         }
-        await database.createCollection('tiles');
+        await database.createCollection('mapviews');
     })
 
     after(async function () {
@@ -35,7 +35,7 @@ describe('TileIntegration', function () {
     })
 
     const insertTestTiles = async () => {
-        await database.collection('tiles').insertMany([
+        await database.collection('mapviews').insertMany([
             {
                 '_id': new ObjectId('a1-b2-c3-d4z'),
                 'id': 1,
@@ -53,13 +53,13 @@ describe('TileIntegration', function () {
     }
 
     describe('getTiles', function () {
-        it('should get empty array when there are no tiles', async function () {
+        it('should get empty array when there are no mapviews', async function () {
             const response = await chai.request(app).get('/tiles');
             expect(response.body).to.deep.equal([]);
             expect(response.status).to.be.equal(200);
         });
 
-        it('should get array of tiles', async function () {
+        it('should get array of mapviews', async function () {
             await insertTestTiles();
             const response = await chai.request(app).get('/tiles');
 
@@ -147,8 +147,8 @@ describe('TileIntegration', function () {
             await insertTestTiles();
             const response = await chai.request(app).delete('/tiles/' + new ObjectId('a1-b2-c3-d4z').toHexString());
             expect(response.status).to.be.equal(204);
-            const tilesInDatabase = await database.collection('tiles').countDocuments();
-            expect(tilesInDatabase).to.be.equal(1);
+            const mapviewsInDatabase = await database.collection('mapviews').countDocuments();
+            expect(mapviewsInDatabase).to.be.equal(1);
         });
     });
 
@@ -160,7 +160,7 @@ describe('TileIntegration', function () {
     })
 
     describe('findTilesByCoordinates', function () {
-        it('should get array of tiles by coordinates', async function () {
+        it('should get array of mapviews by coordinates', async function () {
             await insertTestTiles();
 
             await chai.request(app).put('/tiles/' + new ObjectId('a1-b2-c3-d4z').toHexString())
@@ -210,7 +210,7 @@ describe('TileIntegration', function () {
 
 
     describe('findContainedTiles', function () {
-        it('should get array of tiles contained in given tile id', async function () {
+        it('should get array of mapviews contained in given tile id', async function () {
             await insertTestTiles();
 
             const response = await chai.request(app).get('/tile-data/1');
