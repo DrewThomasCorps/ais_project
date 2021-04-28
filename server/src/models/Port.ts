@@ -1,5 +1,8 @@
 import {Model} from './Model';
 
+/**
+ * The model for `port` documents. Includes class variables, an override for `fromJson`, and a `build` method.
+ */
 export default class Port implements Model {
     id: number = 0;
     un_locode: string | null = null;

@@ -1,0 +1,291 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>server</title>
+	<meta name="description" content="Documentation for server">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">server</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>server</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#ais-project" id="ais-project" style="color: inherit; text-decoration: none;">
+					<h1>AIS Project</h1>
+				</a>
+				<a href="#team-members" id="team-members" style="color: inherit; text-decoration: none;">
+					<h2>Team Members</h2>
+				</a>
+				<ul>
+					<li>Drew Thomas</li>
+					<li>Alan Bauer</li>
+				</ul>
+				<a href="#set-up-amp-installation" id="set-up-amp-installation" style="color: inherit; text-decoration: none;">
+					<h2>Set Up &amp; Installation</h2>
+				</a>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
+				</a>
+				<p>This repository includes TypeDoc generated documentation for the traffic monitoring backend, REST layer,
+					and Browser-displayed map. The repository also includes code level documentation for critical methods and components
+				for each of the previously mentioned layers.</p>
+				<p>The following documentation is best view in a web browser:</p>
+				<ul>
+					<li><code>docs/client/index.html</code></li>
+					<li><code>docs/server/index.html</code></li>
+				</ul>
+				<a href="#summary" id="summary" style="color: inherit; text-decoration: none;">
+					<h2>Summary</h2>
+				</a>
+				<p>This application follows the criteria for <strong>Option C</strong> outlined in the <em>project_tasks.html</em> document provided for the
+				project.</p>
+				<a href="#traffic-monitoring-backend" id="traffic-monitoring-backend" style="color: inherit; text-decoration: none;">
+					<h2>Traffic Monitoring Backend</h2>
+				</a>
+				<a href="#nodejs-rest-layer-for-data-operations" id="nodejs-rest-layer-for-data-operations" style="color: inherit; text-decoration: none;">
+					<h2>Node.js REST layer for data operations</h2>
+				</a>
+				<a href="#browser-displayed-map" id="browser-displayed-map" style="color: inherit; text-decoration: none;">
+					<h2>Browser-displayed map</h2>
+				</a>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h3>Features</h3>
+				</a>
+				<a href="#display" id="display" style="color: inherit; text-decoration: none;">
+					<h4>Display</h4>
+				</a>
+				<ul>
+					<li>Regular interval queries for updating vessel positions</li>
+					<li>Dynamic rendering of ports and port names based on background tile</li>
+					<li>Dynamic rendering of last vessel location based on background tile</li>
+					<li>Dynamic rendering of vessels based on search parameters</li>
+					<li>Collapsible search menu</li>
+					<li>Toggle buttons for zooming in/out and opening/closing search menu</li>
+				</ul>
+				<a href="#zoom" id="zoom" style="color: inherit; text-decoration: none;">
+					<h4>Zoom</h4>
+				</a>
+				<ul>
+					<li>Zoom in/out views of map</li>
+					<li>GUI for toggling zoom modes</li>
+					<li>Three zoom levels</li>
+					<li>Dynamic rendering of background tile based on mouse click positions while zooming</li>
+					<li>Error protection from zooming to undefined tiles or tiles that have not been provided</li>
+				</ul>
+				<a href="#search" id="search" style="color: inherit; text-decoration: none;">
+					<h4>Search</h4>
+				</a>
+				<ul>
+					<li>Input fields for searching vessels by MMSI</li>
+					<li>Input fields for searching for vessels by destination port</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/environmenthandler.html">Environment<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/config_databaseconfig.html">config/<wbr>Database<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/controllers_portcontroller.html">controllers/<wbr>Port<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/controllers_tilecontroller.html">controllers/<wbr>Tile<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/controllers_vesselcontroller.html">controllers/<wbr>Vessel<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_databases_mongo.html">daos/databases/<wbr>Mongo</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_exceptions_invaliddatabaseconfigexception.html">daos/exceptions/<wbr>Invalid<wbr>Database<wbr>Config<wbr>Exception</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_factory_portdaofactory.html">daos/factory/<wbr>Port<wbr>Dao<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_factory_tiledaofactory.html">daos/factory/<wbr>Tile<wbr>Dao<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_factory_vesseldaofactory.html">daos/factory/<wbr>Vessel<wbr>Dao<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_interface_cruddao.html">daos/interface/<wbr>Crud<wbr>Dao</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_interface_portdao.html">daos/interface/<wbr>Port<wbr>Dao</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_interface_tiledao.html">daos/interface/<wbr>Tile<wbr>Dao</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_mongo_daomongocrud.html">daos/mongo/<wbr>Dao<wbr>Mongo<wbr>Crud</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_mongo_portdaomongo.html">daos/mongo/<wbr>Port<wbr>Dao<wbr>Mongo</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_mongo_tiledaomongo.html">daos/mongo/<wbr>Tile<wbr>Dao<wbr>Mongo</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_mongo_vesseldaomongo.html">daos/mongo/<wbr>Vessel<wbr>Dao<wbr>Mongo</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/models_model.html">models/<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/models_port.html">models/<wbr>Port</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/models_tile.html">models/<wbr>Tile</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/models_vessel.html">models/<wbr>Vessel</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/querybuilder_portquerybuilder.html">query<wbr>Builder/<wbr>Port<wbr>Query<wbr>Builder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/querybuilder_querybuilder.html">query<wbr>Builder/<wbr>Query<wbr>Builder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/querybuilder_vesselquerybuilder.html">query<wbr>Builder/<wbr>Vessel<wbr>Query<wbr>Builder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/router.html">router</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_environmenthandler_test.html">tests/<wbr>Environment<wbr>Handler.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_daos_factory_portdaofactory_test.html">tests/daos/factory/<wbr>Port<wbr>Dao<wbr>Factory.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_daos_factory_tiledaofactory_test.html">tests/daos/factory/<wbr>Tile<wbr>Dao<wbr>Factory.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_daos_factory_vesseldaofactory_test.html">tests/daos/factory/<wbr>Vessel<wbr>Dao<wbr>Factory.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_daos_mongo_portdaomongo_test.html">tests/daos/mongo/<wbr>Port<wbr>Dao<wbr>Mongo.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_daos_mongo_tiledaomongo_test.html">tests/daos/mongo/<wbr>Tile<wbr>Dao<wbr>Mongo.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_daos_mongo_vesseldaomongo_test.html">tests/daos/mongo/<wbr>Vessel<wbr>Dao<wbr>Mongo.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_integration_ports_test.html">tests/integration/ports.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_integration_tiles_test.html">tests/integration/tiles.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_integration_vessels_test.html">tests/integration/vessels.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_models_port_test.html">tests/models/<wbr>Port.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_models_tile_test.html">tests/models/<wbr>Tile.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_models_vessel_test.html">tests/models/<wbr>Vessel.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_querybuilder_portquerybuilder_test.html">tests/query<wbr>Builder/<wbr>Port<wbr>Query<wbr>Builder.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_querybuilder_vesselquerybuilder_test.html">tests/query<wbr>Builder/<wbr>Vessel<wbr>Query<wbr>Builder.test</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

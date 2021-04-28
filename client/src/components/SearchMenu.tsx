@@ -1,8 +1,17 @@
 import React, {useState, Fragment} from 'react';
 
+/**
+ * Controls the collapsible search menu and includes buttons for zoom and search actions.
+ * @param zoomMode
+ * @param setZoomMode
+ * @constructor
+ */
 const SearchMenu = ({ zoomMode, setZoomMode }: {zoomMode: string, setZoomMode: any}) => {
     const [menuState, setMenuState] = useState('closed');
 
+    /**
+     * Toggles current visibility of collapsible menu.
+     */
     const toggleMenu = () => {
         let newState = '';
 
@@ -15,6 +24,10 @@ const SearchMenu = ({ zoomMode, setZoomMode }: {zoomMode: string, setZoomMode: a
         setMenuState(newState);
     }
 
+    /**
+     * Toggles app level zoom mode when zoom in button is clicked.
+     * @param e
+     */
     const handleZoomInClick = (e: { preventDefault: () => void;}) => {
         if (zoomMode === '') {
             setZoomMode('in');
@@ -25,6 +38,10 @@ const SearchMenu = ({ zoomMode, setZoomMode }: {zoomMode: string, setZoomMode: a
         }
     }
 
+    /**
+     * Toggles app level zoom mode when zoom out button is clicked.
+     * @param e
+     */
     const handleZoomOutClick = (e: { preventDefault: () => void;}) => {
         if (zoomMode === '') {
             setZoomMode('out');

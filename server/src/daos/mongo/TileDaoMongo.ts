@@ -4,6 +4,10 @@ import {Db} from "mongodb";
 import CrudDao from "../interface/CrudDao";
 import * as fs from "fs";
 
+/**
+ * Creates Tile DAO for MongoDB. Includes specialized methods beyond basic CRUD to retrieve tile image files, find
+ * contained tiles, and find tiles by coordinates.
+ */
 export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<Tile> {
 
     constructor(database: Db) {
@@ -79,6 +83,10 @@ export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<
         });
     }
 
+    /**
+     * Queries database for tile image file by tile id.
+     * @param tileId
+     */
     async getTileImage(tileId: number) : Promise<Tile>
     {
         const image = await this.database.collection(this.collectionName).findOne({ id: tileId });
@@ -88,6 +96,10 @@ export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<
         return this.mongoModel.constructor.fromJson(JSON.stringify(image));
     }
 
+    /**
+     * Finds tiles that are contained in the given tile id. Excludes `image_file` binary from projection.
+     * @param tileId
+     */
     async findContainedTiles(tileId: number) {
         const tiles = await this.database.collection(this.collectionName).find({contained_by: tileId}, {projection: {image_file: 0}}).toArray();
 
@@ -98,6 +110,16 @@ export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<
         });
     }
 
+    /**
+     * Finds tiles using given query object.
+     * `const queryObject = {
+     * image_west: {$lte: longitude},
+     * image_east: {$gt: longitude},
+     * image_north: {$gt: latitude},
+     * image_south: {$lte: latitude},
+     * scale: scale }`
+     * @param queryObject
+     */
     async findTilesByCoordinates(queryObject: object): Promise<Tile[]> {
         const tiles = await this.database.collection(this.collectionName).find(queryObject, {projection: {image_file: 0}}).toArray();
 

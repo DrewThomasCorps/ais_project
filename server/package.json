@@ -16,6 +16,7 @@
     "nodemon": "^2.0.7",
     "nyc": "^15.1.0",
     "ts-node": "^9.1.1",
+    "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
   },
   "scripts": {
@@ -25,7 +26,10 @@
     "test": "env mocha -r ts-node/register 'src/tests/**/*.ts'",
     "client": "cd ../client && yarn start",
     "setup": "./setup.sh",
-    "dev": "concurrently \"yarn run start:dev\" \"yarn run client\""
+    "dev": "concurrently \"yarn run start:dev\" \"yarn run client\"",
+    "client:typedoc": "cd ../client && yarn typedoc --watch --readme ../README.md --out ../docs/client src/",
+    "server:typedoc": "yarn typedoc --watch --readme ../README.md --out ../docs/server src/",
+    "dev:typedoc": "concurrently \"yarn run client:typedoc\" \"yarn run server:typedoc\""
   },
   "dependencies": {
     "mongodb": "^3.6.6"

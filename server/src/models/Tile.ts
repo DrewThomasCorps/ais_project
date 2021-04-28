@@ -1,5 +1,8 @@
 import {Model} from './Model';
 
+/**
+ * The model for `tile` documents. Includes class variables, an override for `fromJson`, and a `build` method.
+ */
 export default class Tile implements Model {
     id: number = 0;
     ICESName: string | null = null;
