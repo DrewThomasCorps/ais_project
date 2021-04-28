@@ -33,6 +33,7 @@
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": [
+    "./setup.js",
     "./build/",
     "./node_modules/",
   ]

@@ -22,28 +22,27 @@ const MapContainer = () => {
     const [ports, setPorts] = useState<PortMapObject[]>([]);
 
     useEffect(() => {
-        getPorts();
-        updateVesselPositions();
+        getPorts().then();
     },[]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            getVesselPositions();
+        }, 20 * 1000)
+        return () => clearInterval(interval);
+    }, [])
 
     const getPorts = async () => {
         const ports: PortMapObject[] = await Requests.getPorts();
         setPorts(ports);
     }
 
-    const updateVesselPositions = ()  => {
-        getVesselPositions();
-        const interval = setInterval(() => getVesselPositions(), 20000)
-        return () => {
-            clearInterval(interval);
-        }
-    }
-
     useEffect(() => {
         if (currentFocus["longitude"] !== 0 && currentFocus["latitude"] !== 0) {
             getTile();
         }
-    }, [currentZoom]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentZoom, currentFocus]);
 
     useEffect(() => {
         if (tile !== undefined) {
@@ -54,6 +53,7 @@ const MapContainer = () => {
             console.log('Target image does not exist');
             setDefaultState();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tile]);
 
     const setDefaultState = () => {
@@ -63,17 +63,13 @@ const MapContainer = () => {
 
     const mapVessels = () => {
         let newVessels: VesselMapObject[];
-
         newVessels = vessels.map( vessel => { return { imo: vessel["imo"], longitude: vessel["longitude"], latitude: vessel["latitude"], xPosition: calculateObjectXPosition(vessel), yPosition: calculateObjectYPosition(vessel) }});
-
         setVessels(newVessels);
     }
 
     const updatePortLocations = () => {
         let newPorts: PortMapObject[];
-
-        newPorts = ports.map( port => { return { ...port, xPosition: calculateObjectXPosition(port), yPosition: calculateObjectYPosition(port) }});
-
+        newPorts = mapPorts(ports);
         setPorts(newPorts);
     }
 
@@ -150,12 +146,10 @@ const MapContainer = () => {
         setTile(imageData);
     }
 
-    const mapPorts = (portArray: []) => {
+    const mapPorts = (portArray: PortMapObject[]) => {
         let newPorts: PortMapObject[];
 
-        newPorts = portArray.map( port => {
-            // @ts-ignore
-            // spread operator can only be used on object types
+        newPorts = portArray.map( (port) => {
             return { ...port, xPosition: calculateObjectXPosition(port), yPosition: calculateObjectYPosition(port) }});
 
         return newPorts;
