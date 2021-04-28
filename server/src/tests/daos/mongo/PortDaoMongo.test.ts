@@ -77,7 +77,7 @@ describe('PortDaoMongo', function () {
 
     describe('insert()', function () {
         it('should insert a new document', async function () {
-            const portToInsert = Port.fromJson(readFileSync('tests/resources/models/port_one.json').toString());
+            const portToInsert = Port.fromJson(readFileSync('src/tests/resources/models/port_one.json').toString());
             const insertedPort = await portDaoMongo.insert(portToInsert);
             const portCount = await database.collection('ports').countDocuments();
             expect(portCount).to.be.equal(1);

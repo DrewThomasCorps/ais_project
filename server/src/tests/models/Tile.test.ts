@@ -5,7 +5,7 @@ import {readFileSync} from "fs";
 describe('Tile', function() {
     describe('fromJson()', function() {
         it('set all present values', function() {
-            const tile = Tile.fromJson(readFileSync('tests/resources/models/tile_one.json').toString())
+            const tile = Tile.fromJson(readFileSync('src/tests/resources/models/tile_one.json').toString())
             expect(tile.id).to.be.equal(1);
             expect(tile.ICESName).to.be.equal('-1');
             expect(tile.west).to.be.equal(7.0);

@@ -33,11 +33,11 @@ describe('TileDaoMongo', function () {
     beforeEach(async function () {
         const collections = await database.collections();
         if (collections.find((collection: Collection) => {
-            return collection.collectionName === 'tiles';
+            return collection.collectionName === 'mapviews';
         })) {
-            await database.dropCollection('tiles');
+            await database.dropCollection('mapviews');
         }
-        await database.createCollection('tiles');
+        await database.createCollection('mapviews');
     })
 
     after(async function () {
@@ -45,7 +45,7 @@ describe('TileDaoMongo', function () {
     })
 
     const insertTestTiles = async () => {
-        await database.collection('tiles').insertMany([
+        await database.collection('mapviews').insertMany([
             {
                 '_id': new ObjectId('a1-b2-c3-d4z'),
                 'ices_name': '43F9',
@@ -63,9 +63,9 @@ describe('TileDaoMongo', function () {
 
     describe('insert()', function () {
         it('should insert a new document', async function () {
-            const tileToInsert = Tile.fromJson(readFileSync('tests/resources/models/tile_one.json').toString());
+            const tileToInsert = Tile.fromJson(readFileSync('src/tests/resources/models/tile_one.json').toString());
             const insertedTile = await tileDaoMongo.insert(tileToInsert);
-            const tileCount = await database.collection('tiles').countDocuments();
+            const tileCount = await database.collection('mapviews').countDocuments();
 
             expect(tileCount).to.be.equal(1);
             expect(insertedTile.id).to.be.equal(1);
@@ -99,23 +99,23 @@ describe('TileDaoMongo', function () {
         it('should delete an existing document', async function () {
             await insertTestTiles();
             await tileDaoMongo.delete('a1-b2-c3-d4z');
-            const tileCount = await database.collection('tiles').countDocuments();
+            const tileCount = await database.collection('mapviews').countDocuments();
             expect(tileCount).to.be.equal(1);
         });
     });
 
     describe('findAll()', function () {
-        it('should return all tiles in collection', async function () {
+        it('should return all mapviews in collection', async function () {
             await insertTestTiles();
-            const tiles = await tileDaoMongo.findAll();
-            expect(tiles.length).to.be.equal(2);
-            expect(tiles[0]?.filename).to.equal('43F9.png');
-            expect(tiles[1]?.id).to.be.equal(2);
+            const mapviews = await tileDaoMongo.findAll();
+            expect(mapviews.length).to.be.equal(2);
+            expect(mapviews[0]?.filename).to.equal('43F9.png');
+            expect(mapviews[1]?.id).to.be.equal(2);
         });
     });
 
     describe('find()', function () {
-        it('should return tiles in collection by id', async function () {
+        it('should return mapviews in collection by id', async function () {
             await insertTestTiles();
             const tile = await tileDaoMongo.find('a1-b2-c3-d4z');
             expect(tile.filename).to.equal('43F9.png');

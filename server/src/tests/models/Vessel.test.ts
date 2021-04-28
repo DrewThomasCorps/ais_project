@@ -5,7 +5,7 @@ import {readFileSync} from "fs";
 describe('Vessel', function() {
     describe('fromJson()', function() {
         it('set all present values', function() {
-            const vessel = Vessel.fromJson(readFileSync('tests/resources/models/vessel_one.json').toString())
+            const vessel = Vessel.fromJson(readFileSync('src/tests/resources/models/vessel_one.json').toString())
             expect(vessel.flag).to.be.equal('United Kingdom');
             expect(vessel.imo).to.be.equal(1000019);
             expect(vessel.name).to.be.equal("Lady K Ii");
@@ -22,7 +22,7 @@ describe('Vessel', function() {
         });
 
         it('set all values when optional values are missing', function() {
-            const vessel = Vessel.fromJson(readFileSync('tests/resources/models/vessel_only_required.json').toString())
+            const vessel = Vessel.fromJson(readFileSync('src/tests/resources/models/vessel_only_required.json').toString())
             expect(vessel.flag).to.be.equal(null);
             expect(vessel.imo).to.be.equal(1000019);
             expect(vessel.name).to.be.equal(null);

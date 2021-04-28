@@ -61,7 +61,7 @@ describe('VesselDaoMongo', function () {
 
     describe('insert()', function () {
         it('should insert a new document', async function () {
-            const vesselToInsert = Vessel.fromJson(readFileSync('tests/resources/models/vessel_one.json').toString());
+            const vesselToInsert = Vessel.fromJson(readFileSync('src/tests/resources/models/vessel_one.json').toString());
             const insertedVessel = await vesselDaoMongo.insert(vesselToInsert);
             const vesselCount = await database.collection('vessels').countDocuments();
             expect(vesselCount).to.be.equal(1);
