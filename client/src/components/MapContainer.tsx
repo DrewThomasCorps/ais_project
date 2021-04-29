@@ -3,8 +3,6 @@ import Map from './Map';
 import SearchMenu from './SearchMenu';
 import TileData from "../interfaces/TileData";
 import CurrentFocusCoordinates from "../interfaces/CurrentFocusCoordinates";
-import VesselMapObject from "../interfaces/VesselMapObject";
-import PortMapObject from "../interfaces/PortMapObject";
 import Requests from "../Requests";
 import MapHelpers from "../MapHelpers";
 
@@ -18,8 +16,6 @@ import MapHelpers from "../MapHelpers";
  * - current zoom mode
  * - current cursor focus
  * - tile data
- * - vessel data
- * - port data
  *
  * @returns JSX.Element that includes a `section` with nested `SearchMenu` and `Map` components.
  */
@@ -40,17 +36,6 @@ const MapContainer = () => {
     const [zoomMode, setZoomMode] = useState<string>('');
     const [currentFocus, setCurrentFocus] = useState<CurrentFocusCoordinates>({ longitude: 0, latitude: 0 });
     const [tile, setTile] = useState<TileData>(rootTile);
-    const [vessels, setVessels] = useState<VesselMapObject[]>([{imo: '123456', longitude: 8.204047217537942, latitude: 56.913153456998316}]);
-    const [ports, setPorts] = useState<PortMapObject[]>([]);
-
-    /**
-     * When the component mounts, the following `useEffect` hook gets port data from the database and runs the `updateVesselPositions` function.
-     */
-    useEffect(() => {
-        getPorts();
-        return updateVesselPositions();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
 
     /**
      * This hook updates the tile that is currently displayed when a user zooms in or out.
@@ -63,13 +48,10 @@ const MapContainer = () => {
     }, [currentZoom, currentFocus]);
 
     /**
-     * This hook runs the methods that update vessel and port locations based on the current tile data.
+     * Resets container state to default if a tile is undefined for the focus region.
      */
     useEffect(() => {
-        if (tile !== undefined) {
-            mapVessels();
-            updatePortLocations();
-        } else {
+        if (tile === undefined) {
             // TODO Create alert component
             console.log('Target image does not exist');
             setDefaultState();
@@ -78,48 +60,11 @@ const MapContainer = () => {
     }, [tile]);
 
     /**
-     * `updateVesselPositions` gets vessel positions from the database on the interval specified below.
+     * This method sets the container to its default state.
      */
-    const updateVesselPositions = ()  => {
-        getVesselPositions();
-        const interval = setInterval(() => getVesselPositions(), 20000)
-        return () => {
-            clearInterval(interval);
-        }
-    }
-
     const setDefaultState = () => {
         setCurrentZoom(1);
         setTile(rootTile);
-    }
-
-    /**
-     * `mapVessels` enriches each vessel object to include x and y positions based on the current tile's boundaries.
-     */
-    const mapVessels = () => {
-        let newVessels: VesselMapObject[];
-
-        newVessels = vessels.map( vessel => {
-            return { ...vessel,
-                xPosition: MapHelpers.getXPosition(vessel["longitude"], tile),
-                yPosition: MapHelpers.getYPosition(vessel["latitude"], tile) }});
-
-        setVessels(newVessels);
-    }
-
-    /**
-     * `updatePortLocations` recalculates x and y positions based on the current tile's boundaries.
-     */
-    const updatePortLocations = () => {
-        let newPorts: PortMapObject[];
-
-        newPorts = ports.map( port => {
-            return { ...port,
-                xPosition: MapHelpers.getXPosition(port["longitude"], tile),
-                yPosition: MapHelpers.getYPosition(port["latitude"], tile) }
-        });
-
-        setPorts(newPorts);
     }
 
     /**
@@ -178,33 +123,6 @@ const MapContainer = () => {
     }
 
     /**
-     * This function enriches port objects by setting x and y positions relative to the boundaries of a current tile.
-     * @param portArray
-     */
-    const mapPorts = (portArray: PortMapObject[]) => {
-        let newPorts: PortMapObject[];
-
-        newPorts = portArray.map( port => {
-            return { ...port,
-                xPosition: MapHelpers.getXPosition(port["longitude"], tile),
-                yPosition: MapHelpers.getYPosition(port["latitude"], tile) }});
-
-        return newPorts;
-    }
-
-    /**
-     * `getPorts` gets the ports form the database and sets state level `ports` to the response.
-     */
-    const getPorts = async () => {
-        const ports: PortMapObject[] = await Requests.getPorts();
-        setPorts(mapPorts(ports));
-    }
-
-    const getVesselPositions = () => {
-        console.log('Getting updated vessel positions from AIS message endpoint.');
-    }
-
-    /**
      * This function gets a background tile based on the application's current focus and zoom
      */
     const getTile = async () => {
@@ -215,7 +133,7 @@ const MapContainer = () => {
     return (
         <section className={`map-container ${zoomMode}`}>
             <SearchMenu zoomMode={zoomMode} setZoomMode={setZoomMode}/>
-            {tile && <Map currentImageId={tile.id} ports={ports} vessels={vessels} currentZoom={currentZoom} handleClick={handleClick}/> }
+            {tile && <Map tile={tile} currentZoom={currentZoom} handleClick={handleClick}/> }
         </section>
     )
 }
