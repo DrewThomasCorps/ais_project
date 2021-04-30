@@ -14,9 +14,10 @@ import TileData from "../interfaces/TileData";
  * @param handleClick
  * @param currentZoom
  * @param tile
+ * @param mmsi
  * @constructor
  */
-const Map = ({ handleClick, currentZoom, tile }: {currentZoom: number, handleClick: any, tile: TileData}) => {
+const Map = ({ handleClick, currentZoom, tile, mmsi }: {currentZoom: number, handleClick: any, tile: TileData, mmsi: string}) => {
     const [ports, setPorts] = useState<PortMapObject[]>([]);
     const [vessels, setVessels] = useState<VesselMapObject[]>([
         {
@@ -136,8 +137,19 @@ const Map = ({ handleClick, currentZoom, tile }: {currentZoom: number, handleCli
                      className="map-image"
                      style={{backgroundImage: `url("${Requests.getBaseUrl()}tile-image/${tile && tile.id}")`,
                          backgroundSize: `cover`}}>
-                    { vessels && vessels.map( (vessel) => {return <Vessel xPosition={vessel.xPosition ? vessel.xPosition : 0} yPosition={vessel.yPosition}/>;}) }
-                    { ports && ports.map( (port, index) => {return <Port currentZoom={currentZoom} key={index} port={port}/>;}) }
+                    { vessels && vessels.map( (vessel) => {
+                        return <Vessel key={vessel.MMSI}
+                                       xPosition={vessel.xPosition ? vessel.xPosition : 0}
+                                       yPosition={vessel.yPosition}
+                                       currentZoom={currentZoom}
+                                       vessel={vessel}
+                                       style={vessel.MMSI.toString() === mmsi ? 'selected' : ''}
+                        />;
+
+                    }) }
+                    { ports && ports.map( (port, index) => {
+                        return <Port currentZoom={currentZoom} key={index} port={port}/>;
+                    }) }
                 </svg>
             </section>
         </Fragment>

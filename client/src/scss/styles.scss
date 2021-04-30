@@ -185,19 +185,6 @@ input[type="text"] {
 .panel-inner {
 }
 
-@media only screen and (max-width: 768px) {
-
-  .panel-container {
-    width: 100%;
-  }
-
-  .map-image, .map-image-container {
-    background: $water-color;
-    width: auto;
-    height: 100vh;
-  }
-}
-
 .p-2 {
   padding: 2rem;
 }
@@ -207,3 +194,10 @@ input[type="text"] {
   font-family: $primary-font;
   font-weight: 600;
 }
+
+@media only screen and (max-width: 768px) {
+  .panel-container {
+    width: 100%;
+  }
+}
+

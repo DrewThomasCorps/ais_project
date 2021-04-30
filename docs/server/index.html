@@ -93,6 +93,23 @@
 				<a href="#nodejs-rest-layer-for-data-operations" id="nodejs-rest-layer-for-data-operations" style="color: inherit; text-decoration: none;">
 					<h2>Node.js REST layer for data operations</h2>
 				</a>
+				<a href="#curl-commands" id="curl-commands" style="color: inherit; text-decoration: none;">
+					<h3>Curl commands</h3>
+				</a>
+				<ul>
+					<li><p>Given a background map tile for zoom level 1 (2), find the 4 tiles of zoom level 2 (3) that are contained in it</p>
+						<pre><code class="language-bash"><span style="color: #000000">curl --location --request GET </span><span style="color: #A31515">&quot;http://localhost:3001/tile-data/-1&quot;</span>
+</code></pre>
+					</li>
+					<li><p>Given a tile Id, get the actual tile (a PNG file)</p>
+						<pre><code class="language-bash"><span style="color: #000000">curl --location --request GET </span><span style="color: #A31515">&quot;http://localhost:3001/tile-image/1&quot;</span>
+</code></pre>
+					</li>
+					<li><p>Read all ports matching the given name and (optional) country</p>
+						<pre><code class="language-bash"><span style="color: #000000">curl --location --request GET </span><span style="color: #A31515">&#039;http://localhost:3001/ports?name=Ebeltoft&amp;country=Denmark&#039;</span>
+</code></pre>
+					</li>
+				</ul>
 				<a href="#browser-displayed-map" id="browser-displayed-map" style="color: inherit; text-decoration: none;">
 					<h2>Browser-displayed map</h2>
 				</a>
