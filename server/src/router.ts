@@ -3,6 +3,7 @@ import VesselController from "./controllers/VesselController";
 import TileController from "./controllers/TileController";
 import {URL} from "url";
 import PortController from "./controllers/PortController";
+import AisMessageController from "./controllers/AisMessageController";
 
 /**
  * `router` is responsible for routing all requests to the correct controller method for Vessels, Tiles, Ports, and AIS Messages.
@@ -44,9 +45,11 @@ export default http.createServer(async (request: IncomingMessage, response: Serv
         await PortController.updatePort(request, response, requestUrl);
     } else if (/^\/ports\/*/.test(requestUrl.pathname) && request.method === 'DELETE') {
         await PortController.deletePort(request, response, requestUrl);
-    } else if (requestUrl.pathname == '/ports' && request.method === 'POST') {
+    } else if (requestUrl.pathname === '/ports' && request.method === 'POST') {
         await PortController.createPort(request, response);
-    }  else {
+    }  else if (requestUrl.pathname === '/recent-ship-positions' && request.method === 'GET') {
+        await AisMessageController.getRecentShipPositions(response);
+    } else {
         invalidUrl(request, response);
     }
 });
