@@ -24,6 +24,23 @@ project.
 
 ## Node.js REST layer for data operations
 
+### Curl commands
+
+- Given a background map tile for zoom level 1 (2), find the 4 tiles of zoom level 2 (3) that are contained in it
+```bash
+curl --location --request GET "http://localhost:3001/tile-data/-1"
+```
+
+- Given a tile Id, get the actual tile (a PNG file)
+```bash
+curl --location --request GET "http://localhost:3001/tile-image/1"
+```
+
+- Read all ports matching the given name and (optional) country
+```bash
+curl --location --request GET 'http://localhost:3001/ports?name=Ebeltoft&country=Denmark'
+```
+
 ## Browser-displayed map
 
 ### Features

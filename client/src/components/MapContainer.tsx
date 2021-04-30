@@ -36,6 +36,7 @@ const MapContainer = () => {
     const [zoomMode, setZoomMode] = useState<string>('');
     const [currentFocus, setCurrentFocus] = useState<CurrentFocusCoordinates>({ longitude: 0, latitude: 0 });
     const [tile, setTile] = useState<TileData>(rootTile);
+    const [mmsi, setMmsi] = useState('');
 
     /**
      * This hook updates the tile that is currently displayed when a user zooms in or out.
@@ -132,8 +133,8 @@ const MapContainer = () => {
 
     return (
         <section className={`map-container ${zoomMode}`}>
-            <SearchMenu zoomMode={zoomMode} setZoomMode={setZoomMode}/>
-            {tile && <Map tile={tile} currentZoom={currentZoom} handleClick={handleClick}/> }
+            <SearchMenu zoomMode={zoomMode} setZoomMode={setZoomMode} mmsi={mmsi} setMmsi={setMmsi}/>
+            {tile && <Map tile={tile} currentZoom={currentZoom} handleClick={handleClick} mmsi={mmsi}/> }
         </section>
     )
 }
