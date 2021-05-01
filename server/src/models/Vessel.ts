@@ -1,5 +1,8 @@
 import {Model} from "./Model";
 
+/**
+ * Model for parsing and storing vessel documents.
+ */
 export default class Vessel implements Model {
     imo: number = 0;
     id: string | null = null;

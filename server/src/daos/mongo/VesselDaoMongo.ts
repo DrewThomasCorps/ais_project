@@ -11,6 +11,10 @@ export default class VesselDaoMongo extends DaoMongoCrud<Vessel> implements Crud
         this.mongoModel = Vessel.prototype;
     }
 
+    /**
+     * Converts a `Vessel` model into a document to be used by a Mongo Database.
+     * @param model
+     */
     toDocument(model?: Vessel): object {
         if (model === undefined) {
             return {}

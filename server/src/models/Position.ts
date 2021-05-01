@@ -1,3 +1,6 @@
+/**
+ * Contains data of a ship or port's position in latitude and longitude.
+ */
 export class Position {
     type: string;
     latitude: number | null;

@@ -1,18 +1,31 @@
 import DaoMongoCrud from "./DaoMongoCrud";
 import {Db} from "mongodb";
-import CrudDao from "../interface/CrudDao";
 import AisMessage from "../../models/AisMessage";
-import TileDaoFactory from "../factory/TileDaoFactory";
+import DaoFactory from "../factory/DaoFactory";
 import {DatabaseConfig} from "../../config/DatabaseConfig";
+import AisMessageDao from "../interface/AisMessageDao";
 
-export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> implements CrudDao<AisMessage> {
+/**
+ * Mongo implementation of the `AisMessageDao` interface
+ */
+export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> implements AisMessageDao {
 
+    /**
+     * Constructs an AisMessageDaoMongo with a connection to the Db injected.
+     * @param database
+     */
     constructor(database: Db) {
         super(database);
         this.collectionName = 'aisdk_20201118';
         this.mongoModel = AisMessage.prototype;
     }
 
+    /**
+     * Inserts a batch of AisMessages into the database.
+     *
+     * @param models to be created
+     * @return Promise<number> of number of models inserted
+     */
     async insertBatch(models: AisMessage[]): Promise<number> {
         models.map((model) => {
             this.toDocument(model)
@@ -21,6 +34,16 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
         return insertWriteOpResult.insertedCount;
     }
 
+    /**
+     * Finds the latest ship positions as reported in positions_reports.
+     *
+     * Returns array of documents in the following format:
+     * ```
+     * [{'MMSI': 1234567890, 'Timestamp': 2020-11-18T00:00:00.000Z, 'Position': {'type': 'Point', 'coordinates': [30, 20]}}]
+     * ```
+     *
+     * @return Promise<any[]> of latest ship positions.
+     */
     async findMostRecentShipPositions(): Promise<any[]> {
         return await this.database.collection(this.collectionName).aggregate([
             {
@@ -56,6 +79,13 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
         ], {allowDiskUse: true}).toArray();
     }
 
+    /**
+     * Deletes all messages older than five minutes of given time.
+     * If a message is exactly 5 minutes older, the message is not deleted.
+     *
+     * @param time that messages five minutes older than should be deleted.
+     * @return Promise<number> of number of messages deleted
+     */
     async deleteMessagesFiveMinutesOlderThanTime(time: Date): Promise<number> {
         time.setMinutes(time.getMinutes() - 5);
         const deleteWriteOpResultObject = await this.database.collection(this.collectionName).deleteMany({
@@ -64,6 +94,17 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
         return deleteWriteOpResultObject.deletedCount ?? 0;
     }
 
+    /**
+     * Finds the latest ship position for the ship with the given MMSI.
+     *
+     * Returns document in the following format:
+     * ```
+     * {'MMSI': 1234567890, 'Timestamp': '2020-11-18T00:00:00.000Z', 'lat': 30, 'long': 20, IMO: 103212331}
+     * ```
+     *
+     * @param mmsi
+     * @return Promise<any> of the last position for the given ship.
+     */
     async findMostRecentPositionForMmsi(mmsi: number): Promise<any> {
         const recentPosition = await this.database.collection(this.collectionName).aggregate([{
             $match: {
@@ -86,8 +127,19 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
         }
     }
 
+    /**
+     * Finds the latest ship positions as reported in positions_reports within the given tile.
+     *
+     * Returns array of documents in the following format:
+     * ```
+     * [{'MMSI': 1234567890, 'Timestamp': 2020-11-18T00:00:00.000Z, 'Position': {'type': 'Point', 'coordinates': [30, 20]}}]
+     * ```
+     *
+     * @param tileId id of tile to find ship positions within.
+     * @return Promise<any[]> of latest ship positions within given tile.
+     */
     async findMostRecentPositionsInTile(tileId: number): Promise<any[]> {
-        const tileDaoMongo = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
+        const tileDaoMongo = await DaoFactory.getTileDao(DatabaseConfig.Config);
         const tile = await tileDaoMongo.getTileImage(tileId);
         return await this.database.collection(this.collectionName).aggregate([{
             $match: {
@@ -125,6 +177,11 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
         ], {allowDiskUse: true}).toArray();
     }
 
+    /**
+     * Converts an `AisMessage` instance into a document to be stored in the database.
+     * @param model
+     * @return object to be used as document inside a Mongo database.
+     */
     toDocument(model?: AisMessage): object {
         if (model === undefined) {
             return {};

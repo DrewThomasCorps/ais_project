@@ -1,4 +1,4 @@
-import PortDaoFactory from "../../../daos/factory/PortDaoFactory";
+import DaoFactory from "../../../daos/factory/DaoFactory";
 import Port from "../../../models/Port";
 import {Collection, Db, ObjectId} from "mongodb";
 import {expect} from "chai";
@@ -26,7 +26,7 @@ describe('PortDaoMongo', function () {
             }
         }
         database = await Mongo.getDatabase(databaseConfig);
-        portDaoMongo = await PortDaoFactory.getPortDao(databaseConfig);
+        portDaoMongo = await DaoFactory.getPortDao(databaseConfig);
 
     })
 

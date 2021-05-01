@@ -1,4 +1,4 @@
-import VesselDaoFactory from "../../../daos/factory/VesselDaoFactory";
+import DaoFactory from "../../../daos/factory/DaoFactory";
 import Vessel from "../../../models/Vessel";
 import {Collection, Db, ObjectId} from "mongodb";
 import {expect} from "chai";
@@ -26,7 +26,7 @@ describe('VesselDaoMongo', function () {
             }
         }
         database = await Mongo.getDatabase(databaseConfig);
-        vesselDaoMongo = await VesselDaoFactory.getVesselDao(databaseConfig);
+        vesselDaoMongo = await DaoFactory.getVesselDao(databaseConfig);
 
     })
 

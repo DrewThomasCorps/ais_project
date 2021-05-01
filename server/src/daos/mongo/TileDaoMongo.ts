@@ -87,7 +87,7 @@ export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<
      * Finds tiles that are contained in the given tile id. Excludes `image_file` binary from projection.
      * @param tileId
      */
-    async findContainedTiles(tileId: number) {
+    async findContainedTiles(tileId: number): Promise<Tile[]> {
         const tiles = await this.database.collection(this.collectionName).find({contained_by: tileId}, {projection: {image_file: 0}}).toArray();
 
         return tiles.map((tile: any) => {
