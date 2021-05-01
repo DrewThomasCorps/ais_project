@@ -2,6 +2,8 @@ import DaoMongoCrud from "./DaoMongoCrud";
 import {Db} from "mongodb";
 import CrudDao from "../interface/CrudDao";
 import AisMessage from "../../models/AisMessage";
+import TileDaoFactory from "../factory/TileDaoFactory";
+import {DatabaseConfig} from "../../config/DatabaseConfig";
 
 export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> implements CrudDao<AisMessage> {
 
@@ -50,7 +52,76 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
                 $sort: {
                     'MMSI': 1,
                 }
-            ,}
+            }
+        ], {allowDiskUse: true}).toArray();
+    }
+
+    async deleteMessagesFiveMinutesOlderThanTime(time: Date): Promise<number> {
+        time.setMinutes(time.getMinutes() - 5);
+        const deleteWriteOpResultObject = await this.database.collection(this.collectionName).deleteMany({
+            Timestamp: {$lt: time}
+        })
+        return deleteWriteOpResultObject.deletedCount ?? 0;
+    }
+
+    async findMostRecentPositionForMmsi(mmsi: number): Promise<any> {
+        const recentPosition = await this.database.collection(this.collectionName).aggregate([{
+            $match: {
+                "MsgType": "position_report",
+                'MMSI': mmsi
+            }
+        }, {
+            $sort: {
+                'Timestamp': -1
+            }
+        },
+            {$limit: 1}
+        ]).toArray()
+        const aisMessage = AisMessage.fromJson(JSON.stringify(recentPosition[0]))
+        return {
+            MMSI: aisMessage.mmsi,
+            lat: aisMessage.position?.latitude,
+            long: aisMessage.position?.longitude,
+            IMO: aisMessage.imo
+        }
+    }
+
+    async findMostRecentPositionsInTile(tileId: number): Promise<any[]> {
+        const tileDaoMongo = await TileDaoFactory.getTileDao(DatabaseConfig.Config);
+        const tile = await tileDaoMongo.getTileImage(tileId);
+        return await this.database.collection(this.collectionName).aggregate([{
+            $match: {
+                'MsgType': "position_report"
+            }
+        }, {
+            $sort: {
+                'MMSI': 1,
+                'Timestamp': -1
+            }
+        }, {
+            $group: {
+                _id: "$MMSI",
+                'Timestamp': {$first: '$Timestamp'},
+                'Position': {$first: '$Position'},
+            }
+        }, {
+            $match: {
+                $and: [
+                    {'Position.coordinates.0': {$lte: tile.image_north}},
+                    {'Position.coordinates.0': {$gt: tile.image_south}},
+                    {'Position.coordinates.1': {$gte: tile.image_east}},
+                    {'Position.coordinates.1': {$lt: tile.image_west}}
+                ]
+            }
+        }, {
+            $project: {
+                _id: 0, 'MMSI': '$_id', 'Timestamp': 1, 'Position': 1
+            }
+        }, {
+            $sort: {
+                'MMSI': 1,
+            }
+        }
         ], {allowDiskUse: true}).toArray();
     }
 

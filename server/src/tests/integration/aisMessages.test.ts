@@ -23,11 +23,11 @@ describe('AisMessageIntegration', function () {
     beforeEach(async function () {
         const collections = await database.collections();
         if (collections.find((collection: Collection) => {
-            return collection.collectionName === 'vessels';
+            return collection.collectionName === 'aisdk_20201118';
         })) {
-            await database.dropCollection('vessels');
+            await database.dropCollection('aisdk_20201118');
         }
-        await database.createCollection('vessels');
+        await database.createCollection('aisdk_20201118');
     })
 
     after(async function () {

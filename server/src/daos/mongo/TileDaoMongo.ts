@@ -90,7 +90,6 @@ export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<
     async getTileImage(tileId: number) : Promise<Tile>
     {
         const image = await this.database.collection(this.collectionName).findOne({ id: tileId });
-
         // @ts-ignore
         // Cannot use reflection with typescript, so the ModelImpl prototype is used to call its static method.
         return this.mongoModel.constructor.fromJson(JSON.stringify(image));
