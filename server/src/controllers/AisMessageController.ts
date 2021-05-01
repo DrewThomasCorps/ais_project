@@ -1,6 +1,6 @@
 import {IncomingMessage, ServerResponse} from "http";
 import {DatabaseConfig} from "../config/DatabaseConfig";
-import AisMessageDaoFactory from "../daos/factory/AisMessageDaoFactory";
+import DaoFactory from "../daos/factory/DaoFactory";
 import AisMessage from "../models/AisMessage";
 import {URL} from "url";
 
@@ -14,7 +14,7 @@ export default class AisMessageController {
         });
 
         request.on('end', async () => {
-            const aisMessageDao = await AisMessageDaoFactory.getAisMessageDao(DatabaseConfig.Config);
+            const aisMessageDao = await DaoFactory.getAisMessageDao(DatabaseConfig.Config);
             const parsedBody = JSON.parse(body);
             let insertedCount = 0;
             if (Array.isArray(parsedBody)) {
@@ -34,7 +34,7 @@ export default class AisMessageController {
 
     static deleteAisMessagesFiveMinutesOlderThanTime = async (_request: IncomingMessage, response: ServerResponse, requestUrl: URL) => {
         const time = requestUrl.searchParams.get('time');
-        const aisMessageDao = await AisMessageDaoFactory.getAisMessageDao(DatabaseConfig.Config);
+        const aisMessageDao = await DaoFactory.getAisMessageDao(DatabaseConfig.Config);
         const deletedMessages = await aisMessageDao.deleteMessagesFiveMinutesOlderThanTime(new Date(time ?? ''));
 
         response.statusCode = 200;
@@ -45,7 +45,7 @@ export default class AisMessageController {
 
     static getPositions = async (response: ServerResponse, requestUrl: URL) => {
         let positions;
-        const aisMessageDao = await AisMessageDaoFactory.getAisMessageDao(DatabaseConfig.Config)
+        const aisMessageDao = await DaoFactory.getAisMessageDao(DatabaseConfig.Config)
         const mmsi = requestUrl.searchParams.get(('mmsi'));
         const tileId = requestUrl.searchParams.get(('tile_id'))
         if (mmsi) {

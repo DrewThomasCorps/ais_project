@@ -2,7 +2,7 @@ import {Collection, Db, ObjectId} from "mongodb";
 import {expect} from "chai";
 import {readFileSync} from "fs";
 import Mongo from "../../../daos/databases/Mongo";
-import AisMessageDaoFactory from "../../../daos/factory/AisMessageDaoFactory";
+import DaoFactory from "../../../daos/factory/DaoFactory";
 import AisMessage from "../../../models/AisMessage";
 import AisMessageDao from "../../../daos/interface/AisMessageDao";
 
@@ -29,7 +29,7 @@ describe('AisMessageDaoMongo', function () {
             }
         }
         database = await Mongo.getDatabase(databaseConfig);
-        aisMessageDaoMongo = await AisMessageDaoFactory.getAisMessageDao(databaseConfig);
+        aisMessageDaoMongo = await DaoFactory.getAisMessageDao(databaseConfig);
 
     })
 

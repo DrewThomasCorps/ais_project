@@ -1,4 +1,4 @@
-import TileDaoFactory from "../../../daos/factory/TileDaoFactory";
+import DaoFactory from "../../../daos/factory/DaoFactory";
 import Tile from "../../../models/Tile";
 import {Collection, Db, ObjectId} from "mongodb";
 import {expect} from "chai";
@@ -26,7 +26,7 @@ describe('TileDaoMongo', function () {
             }
         }
         database = await Mongo.getDatabase(databaseConfig);
-        tileDaoMongo = await TileDaoFactory.getTileDao(databaseConfig);
+        tileDaoMongo = await DaoFactory.getTileDao(databaseConfig);
 
     })
 

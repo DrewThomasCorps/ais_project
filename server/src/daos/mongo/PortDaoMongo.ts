@@ -11,6 +11,10 @@ export default class PortDaoMongo extends DaoMongoCrud<Port> implements CrudDao<
         this.mongoModel = Port.prototype;
     }
 
+    /**
+     * Converts a `Port` model into  a document to be used by a Mongo Database.
+     * @param model
+     */
     toDocument(model?: Port): object {
 
         if (model === undefined) {

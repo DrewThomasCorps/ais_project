@@ -2,7 +2,8 @@ import {Model} from './Model';
 import {Position} from "./Position";
 
 /**
- * The abstract model for `ais_message` documents.
+ * The model for `ais_message` documents.
+ * Contains both static_data and position_report messages.
  */
 export default class AisMessage implements Model {
     id: string | null = null;
@@ -34,6 +35,10 @@ export default class AisMessage implements Model {
     c: number | null = null;
     d: number | null = null;
 
+    /**
+     * Converts a valid JSON string into an `AisMessage` model. It handles both static_data and position_report messages.
+     * @param jsonString
+     */
     public static fromJson(jsonString: string): AisMessage {
         const json = JSON.parse(jsonString)
         const builder = new this.Builder();
@@ -65,7 +70,9 @@ export default class AisMessage implements Model {
             .build();
     }
 
-
+    /**
+     * Builder class used for building an AisMessage and providing potential validation to the fields.
+     */
     static Builder = class {
 
         private aisMessage: AisMessage;

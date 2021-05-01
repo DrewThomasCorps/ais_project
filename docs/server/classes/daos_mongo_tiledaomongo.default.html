@@ -123,7 +123,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_tiledaomongo.default.html#findtilesbycoordinates" class="tsd-kind-icon">find<wbr>Tiles<wbr>ByCoordinates</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_tiledaomongo.default.html#gettileimage" class="tsd-kind-icon">get<wbr>Tile<wbr>Image</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_tiledaomongo.default.html#insert" class="tsd-kind-icon">insert</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_tiledaomongo.default.html#inserttileimages" class="tsd-kind-icon">insert<wbr>Tile<wbr>Images</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="daos_mongo_tiledaomongo.default.html#todocument" class="tsd-kind-icon">to<wbr>Document</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_tiledaomongo.default.html#update" class="tsd-kind-icon">update</a></li>
 							</ul>
@@ -144,7 +143,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/TileDaoMongo.ts#L11">src/daos/mongo/TileDaoMongo.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/TileDaoMongo.ts#L10">src/daos/mongo/TileDaoMongo.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -167,7 +166,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#collectionname">collectionName</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/DaoMongoCrud.ts#L7">src/daos/mongo/DaoMongoCrud.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/DaoMongoCrud.ts#L10">src/daos/mongo/DaoMongoCrud.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -178,7 +177,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#database">database</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/DaoMongoCrud.ts#L6">src/daos/mongo/DaoMongoCrud.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/DaoMongoCrud.ts#L9">src/daos/mongo/DaoMongoCrud.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +188,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#mongomodel">mongoModel</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/DaoMongoCrud.ts#L8">src/daos/mongo/DaoMongoCrud.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/DaoMongoCrud.ts#L11">src/daos/mongo/DaoMongoCrud.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,13 +207,21 @@
 								<p>Implementation of <a href="../interfaces/daos_interface_cruddao.default.html">default</a>.<a href="../interfaces/daos_interface_cruddao.default.html#delete">delete</a></p>
 								<p>Inherited from <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/DaoMongoCrud.ts#L14">src/daos/mongo/DaoMongoCrud.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/DaoMongoCrud.ts#L25">src/daos/mongo/DaoMongoCrud.ts:25</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deletes model in database with the given id.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>of model to be deleted.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -233,16 +240,25 @@
 								<p>Implementation of <a href="../interfaces/daos_interface_cruddao.default.html">default</a>.<a href="../interfaces/daos_interface_cruddao.default.html#find">find</a></p>
 								<p>Inherited from <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/DaoMongoCrud.ts#L18">src/daos/mongo/DaoMongoCrud.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/DaoMongoCrud.ts#L34">src/daos/mongo/DaoMongoCrud.ts:34</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Finds the model with the given ID in the database.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>of model to find.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise<T> of found model.</p>
 						</li>
 					</ul>
 				</section>
@@ -258,9 +274,15 @@
 								<p>Implementation of <a href="../interfaces/daos_interface_cruddao.default.html">default</a>.<a href="../interfaces/daos_interface_cruddao.default.html#findall">findAll</a></p>
 								<p>Inherited from <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#findall">findAll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/DaoMongoCrud.ts#L26">src/daos/mongo/DaoMongoCrud.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/DaoMongoCrud.ts#L49">src/daos/mongo/DaoMongoCrud.ts:49</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Finds all models in the database with the optional filter applied.</p>
+								</div>
+								<p>If a filter model is passed, only records that have the set attributes will be returned.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -268,6 +290,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise&lt;T[]&gt; of array of models found in database with the filter applied.</p>
 						</li>
 					</ul>
 				</section>
@@ -275,13 +298,13 @@
 					<a name="findcontainedtiles" class="tsd-anchor"></a>
 					<h3>find<wbr>Contained<wbr>Tiles</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>Contained<wbr>Tiles<span class="tsd-signature-symbol">(</span>tileId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Contained<wbr>Tiles<span class="tsd-signature-symbol">(</span>tileId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/TileDaoMongo.ts#L103">src/daos/mongo/TileDaoMongo.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/TileDaoMongo.ts#L90">src/daos/mongo/TileDaoMongo.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -297,7 +320,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -311,7 +334,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/TileDaoMongo.ts#L123">src/daos/mongo/TileDaoMongo.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/TileDaoMongo.ts#L110">src/daos/mongo/TileDaoMongo.ts:110</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -342,7 +365,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/TileDaoMongo.ts#L90">src/daos/mongo/TileDaoMongo.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/TileDaoMongo.ts#L79">src/daos/mongo/TileDaoMongo.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -374,33 +397,25 @@
 								<p>Implementation of <a href="../interfaces/daos_interface_cruddao.default.html">default</a>.<a href="../interfaces/daos_interface_cruddao.default.html#insert">insert</a></p>
 								<p>Inherited from <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#insert">insert</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/DaoMongoCrud.ts#L36">src/daos/mongo/DaoMongoCrud.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/DaoMongoCrud.ts#L64">src/daos/mongo/DaoMongoCrud.ts:64</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Inserts a model into a database.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>model: <a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>to be inserted.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="inserttileimages" class="tsd-anchor"></a>
-					<h3>insert<wbr>Tile<wbr>Images</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">insert<wbr>Tile<wbr>Images<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/TileDaoMongo.ts#L76">src/daos/mongo/TileDaoMongo.ts:76</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise<T> of inserted model.</p>
 						</li>
 					</ul>
 				</section>
@@ -415,7 +430,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#todocument">toDocument</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/TileDaoMongo.ts#L19">src/daos/mongo/TileDaoMongo.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/TileDaoMongo.ts#L18">src/daos/mongo/TileDaoMongo.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -440,19 +455,32 @@
 								<p>Implementation of <a href="../interfaces/daos_interface_cruddao.default.html">default</a>.<a href="../interfaces/daos_interface_cruddao.default.html#update">update</a></p>
 								<p>Inherited from <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#update">update</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/server/src/daos/mongo/DaoMongoCrud.ts#L41">src/daos/mongo/DaoMongoCrud.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/mongo/DaoMongoCrud.ts#L78">src/daos/mongo/DaoMongoCrud.ts:78</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Updates model with given id in the database to match the model passed.</p>
+								</div>
+								<p>Only the attributes set in the passed model will be updated.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>of model to update.</p>
+									</div>
 								</li>
 								<li>
 									<h5>model: <a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>to be updated to.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise<T> of updated model.</p>
 						</li>
 					</ul>
 				</section>
@@ -508,9 +536,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="daos_mongo_tiledaomongo.default.html#insert" class="tsd-kind-icon">insert</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="daos_mongo_tiledaomongo.default.html#inserttileimages" class="tsd-kind-icon">insert<wbr>Tile<wbr>Images</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="daos_mongo_tiledaomongo.default.html#todocument" class="tsd-kind-icon">to<wbr>Document</a>
