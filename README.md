@@ -68,4 +68,3 @@ curl --location --request GET 'http://localhost:3001/ports?name=Ebeltoft&country
 
 #### Search
 - Input fields for searching vessels by MMSI
-- Input fields for searching for vessels by destination port

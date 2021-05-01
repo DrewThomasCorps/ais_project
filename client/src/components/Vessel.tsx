@@ -52,7 +52,7 @@ const Vessel = ({ vessel, tile, mmsi, zoom }: {tile: TileData, vessel: VesselMap
             <Fragment>
                 <circle cx={calculateVesselXPosition()} cy={calculateVesselYPosition()} r=".25"
                         strokeWidth="0" stroke={`${color}`} fill={`${color}`}>
-                    { vessel.MMSI.toString() === mmsi || zoom === 3 ? renderVesselAnimation() : <Fragment/> }
+                    { vessel.MMSI.toString() === mmsi ? renderVesselAnimation() : <Fragment/> }
                 </circle>
                 { vessel.MMSI.toString() === mmsi || zoom === 3 ? renderVesselMMSIs() : <Fragment /> }
             </Fragment>
