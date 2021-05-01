@@ -4,8 +4,17 @@ import DaoFactory from "../daos/factory/DaoFactory";
 import AisMessage from "../models/AisMessage";
 import {URL} from "url";
 
+/**
+ * Controller to handle server requests for AIS Messages
+ */
 export default class AisMessageController {
 
+    /**
+     * Creates a batch of AIS messages if an array is passed, or a single position_report or static_data message if an
+     * abject is passed.
+     * @param request
+     * @param response
+     */
     static createAisMessages = async (request: IncomingMessage, response: ServerResponse) => {
         let body = '';
 
@@ -32,6 +41,12 @@ export default class AisMessageController {
         })
     }
 
+    /**
+     * Deletes all AIS messages more than 5 minutes older than the time passed in the query string.
+     * @param _request
+     * @param response
+     * @param requestUrl
+     */
     static deleteAisMessagesFiveMinutesOlderThanTime = async (_request: IncomingMessage, response: ServerResponse, requestUrl: URL) => {
         const time = requestUrl.searchParams.get('time');
         const aisMessageDao = await DaoFactory.getAisMessageDao(DatabaseConfig.Config);
@@ -43,6 +58,15 @@ export default class AisMessageController {
         response.end(JSON.stringify({deletedMessages: deletedMessages}));
     }
 
+    /**
+     * Finds the most recent positions as found in position_report documents.
+     *
+     * If a MMSI is passed in the query string, the last position for that vessel will be returned.
+     * If a tile ID is passed in the query string, all most recent positions within that tile will be returned.
+     * Else all the most recent positions for every ship will be returned.
+     * @param response
+     * @param requestUrl
+     */
     static getPositions = async (response: ServerResponse, requestUrl: URL) => {
         let positions;
         const aisMessageDao = await DaoFactory.getAisMessageDao(DatabaseConfig.Config)
