@@ -301,7 +301,7 @@ describe('AisMessageDaoMongo', function () {
     });
 
     describe('findMostRecentPositionsInTile()', function () {
-        it('should find the most recent ship position for MMSI', async function () {
+        it('should find the most recent ship positions within a tile', async function () {
             const positionOneInTileOne = {Position: {'type': "Point", "coordinates": [30, 20]}};
             const positionTwoInTileOne = {Position: {'type': "Point", "coordinates": [31, 21]}};
             const positionThreeInTileTwo = {Position: {'type': "Point", "coordinates": [39, 30]}};
@@ -316,7 +316,6 @@ describe('AisMessageDaoMongo', function () {
                 {id: 1, image_north: 35, image_south: 25, image_east: 15, image_west: 25},
                 {id: 2, image_north: 45, image_south: 36, image_east: 26, image_west: 35}
             ])
-
 
             await database.collection('aisdk_20201118').insertMany([
                 {...shipOne, ...positionOneInTileOne, ...minuteZero},
