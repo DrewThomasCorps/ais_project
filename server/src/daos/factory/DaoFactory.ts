@@ -25,7 +25,7 @@ export default class DaoFactory {
             case 'mongo':
                 return new AisMessageDaoMongo(await Mongo.getDatabase(databaseConfig));
             default:
-                throw new InvalidDatabaseConfigException(`${databaseConfig.getType()} is not a valid database type for ais messages.`);
+                throw new InvalidDatabaseConfigException(`${databaseConfig.getType()} is not a valid database type.`);
         }
     }
 
