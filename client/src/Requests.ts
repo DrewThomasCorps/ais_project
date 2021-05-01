@@ -1,6 +1,7 @@
 import CurrentFocusCoordinates from "./interfaces/CurrentFocusCoordinates";
 import TileData from "./interfaces/TileData";
 import PortMapObject from "./interfaces/PortMapObject";
+import VesselMapObject from "./interfaces/VesselMapObject";
 
 export default class Requests {
     static getBaseUrl() {
@@ -22,5 +23,10 @@ export default class Requests {
     static async getPorts(): Promise<PortMapObject[]>
     {
         return Requests.getResponseData(`ports?mapview_1=1`);
+    }
+
+    static async getRecentVesselPositions(): Promise<VesselMapObject[]>
+    {
+        return Requests.getResponseData(`recent-ship-positions`);
     }
 }

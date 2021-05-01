@@ -88,7 +88,7 @@ const SearchMenu = ({ zoomMode, setZoomMode, mmsi, setMmsi }: {
                                         e.preventDefault();
                                         console.log('submitted');
                                     }}>
-                                        <input type={`text`} placeholder={`Vessel MMSI`}
+                                        <input type={`text`} placeholder={`i.e. 219024784`}
                                                value={mmsi}
                                                name={`mmsi`}
                                                onChange={e => setMmsi(e.target.value)}
