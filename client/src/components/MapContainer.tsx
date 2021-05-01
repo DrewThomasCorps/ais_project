@@ -52,7 +52,7 @@ const MapContainer = () => {
      * Resets container state to default if a tile is undefined for the focus region.
      */
     useEffect(() => {
-        if (tile === undefined) {
+        if (tile === null) {
             // TODO Create alert component
             console.log('Target image does not exist');
             setDefaultState();

@@ -30,5 +30,5 @@ export default interface TileDao extends CrudDao<Tile> {
      * @param queryObject
      * @return Promise<Tile[]>
      */
-    findTilesByCoordinates(queryObject: object): Promise<Tile[]>;
+    findTileByCoordinates(latitude: number, longitude: number, scale: number): Promise<Tile | null>;
 }

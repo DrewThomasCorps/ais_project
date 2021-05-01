@@ -16,8 +16,7 @@ export default class Requests {
 
     static async getTileData(currentFocus: CurrentFocusCoordinates, currentZoom: number): Promise<TileData>
     {
-        const data: TileData[] = await Requests.getResponseData(`tiles?longitude=${currentFocus.longitude}&latitude=${currentFocus.latitude}&scale=${currentZoom}`);
-        return data[0];
+        return await Requests.getResponseData(`tiles?longitude=${currentFocus.longitude}&latitude=${currentFocus.latitude}&scale=${currentZoom}`);
     }
 
     static async getPorts(): Promise<PortMapObject[]>

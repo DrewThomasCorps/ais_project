@@ -68,13 +68,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Controller to handle server requests for AIS Messages</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -133,15 +126,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/controllers/AisMessageController.ts#L18">src/controllers/AisMessageController.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/controllers/AisMessageController.ts#L9">src/controllers/AisMessageController.ts:9</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates a batch of AIS messages if an array is passed, or a single position_report or static_data message if an
-									abject is passed.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -149,8 +136,6 @@
 								</li>
 								<li>
 									<h5>response: <span class="tsd-signature-type">ServerResponse</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -167,14 +152,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/controllers/AisMessageController.ts#L50">src/controllers/AisMessageController.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/controllers/AisMessageController.ts#L35">src/controllers/AisMessageController.ts:35</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Deletes all AIS messages more than 5 minutes older than the time passed in the query string.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -185,8 +165,6 @@
 								</li>
 								<li>
 									<h5>requestUrl: <span class="tsd-signature-type">URL</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -203,17 +181,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/controllers/AisMessageController.ts#L70">src/controllers/AisMessageController.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/controllers/AisMessageController.ts#L46">src/controllers/AisMessageController.ts:46</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Finds the most recent positions as found in position_report documents.</p>
-								</div>
-								<p>If a MMSI is passed in the query string, the last position for that vessel will be returned.
-									If a tile ID is passed in the query string, all most recent positions within that tile will be returned.
-								Else all the most recent positions for every ship will be returned.</p>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -221,8 +191,6 @@
 								</li>
 								<li>
 									<h5>requestUrl: <span class="tsd-signature-type">URL</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>

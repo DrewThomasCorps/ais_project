@@ -98,23 +98,29 @@ export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<
     }
 
     /**
-     * Finds tiles using given query object.
-     * `const queryObject = {
-     * image_west: {$lte: longitude},
-     * image_east: {$gt: longitude},
-     * image_north: {$gt: latitude},
-     * image_south: {$lte: latitude},
-     * scale: scale }`
-     * @param queryObject
+     * Finds a tile using given query object.
+     * @param latitude
+     * @param longitude
+     * @param scale
      */
-    async findTilesByCoordinates(queryObject: object): Promise<Tile[]> {
-        const tiles = await this.database.collection(this.collectionName).find(queryObject, {projection: {image_file: 0}}).toArray();
+    async findTileByCoordinates(latitude: number, longitude: number, scale: number): Promise<Tile | null> {
+        const queryObject = {
+            image_west: {$lte: longitude},
+            image_east: {$gt: longitude},
+            image_north: {$gt: latitude},
+            image_south: {$lte: latitude},
+            scale: scale }
 
-        return tiles.map((tile: any) => {
-            // @ts-ignore
-            // Cannot use reflection with typescript, so the ModelImpl prototype is used to call its static method.
-            return this.mongoModel.constructor.fromJson(JSON.stringify(tile));
-        });
+
+        const tile = await this.database.collection(this.collectionName).findOne(queryObject, {projection: {image_file: 0}});
+
+        if (!tile ) {
+            return null
+        }
+        // @ts-ignore
+        // Cannot use reflection with typescript, so the ModelImpl prototype is used to call its static method.
+        return this.mongoModel.constructor.fromJson(JSON.stringify(tile));
+
     }
 
 }
