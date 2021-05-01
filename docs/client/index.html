@@ -97,6 +97,10 @@
 					<h3>Curl commands</h3>
 				</a>
 				<ul>
+					<li><p>Read all most recent ship positions</p>
+						<pre><code class="language-bash"><span style="color: #000000">curl --location --request GET </span><span style="color: #A31515">&#039;http://localhost:3001/recent-ship-positions&#039;</span>
+</code></pre>
+					</li>
 					<li><p>Given a background map tile for zoom level 1 (2), find the 4 tiles of zoom level 2 (3) that are contained in it</p>
 						<pre><code class="language-bash"><span style="color: #000000">curl --location --request GET </span><span style="color: #A31515">&quot;http://localhost:3001/tile-data/-1&quot;</span>
 </code></pre>
@@ -122,10 +126,11 @@
 				<ul>
 					<li>Regular interval queries for updating vessel positions</li>
 					<li>Dynamic rendering of ports and port names based on background tile</li>
-					<li>Dynamic rendering of last vessel location based on background tile</li>
+					<li>Dynamic rendering of most recent vessel location based on background tile</li>
 					<li>Dynamic rendering of vessels based on search parameters</li>
 					<li>Collapsible search menu</li>
 					<li>Toggle buttons for zooming in/out and opening/closing search menu</li>
+					<li>Animated vessel when target of a search</li>
 				</ul>
 				<a href="#zoom" id="zoom" style="color: inherit; text-decoration: none;">
 					<h4>Zoom</h4>

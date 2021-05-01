@@ -97,6 +97,10 @@
 					<h3>Curl commands</h3>
 				</a>
 				<ul>
+					<li><p>Read all most recent ship positions</p>
+						<pre><code class="language-bash"><span style="color: #000000">curl --location --request GET </span><span style="color: #A31515">&#039;http://localhost:3001/recent-ship-positions&#039;</span>
+</code></pre>
+					</li>
 					<li><p>Given a background map tile for zoom level 1 (2), find the 4 tiles of zoom level 2 (3) that are contained in it</p>
 						<pre><code class="language-bash"><span style="color: #000000">curl --location --request GET </span><span style="color: #A31515">&quot;http://localhost:3001/tile-data/-1&quot;</span>
 </code></pre>
@@ -122,10 +126,11 @@
 				<ul>
 					<li>Regular interval queries for updating vessel positions</li>
 					<li>Dynamic rendering of ports and port names based on background tile</li>
-					<li>Dynamic rendering of last vessel location based on background tile</li>
+					<li>Dynamic rendering of most recent vessel location based on background tile</li>
 					<li>Dynamic rendering of vessels based on search parameters</li>
 					<li>Collapsible search menu</li>
 					<li>Toggle buttons for zooming in/out and opening/closing search menu</li>
+					<li>Animated vessel when target of a search</li>
 				</ul>
 				<a href="#zoom" id="zoom" style="color: inherit; text-decoration: none;">
 					<h4>Zoom</h4>
@@ -159,6 +164,9 @@
 						<a href="modules/config_databaseconfig.html">config/<wbr>Database<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/controllers_aismessagecontroller.html">controllers/<wbr>Ais<wbr>Message<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/controllers_portcontroller.html">controllers/<wbr>Port<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -174,6 +182,9 @@
 						<a href="modules/daos_exceptions_invaliddatabaseconfigexception.html">daos/exceptions/<wbr>Invalid<wbr>Database<wbr>Config<wbr>Exception</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/daos_factory_aismessagedaofactory.html">daos/factory/<wbr>Ais<wbr>Message<wbr>Dao<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/daos_factory_portdaofactory.html">daos/factory/<wbr>Port<wbr>Dao<wbr>Factory</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -183,6 +194,9 @@
 						<a href="modules/daos_factory_vesseldaofactory.html">daos/factory/<wbr>Vessel<wbr>Dao<wbr>Factory</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/daos_interface_aismessagedao.html">daos/interface/<wbr>Ais<wbr>Message<wbr>Dao</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/daos_interface_cruddao.html">daos/interface/<wbr>Crud<wbr>Dao</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -190,6 +204,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/daos_interface_tiledao.html">daos/interface/<wbr>Tile<wbr>Dao</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/daos_mongo_aismessagedaomongo.html">daos/mongo/<wbr>Ais<wbr>Message<wbr>Dao<wbr>Mongo</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/daos_mongo_daomongocrud.html">daos/mongo/<wbr>Dao<wbr>Mongo<wbr>Crud</a>
@@ -207,10 +224,16 @@
 						<a href="modules/index.html">index</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/models_aismessage.html">models/<wbr>Ais<wbr>Message</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/models_model.html">models/<wbr>Model</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/models_port.html">models/<wbr>Port</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/models_position.html">models/<wbr>Position</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/models_tile.html">models/<wbr>Tile</a>
@@ -234,6 +257,9 @@
 						<a href="modules/tests_environmenthandler_test.html">tests/<wbr>Environment<wbr>Handler.test</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/tests_daos_factory_aismessagedaofactory_test.html">tests/daos/factory/<wbr>Ais<wbr>Message<wbr>Dao<wbr>Factory.test</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/tests_daos_factory_portdaofactory_test.html">tests/daos/factory/<wbr>Port<wbr>Dao<wbr>Factory.test</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -241,6 +267,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/tests_daos_factory_vesseldaofactory_test.html">tests/daos/factory/<wbr>Vessel<wbr>Dao<wbr>Factory.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_daos_mongo_aismessagedaomongo_test.html">tests/daos/mongo/<wbr>Ais<wbr>Message<wbr>Dao<wbr>Mongo.test</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/tests_daos_mongo_portdaomongo_test.html">tests/daos/mongo/<wbr>Port<wbr>Dao<wbr>Mongo.test</a>
@@ -252,6 +281,9 @@
 						<a href="modules/tests_daos_mongo_vesseldaomongo_test.html">tests/daos/mongo/<wbr>Vessel<wbr>Dao<wbr>Mongo.test</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/tests_integration_aismessages_test.html">tests/integration/ais<wbr>Messages.test</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/tests_integration_ports_test.html">tests/integration/ports.test</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -259,6 +291,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/tests_integration_vessels_test.html">tests/integration/vessels.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/tests_models_aismessage_test.html">tests/models/<wbr>Ais<wbr>Message.test</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/tests_models_port_test.html">tests/models/<wbr>Port.test</a>

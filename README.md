@@ -26,6 +26,11 @@ project.
 
 ### Curl commands
 
+- Read all most recent ship positions
+```bash
+curl --location --request GET 'http://localhost:3001/recent-ship-positions'
+```
+
 - Given a background map tile for zoom level 1 (2), find the 4 tiles of zoom level 2 (3) that are contained in it
 ```bash
 curl --location --request GET "http://localhost:3001/tile-data/-1"
@@ -48,10 +53,11 @@ curl --location --request GET 'http://localhost:3001/ports?name=Ebeltoft&country
 #### Display
 - Regular interval queries for updating vessel positions
 - Dynamic rendering of ports and port names based on background tile
-- Dynamic rendering of last vessel location based on background tile
+- Dynamic rendering of most recent vessel location based on background tile
 - Dynamic rendering of vessels based on search parameters
 - Collapsible search menu
 - Toggle buttons for zooming in/out and opening/closing search menu
+- Animated vessel when target of a search
 
 #### Zoom
 - Zoom in/out views of map

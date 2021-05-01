@@ -9,6 +9,7 @@ export default class AisMessageController {
 
         response.statusCode = 200;
         response.setHeader('Content-Type', 'application/json');
+        response.setHeader('Access-Control-Allow-Origin', '*');
         response.end(JSON.stringify(recentPositions));
     }
 }

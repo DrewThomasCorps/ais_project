@@ -1,41 +1,49 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import VesselMapObject from "../interfaces/VesselMapObject";
+import MapHelpers from "../MapHelpers";
+import TileData from "../interfaces/TileData";
 
 /**
- *  * Renders a `Vessel` component with the given `xPosition` and `yPosition`. A vessel MMSI is rendered at zoom
- *  levels 2 and 3.
- * @param xPosition
- * @param yPosition
- * @param currentZoom
+ *  *  * Renders a `Vessel` component with the given `xPosition` and `yPosition`. A vessel MMSI is rendered at zoom
+ *  level 3 or when a vessel is the target of a search.
  * @param vessel
- * @param style
+ * @param tile
+ * @param mmsi
+ * @param zoom
  * @constructor
  */
-const Vessel = ({ xPosition, yPosition, currentZoom, vessel, style }: {xPosition: number, yPosition: any, currentZoom: number, vessel: VesselMapObject, style: string}) => {
-    const [color, setColor] = useState('#F2423688');
-
+const Vessel = ({ vessel, tile, mmsi, zoom }: {tile: TileData, vessel: VesselMapObject, mmsi: string, zoom: number}) => {
+    const color = '#F2423688';
     const animationDuration = '3.0s';
-    const opacity  = '88';
 
     /**
-     * Renders a vessel in green if the vessel is selected via the search bar
+     * Dynamically calculates the x position of the vessel based on the given tile.
      */
-    useEffect(() => {
-        if (style === 'selected') {
-            setColor('#19b81b' + opacity);
-        }
-    },[style]);
+    const calculateXPosition = () => {
+        return MapHelpers.getXPosition(vessel.Position.coordinates[1], tile)
+    }
+
+    /**
+     * Dynamically calculates the y position of the vessel based on the given tile.
+     */
+    const calculateYPosition = () => {
+        return MapHelpers.getYPosition(vessel.Position.coordinates[0], tile)
+    }
 
     return (
         <Fragment>
-            <circle cx={xPosition} cy={yPosition} r="1" strokeWidth="0" stroke={`${color}`} fill={`${color}`}>
-                <animate attributeType="SVG" attributeName="r" begin="0s" dur={`${animationDuration}`} repeatCount="indefinite" from="0%" to=".5%"/>
-                <animate attributeType="CSS" attributeName="stroke-width" begin="0s"  dur={`${animationDuration}`} repeatCount="indefinite" from="0%" to="3%" />
-                <animate attributeType="CSS" attributeName="opacity" begin="0s"  dur={`${animationDuration}`} repeatCount="indefinite" from="1" to="0"/>
+            <circle cx={calculateXPosition()} cy={calculateYPosition()} r=".25" strokeWidth="0" stroke={`${color}`} fill={`${color}`}>
+                { vessel.MMSI.toString() == mmsi ?
+                    <Fragment>
+                        <animate attributeType="SVG" attributeName="r" begin="0s" dur={`${animationDuration}`} repeatCount="indefinite" from="0%" to=".5%"/>
+                        <animate attributeType="CSS" attributeName="stroke-width" begin="0s"  dur={`${animationDuration}`} repeatCount="indefinite" from="0%" to="3%" />
+                        <animate attributeType="CSS" attributeName="opacity" begin="0s"  dur={`${animationDuration}`} repeatCount="indefinite" from="1" to="0"/>
+                    </Fragment> : <Fragment/>
+                }
             </circle>
-            { currentZoom !== 1 ?
-                <text x={xPosition && xPosition + .50}
-                      y={yPosition && yPosition + .24}
+            { vessel.MMSI.toString() == mmsi || zoom === 3 ?
+                <text x={calculateXPosition() + .50}
+                      y={calculateYPosition() + .24}
                       className="small"
                       strokeWidth={`.018`}
                       stroke={`${color}`}>
