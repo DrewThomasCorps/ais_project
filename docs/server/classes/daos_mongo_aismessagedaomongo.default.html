@@ -55,10 +55,10 @@
 					<a href="../modules.html">server</a>
 				</li>
 				<li>
-					<a href="../modules/daos_mongo_tiledaomongo.html">daos/mongo/TileDaoMongo</a>
+					<a href="../modules/daos_mongo_aismessagedaomongo.html">daos/mongo/AisMessageDaoMongo</a>
 				</li>
 				<li>
-					<a href="daos_mongo_tiledaomongo.default.html">default</a>
+					<a href="daos_mongo_aismessagedaomongo.default.html">default</a>
 				</li>
 			</ul>
 			<h1>Class default</h1>
@@ -68,19 +68,11 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Creates Tile DAO for MongoDB. Includes specialized methods beyond basic CRUD to retrieve tile image files, find
-						contained tiles, and find tiles by coordinates.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="daos_mongo_daomongocrud.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span>
+						<a href="daos_mongo_daomongocrud.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">default</span>
@@ -92,7 +84,7 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/daos_interface_cruddao.default.html" class="tsd-signature-type" data-tsd-kind="Interface">default</a><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li><a href="../interfaces/daos_interface_cruddao.default.html" class="tsd-signature-type" data-tsd-kind="Interface">default</a><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -102,29 +94,31 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="daos_mongo_tiledaomongo.default.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="daos_mongo_aismessagedaomongo.default.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="daos_mongo_tiledaomongo.default.html#collectionname" class="tsd-kind-icon">collection<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="daos_mongo_tiledaomongo.default.html#database" class="tsd-kind-icon">database</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="daos_mongo_tiledaomongo.default.html#mongomodel" class="tsd-kind-icon">mongo<wbr>Model</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="daos_mongo_aismessagedaomongo.default.html#collectionname" class="tsd-kind-icon">collection<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="daos_mongo_aismessagedaomongo.default.html#database" class="tsd-kind-icon">database</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="daos_mongo_aismessagedaomongo.default.html#mongomodel" class="tsd-kind-icon">mongo<wbr>Model</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_tiledaomongo.default.html#delete" class="tsd-kind-icon">delete</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_tiledaomongo.default.html#find" class="tsd-kind-icon">find</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_tiledaomongo.default.html#findall" class="tsd-kind-icon">find<wbr>All</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_tiledaomongo.default.html#findcontainedtiles" class="tsd-kind-icon">find<wbr>Contained<wbr>Tiles</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_tiledaomongo.default.html#findtilesbycoordinates" class="tsd-kind-icon">find<wbr>Tiles<wbr>ByCoordinates</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_tiledaomongo.default.html#gettileimage" class="tsd-kind-icon">get<wbr>Tile<wbr>Image</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_tiledaomongo.default.html#insert" class="tsd-kind-icon">insert</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="daos_mongo_tiledaomongo.default.html#todocument" class="tsd-kind-icon">to<wbr>Document</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_tiledaomongo.default.html#update" class="tsd-kind-icon">update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_aismessagedaomongo.default.html#delete" class="tsd-kind-icon">delete</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_aismessagedaomongo.default.html#deletemessagesfiveminutesolderthantime" class="tsd-kind-icon">delete<wbr>Messages<wbr>Five<wbr>Minutes<wbr>Older<wbr>Than<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_aismessagedaomongo.default.html#find" class="tsd-kind-icon">find</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_aismessagedaomongo.default.html#findall" class="tsd-kind-icon">find<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_aismessagedaomongo.default.html#findmostrecentpositionformmsi" class="tsd-kind-icon">find<wbr>Most<wbr>Recent<wbr>Position<wbr>For<wbr>Mmsi</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_aismessagedaomongo.default.html#findmostrecentpositionsintile" class="tsd-kind-icon">find<wbr>Most<wbr>Recent<wbr>Positions<wbr>InTile</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_aismessagedaomongo.default.html#findmostrecentshippositions" class="tsd-kind-icon">find<wbr>Most<wbr>Recent<wbr>Ship<wbr>Positions</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_aismessagedaomongo.default.html#insert" class="tsd-kind-icon">insert</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="daos_mongo_aismessagedaomongo.default.html#insertbatch" class="tsd-kind-icon">insert<wbr>Batch</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="daos_mongo_aismessagedaomongo.default.html#todocument" class="tsd-kind-icon">to<wbr>Document</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="daos_mongo_aismessagedaomongo.default.html#update" class="tsd-kind-icon">update</a></li>
 							</ul>
 						</section>
 					</div>
@@ -136,14 +130,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>database<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Db</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="daos_mongo_tiledaomongo.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
+						<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>database<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Db</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="daos_mongo_aismessagedaomongo.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/TileDaoMongo.ts#L10">src/daos/mongo/TileDaoMongo.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/AisMessageDaoMongo.ts#L8">src/daos/mongo/AisMessageDaoMongo.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -152,7 +146,7 @@
 									<h5>database: <span class="tsd-signature-type">Db</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="daos_mongo_tiledaomongo.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="daos_mongo_aismessagedaomongo.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -220,11 +214,34 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="deletemessagesfiveminutesolderthantime" class="tsd-anchor"></a>
+					<h3>delete<wbr>Messages<wbr>Five<wbr>Minutes<wbr>Older<wbr>Than<wbr>Time</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Messages<wbr>Five<wbr>Minutes<wbr>Older<wbr>Than<wbr>Time<span class="tsd-signature-symbol">(</span>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/AisMessageDaoMongo.ts#L59">src/daos/mongo/AisMessageDaoMongo.ts:59</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>time: <span class="tsd-signature-type">Date</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="find" class="tsd-anchor"></a>
 					<h3>find</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -241,7 +258,7 @@
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -249,7 +266,7 @@
 					<a name="findall" class="tsd-anchor"></a>
 					<h3>find<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>All<span class="tsd-signature-symbol">(</span>filterModel<span class="tsd-signature-symbol">?: </span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>All<span class="tsd-signature-symbol">(</span>filterModel<span class="tsd-signature-symbol">?: </span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -263,37 +280,53 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filterModel: <a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filterModel: <a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="findcontainedtiles" class="tsd-anchor"></a>
-					<h3>find<wbr>Contained<wbr>Tiles</h3>
+					<a name="findmostrecentpositionformmsi" class="tsd-anchor"></a>
+					<h3>find<wbr>Most<wbr>Recent<wbr>Position<wbr>For<wbr>Mmsi</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>Contained<wbr>Tiles<span class="tsd-signature-symbol">(</span>tileId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Most<wbr>Recent<wbr>Position<wbr>For<wbr>Mmsi<span class="tsd-signature-symbol">(</span>mmsi<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/TileDaoMongo.ts#L90">src/daos/mongo/TileDaoMongo.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/AisMessageDaoMongo.ts#L67">src/daos/mongo/AisMessageDaoMongo.ts:67</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Finds tiles that are contained in the given tile id. Excludes <code>image_file</code> binary from projection.</p>
-								</div>
-							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mmsi: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="findmostrecentpositionsintile" class="tsd-anchor"></a>
+					<h3>find<wbr>Most<wbr>Recent<wbr>Positions<wbr>InTile</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Most<wbr>Recent<wbr>Positions<wbr>InTile<span class="tsd-signature-symbol">(</span>tileId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/AisMessageDaoMongo.ts#L89">src/daos/mongo/AisMessageDaoMongo.ts:89</a></li>
+								</ul>
+							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>tileId: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -301,63 +334,19 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="findtilesbycoordinates" class="tsd-anchor"></a>
-					<h3>find<wbr>Tiles<wbr>ByCoordinates</h3>
+					<a name="findmostrecentshippositions" class="tsd-anchor"></a>
+					<h3>find<wbr>Most<wbr>Recent<wbr>Ship<wbr>Positions</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>Tiles<wbr>ByCoordinates<span class="tsd-signature-symbol">(</span>queryObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Most<wbr>Recent<wbr>Ship<wbr>Positions<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/TileDaoMongo.ts#L110">src/daos/mongo/TileDaoMongo.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/AisMessageDaoMongo.ts#L24">src/daos/mongo/AisMessageDaoMongo.ts:24</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Finds tiles using given query object.
-									<code>const queryObject = { image_west: {$lte: longitude}, image_east: {$gt: longitude}, image_north: {$gt: latitude}, image_south: {$lte: latitude}, scale: scale }</code></p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>queryObject: <span class="tsd-signature-type">object</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="gettileimage" class="tsd-anchor"></a>
-					<h3>get<wbr>Tile<wbr>Image</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Tile<wbr>Image<span class="tsd-signature-symbol">(</span>tileId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/TileDaoMongo.ts#L79">src/daos/mongo/TileDaoMongo.ts:79</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Queries database for tile image file by tile id.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>tileId: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -365,7 +354,7 @@
 					<a name="insert" class="tsd-anchor"></a>
 					<h3>insert</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">insert<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">: </span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">insert<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">: </span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -379,10 +368,33 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>model: <a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<h5>model: <a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="insertbatch" class="tsd-anchor"></a>
+					<h3>insert<wbr>Batch</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">insert<wbr>Batch<span class="tsd-signature-symbol">(</span>models<span class="tsd-signature-symbol">: </span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/AisMessageDaoMongo.ts#L16">src/daos/mongo/AisMessageDaoMongo.ts:16</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>models: <a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -390,20 +402,20 @@
 					<a name="todocument" class="tsd-anchor"></a>
 					<h3>to<wbr>Document</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Document<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">?: </span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Document<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">?: </span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="daos_mongo_daomongocrud.default.html">default</a>.<a href="daos_mongo_daomongocrud.default.html#todocument">toDocument</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/TileDaoMongo.ts#L18">src/daos/mongo/TileDaoMongo.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/mongo/AisMessageDaoMongo.ts#L128">src/daos/mongo/AisMessageDaoMongo.ts:128</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> model: <a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> model: <a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
@@ -414,7 +426,7 @@
 					<a name="update" class="tsd-anchor"></a>
 					<h3>update</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, model<span class="tsd-signature-symbol">: </span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, model<span class="tsd-signature-symbol">: </span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -431,10 +443,10 @@
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>model: <a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<h5>model: <a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="models_aismessage.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -447,7 +459,7 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/daos_mongo_tiledaomongo.html">daos/mongo/<wbr>Tile<wbr>Dao<wbr>Mongo</a>
+						<a href="../modules/daos_mongo_aismessagedaomongo.html">daos/mongo/<wbr>Ais<wbr>Message<wbr>Dao<wbr>Mongo</a>
 					</li>
 				</ul>
 			</nav>
@@ -456,46 +468,52 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="daos_mongo_tiledaomongo.default.html" class="tsd-kind-icon">default</a>
+						<a href="daos_mongo_aismessagedaomongo.default.html" class="tsd-kind-icon">default</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-								<a href="daos_mongo_tiledaomongo.default.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="daos_mongo_aismessagedaomongo.default.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="daos_mongo_tiledaomongo.default.html#collectionname" class="tsd-kind-icon">collection<wbr>Name</a>
+								<a href="daos_mongo_aismessagedaomongo.default.html#collectionname" class="tsd-kind-icon">collection<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="daos_mongo_tiledaomongo.default.html#database" class="tsd-kind-icon">database</a>
+								<a href="daos_mongo_aismessagedaomongo.default.html#database" class="tsd-kind-icon">database</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="daos_mongo_tiledaomongo.default.html#mongomodel" class="tsd-kind-icon">mongo<wbr>Model</a>
+								<a href="daos_mongo_aismessagedaomongo.default.html#mongomodel" class="tsd-kind-icon">mongo<wbr>Model</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="daos_mongo_tiledaomongo.default.html#delete" class="tsd-kind-icon">delete</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="daos_mongo_tiledaomongo.default.html#find" class="tsd-kind-icon">find</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="daos_mongo_tiledaomongo.default.html#findall" class="tsd-kind-icon">find<wbr>All</a>
+								<a href="daos_mongo_aismessagedaomongo.default.html#delete" class="tsd-kind-icon">delete</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="daos_mongo_tiledaomongo.default.html#findcontainedtiles" class="tsd-kind-icon">find<wbr>Contained<wbr>Tiles</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="daos_mongo_tiledaomongo.default.html#findtilesbycoordinates" class="tsd-kind-icon">find<wbr>Tiles<wbr>ByCoordinates</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="daos_mongo_tiledaomongo.default.html#gettileimage" class="tsd-kind-icon">get<wbr>Tile<wbr>Image</a>
+								<a href="daos_mongo_aismessagedaomongo.default.html#deletemessagesfiveminutesolderthantime" class="tsd-kind-icon">delete<wbr>Messages<wbr>Five<wbr>Minutes<wbr>Older<wbr>Than<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="daos_mongo_tiledaomongo.default.html#insert" class="tsd-kind-icon">insert</a>
+								<a href="daos_mongo_aismessagedaomongo.default.html#find" class="tsd-kind-icon">find</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="daos_mongo_aismessagedaomongo.default.html#findall" class="tsd-kind-icon">find<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="daos_mongo_aismessagedaomongo.default.html#findmostrecentpositionformmsi" class="tsd-kind-icon">find<wbr>Most<wbr>Recent<wbr>Position<wbr>For<wbr>Mmsi</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="daos_mongo_aismessagedaomongo.default.html#findmostrecentpositionsintile" class="tsd-kind-icon">find<wbr>Most<wbr>Recent<wbr>Positions<wbr>InTile</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="daos_mongo_aismessagedaomongo.default.html#findmostrecentshippositions" class="tsd-kind-icon">find<wbr>Most<wbr>Recent<wbr>Ship<wbr>Positions</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="daos_mongo_aismessagedaomongo.default.html#insert" class="tsd-kind-icon">insert</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="daos_mongo_aismessagedaomongo.default.html#insertbatch" class="tsd-kind-icon">insert<wbr>Batch</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="daos_mongo_tiledaomongo.default.html#todocument" class="tsd-kind-icon">to<wbr>Document</a>
+								<a href="daos_mongo_aismessagedaomongo.default.html#todocument" class="tsd-kind-icon">to<wbr>Document</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="daos_mongo_tiledaomongo.default.html#update" class="tsd-kind-icon">update</a>
+								<a href="daos_mongo_aismessagedaomongo.default.html#update" class="tsd-kind-icon">update</a>
 							</li>
 						</ul>
 					</li>

@@ -17,32 +17,73 @@ const Port = ({ port, currentZoom, tile }: {port: PortMapObject, currentZoom: nu
     /**
      * Dynamically calculates the x position of the port based on the given tile.
      */
-    const calculateXPosition = () => {
+    const calculatePortXPosition = ():number => {
         return MapHelpers.getXPosition(port["longitude"], tile);
     }
 
     /**
      * Dynamically calculates the x position of the port based on the given tile.
      */
-    const calculateYPosition = () => {
+    const calculatePortYPosition = ():number => {
         return MapHelpers.getYPosition(port["latitude"], tile);
     }
 
+    /**
+     * Evaluates that the x position of a port is within the current 100x100 viewbox.
+     */
+    const evaluatePortXPosition = ():boolean => {
+        return MapHelpers.evaluateXPosition(calculatePortXPosition());
+    }
+
+    /**
+     * Evaluates that the y position of a port is within the current 100x100 viewbox.
+     */
+    const evaluatePortYPosition = ():boolean => {
+        return MapHelpers.evaluateYPosition(calculatePortYPosition());
+    }
+
+    /**
+     * Renders a port and its name.
+     */
+    const renderPort = () => {
+        return (
+            <Fragment>
+                { renderPortNode() }
+                { currentZoom === 3 ? renderPortName() : <Fragment /> }
+            </Fragment>
+        )
+
+    }
+
+    /**
+     * Renders a port name.
+     */
+    const renderPortName = () => {
+        return (
+            <text x={calculatePortXPosition() + .5}
+                  y={calculatePortYPosition() + .24}
+                  className="small"
+                  strokeWidth={`.018`}
+                  stroke={`#ffa200`}>
+                {port.port_location}
+            </text>
+        );
+    };
+
+    /**
+     * Renders a port node.
+     */
+    const renderPortNode = () => {
+        return (
+            <circle
+                cx={calculatePortXPosition()} cy={calculatePortYPosition()}
+                r=".25" strokeWidth="0" stroke={`#ffa20099`} fill={`${color}`}>
+        </circle>);
+    };
+
     return (
         <Fragment>
-            <circle cx={calculateXPosition()} cy={calculateYPosition()} r=".25" strokeWidth="0" stroke={`#ffa20099`} fill={`${color}`}>
-            </circle>
-
-            { currentZoom === 3 ?
-                <text x={calculateXPosition() + .5}
-                      y={calculateYPosition() + .24}
-                      className="small"
-                      strokeWidth={`.018`}
-                      stroke={`#ffa200`}>
-                    {port.port_location}
-                </text>
-                : <Fragment />
-            }
+            { evaluatePortXPosition() && evaluatePortYPosition() && renderPort() }
         </Fragment>
     )
 }

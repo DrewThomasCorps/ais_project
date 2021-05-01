@@ -91,6 +91,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="maphelpers.default.html#calculatemapx" class="tsd-kind-icon">calculate<wbr>MapX</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="maphelpers.default.html#calculatemapy" class="tsd-kind-icon">calculate<wbr>MapY</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="maphelpers.default.html#evaluatexposition" class="tsd-kind-icon">evaluateXPosition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="maphelpers.default.html#evaluateyposition" class="tsd-kind-icon">evaluateYPosition</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="maphelpers.default.html#getxposition" class="tsd-kind-icon">getXPosition</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="maphelpers.default.html#getyposition" class="tsd-kind-icon">getYPosition</a></li>
 							</ul>
@@ -127,9 +129,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/client/src/MapHelpers.ts#L21">MapHelpers.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/client/src/MapHelpers.ts#L41">MapHelpers.ts:41</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Dynamically calculates the x coordinate of a mouseclick based on the current map size.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -137,6 +144,8 @@
 								</li>
 								<li>
 									<h5>tile: <a href="../interfaces/interfaces_tiledata.default.html" class="tsd-signature-type" data-tsd-kind="Interface">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -153,9 +162,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/client/src/MapHelpers.ts#L12">MapHelpers.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/client/src/MapHelpers.ts#L27">MapHelpers.ts:27</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Dynamically calculates the y coordinate of a mouseclick based on the current map size.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -163,9 +177,71 @@
 								</li>
 								<li>
 									<h5>tile: <a href="../interfaces/interfaces_tiledata.default.html" class="tsd-signature-type" data-tsd-kind="Interface">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="evaluatexposition" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> evaluateXPosition</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">evaluateXPosition<span class="tsd-signature-symbol">(</span>xPosition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/client/src/MapHelpers.ts#L54">MapHelpers.ts:54</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Evaluates the x position of a node within the current map view.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>xPosition: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="evaluateyposition" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> evaluateYPosition</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">evaluateYPosition<span class="tsd-signature-symbol">(</span>yPosition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/client/src/MapHelpers.ts#L66">MapHelpers.ts:66</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Evaluates the y position of a node within the current map view.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>yPosition: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -179,9 +255,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/client/src/MapHelpers.ts#L4">MapHelpers.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/client/src/MapHelpers.ts#L9">MapHelpers.ts:9</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculates the x position of a node within the 100x100 viewbox.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -189,6 +270,8 @@
 								</li>
 								<li>
 									<h5>tile: <a href="../interfaces/interfaces_tiledata.default.html" class="tsd-signature-type" data-tsd-kind="Interface">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -205,9 +288,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/1b7e1fe/client/src/MapHelpers.ts#L8">MapHelpers.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/client/src/MapHelpers.ts#L18">MapHelpers.ts:18</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculates the y position of a node within the 100x100 viewbox.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -215,6 +303,8 @@
 								</li>
 								<li>
 									<h5>tile: <a href="../interfaces/interfaces_tiledata.default.html" class="tsd-signature-type" data-tsd-kind="Interface">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -294,6 +384,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="maphelpers.default.html#calculatemapy" class="tsd-kind-icon">calculate<wbr>MapY</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="maphelpers.default.html#evaluatexposition" class="tsd-kind-icon">evaluateXPosition</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="maphelpers.default.html#evaluateyposition" class="tsd-kind-icon">evaluateYPosition</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="maphelpers.default.html#getxposition" class="tsd-kind-icon">getXPosition</a>
