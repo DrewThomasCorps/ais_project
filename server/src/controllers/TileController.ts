@@ -147,21 +147,13 @@ export default class TileController {
      * @param response
      * @param _requestUrl
      */
-    static findTilesByCoordinates = async (_request: IncomingMessage, response: ServerResponse, _requestUrl: URL) => {
+    static findTileByCoordinates = async (_request: IncomingMessage, response: ServerResponse, _requestUrl: URL) => {
         const scale = parseInt(<string>_requestUrl.searchParams.get("scale"), 10);
         const longitude = parseFloat(<string>_requestUrl.searchParams.get("longitude"));
         const latitude = parseFloat(<string>_requestUrl.searchParams.get("latitude"));
 
-        const queryObject = {
-            image_west: {$lte: longitude},
-            image_east: {$gt: longitude},
-            image_north: {$gt: latitude},
-            image_south: {$lte: latitude},
-            scale: scale
-        }
-
         const tileDao = await DaoFactory.getTileDao(DatabaseConfig.Config);
-        const tiles = await tileDao.findTilesByCoordinates(queryObject);
+        const tiles = await tileDao.findTileByCoordinates(latitude, longitude, scale);
 
         response.statusCode = 200;
         response.setHeader('Content-Type', 'application/json');

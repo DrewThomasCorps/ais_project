@@ -68,6 +68,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Functions for reading and manipulating <code>Port</code>s.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -111,13 +118,21 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L7">src/daos/interface/CrudDao.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/interface/CrudDao.ts#L35">src/daos/interface/CrudDao.ts:35</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deletes model in database with the given id.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>of model to be deleted.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -135,16 +150,25 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L5">src/daos/interface/CrudDao.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/interface/CrudDao.ts#L19">src/daos/interface/CrudDao.ts:19</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Finds the model with the given ID in the database.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>of model to find.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/models_port.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise<T> of found model.</p>
 						</li>
 					</ul>
 				</section>
@@ -159,9 +183,15 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#findall">findAll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L6">src/daos/interface/CrudDao.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/interface/CrudDao.ts#L28">src/daos/interface/CrudDao.ts:28</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Finds all models in the database with the optional filter applied.</p>
+								</div>
+								<p>If a filter model is passed, only records that have the set attributes will be returned.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -169,6 +199,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/models_port.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise&lt;T[]&gt; of array of models found in database with the filter applied.</p>
 						</li>
 					</ul>
 				</section>
@@ -183,16 +214,25 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#insert">insert</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L4">src/daos/interface/CrudDao.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/interface/CrudDao.ts#L12">src/daos/interface/CrudDao.ts:12</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Inserts a model into a database.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>model: <a href="../classes/models_port.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>to be inserted.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/models_port.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise<T> of inserted model.</p>
 						</li>
 					</ul>
 				</section>
@@ -207,19 +247,32 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#update">update</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L8">src/daos/interface/CrudDao.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/DrewThomasCorps/ais_project/blob/a294f9f/server/src/daos/interface/CrudDao.ts#L46">src/daos/interface/CrudDao.ts:46</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Updates model with given id in the database to match the model passed.</p>
+								</div>
+								<p>Only the attributes set in the passed model will be updated.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>of model to update.</p>
+									</div>
 								</li>
 								<li>
 									<h5>model: <a href="../classes/models_port.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>to be updated to.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/models_port.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise<T> of updated model.</p>
 						</li>
 					</ul>
 				</section>
