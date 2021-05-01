@@ -24,7 +24,7 @@ export default http.createServer(async (request: IncomingMessage, response: Serv
     } else if (/^\/tile-image\/[\-0-9]+/.test(requestUrl.pathname) && request.method === 'GET') {
         await TileController.getTileImage(request, response, requestUrl);
     } else if (/^\/tiles/.test(requestUrl.pathname) && requestUrl.searchParams.get("longitude") && request.method === 'GET') {
-        await TileController.findTilesByCoordinates(request, response, requestUrl);
+        await TileController.findTileByCoordinates(request, response, requestUrl);
     } else if (/^\/tiles\/[0-9a-z]+/.test(requestUrl.pathname) && request.method === 'GET') {
         await TileController.findTile(request, response, requestUrl);
     } else if (/^\/tiles/.test(requestUrl.pathname) && request.method === 'GET') {

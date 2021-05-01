@@ -159,8 +159,8 @@ describe('TileIntegration', function () {
         });
     })
 
-    describe('findTilesByCoordinates', function () {
-        it('should get array of mapviews by coordinates', async function () {
+    describe('findTileByCoordinates', function () {
+        it('should get a mapview tile by coordinates', async function () {
             await insertTestTiles();
 
             await chai.request(app).put('/tiles/' + new ObjectId('a1-b2-c3-d4z').toHexString())
@@ -183,7 +183,7 @@ describe('TileIntegration', function () {
 
             const response = await chai.request(app).get('/tiles?longitude=9.494252873563218&scale=3&latitude=57.04808806488992');
 
-            expect(response.body).to.deep.equal([
+            expect(response.body).to.deep.equal(
                 {
                     id: 1,
                     ICESName: '43F9',
@@ -203,7 +203,7 @@ describe('TileIntegration', function () {
                     image_file: null
 
                 }
-            ]);
+            );
             expect(response.status).to.be.equal(200);
         });
     })

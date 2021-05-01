@@ -92,7 +92,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="daos_interface_tiledao.default.html#find" class="tsd-kind-icon">find</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="daos_interface_tiledao.default.html#findall" class="tsd-kind-icon">find<wbr>All</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="daos_interface_tiledao.default.html#findcontainedtiles" class="tsd-kind-icon">find<wbr>Contained<wbr>Tiles</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="daos_interface_tiledao.default.html#findtilesbycoordinates" class="tsd-kind-icon">find<wbr>Tiles<wbr>ByCoordinates</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="daos_interface_tiledao.default.html#findtilebycoordinates" class="tsd-kind-icon">find<wbr>Tile<wbr>ByCoordinates</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="daos_interface_tiledao.default.html#gettileimage" class="tsd-kind-icon">get<wbr>Tile<wbr>Image</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="daos_interface_tiledao.default.html#insert" class="tsd-kind-icon">insert</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="daos_interface_tiledao.default.html#update" class="tsd-kind-icon">update</a></li>
@@ -114,7 +114,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#delete">delete</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/interface/CrudDao.ts#L7">src/daos/interface/CrudDao.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L7">src/daos/interface/CrudDao.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -138,7 +138,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/interface/CrudDao.ts#L5">src/daos/interface/CrudDao.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L5">src/daos/interface/CrudDao.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -162,7 +162,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#findall">findAll</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/interface/CrudDao.ts#L6">src/daos/interface/CrudDao.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L6">src/daos/interface/CrudDao.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -185,7 +185,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/interface/TileDao.ts#L6">src/daos/interface/TileDao.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/TileDao.ts#L6">src/daos/interface/TileDao.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -199,25 +199,31 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="findtilesbycoordinates" class="tsd-anchor"></a>
-					<h3>find<wbr>Tiles<wbr>ByCoordinates</h3>
+					<a name="findtilebycoordinates" class="tsd-anchor"></a>
+					<h3>find<wbr>Tile<wbr>ByCoordinates</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>Tiles<wbr>ByCoordinates<span class="tsd-signature-symbol">(</span>queryObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Tile<wbr>ByCoordinates<span class="tsd-signature-symbol">(</span>latitude<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, longitude<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, scale<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../classes/models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/interface/TileDao.ts#L7">src/daos/interface/TileDao.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/TileDao.ts#L7">src/daos/interface/TileDao.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>queryObject: <span class="tsd-signature-type">object</span></h5>
+									<h5>latitude: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>longitude: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>scale: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../classes/models_tile.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -231,7 +237,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/interface/TileDao.ts#L5">src/daos/interface/TileDao.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/TileDao.ts#L5">src/daos/interface/TileDao.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -255,7 +261,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#insert">insert</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/interface/CrudDao.ts#L4">src/daos/interface/CrudDao.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L4">src/daos/interface/CrudDao.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -279,7 +285,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="daos_interface_cruddao.default.html">default</a>.<a href="daos_interface_cruddao.default.html#update">update</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/08a481c/server/src/daos/interface/CrudDao.ts#L8">src/daos/interface/CrudDao.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/dacc300/server/src/daos/interface/CrudDao.ts#L8">src/daos/interface/CrudDao.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -328,7 +334,7 @@
 								<a href="daos_interface_tiledao.default.html#findcontainedtiles" class="tsd-kind-icon">find<wbr>Contained<wbr>Tiles</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="daos_interface_tiledao.default.html#findtilesbycoordinates" class="tsd-kind-icon">find<wbr>Tiles<wbr>ByCoordinates</a>
+								<a href="daos_interface_tiledao.default.html#findtilebycoordinates" class="tsd-kind-icon">find<wbr>Tile<wbr>ByCoordinates</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="daos_interface_tiledao.default.html#gettileimage" class="tsd-kind-icon">get<wbr>Tile<wbr>Image</a>
