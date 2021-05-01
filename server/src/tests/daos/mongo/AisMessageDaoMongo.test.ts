@@ -14,6 +14,9 @@ describe('AisMessageDaoMongo', function () {
     const databaseName = 'test_ais_project';
 
     before(async function () {
+        process.env['DATABASE_TYPE'] = 'mongo';
+        process.env['DATABASE_NAME'] = databaseName;
+        process.env['DATABASE_URL'] = url;
         const databaseConfig = {
             getType() {
                 return 'mongo';
@@ -38,6 +41,12 @@ describe('AisMessageDaoMongo', function () {
             await database.dropCollection('aisdk_20201118');
         }
         await database.createCollection('aisdk_20201118');
+        if (collections.find((collection: Collection) => {
+            return collection.collectionName === 'mapviews';
+        })) {
+            await database.dropCollection('mapviews');
+        }
+        await database.createCollection('mapviews');
     })
 
     after(async function () {
@@ -192,36 +201,12 @@ describe('AisMessageDaoMongo', function () {
 
 
             await database.collection('aisdk_20201118').insertMany([
-                {
-                    ...shipOne,
-                    ...positionOne,
-                    ...minuteZero
-                },
-                {
-                    ...shipOne,
-                    ...positionTwo,
-                    ...minuteOne
-                },
-                {
-                    ...shipThree,
-                    ...minuteZero,
-                    ...positionTwo
-                },
-                {
-                    ...shipOne,
-                    ...positionThree,
-                    ...minuteTwo
-                },
-                {
-                    ...shipTwo,
-                    ...minuteTwo,
-                    ...positionTwo
-                },
-                {
-                    ...shipTwo,
-                    ...minuteOne,
-                    ...positionOne
-                }
+                {...shipOne, ...positionOne, ...minuteZero},
+                {...shipOne, ...positionTwo, ...minuteOne},
+                {...shipThree, ...minuteZero, ...positionTwo},
+                {...shipOne, ...positionThree, ...minuteTwo},
+                {...shipTwo, ...minuteTwo, ...positionTwo},
+                {...shipTwo, ...minuteOne, ...positionOne}
             ]);
 
             const mostRecentPositions = await aisMessageDaoMongo.findMostRecentShipPositions();
@@ -232,6 +217,121 @@ describe('AisMessageDaoMongo', function () {
             expect(mostRecentPositions[1]?.Position).to.deep.equal(positionTwo.Position);
             expect(mostRecentPositions[2]?.MMSI).to.be.equal(3);
             expect(mostRecentPositions[2]?.Position).to.deep.equal(positionTwo.Position);
+        });
+    });
+
+    describe('deleteMessagesFiveMinutesOlderThanTime()', function () {
+        it('should delete messages more than five minutes older of given time', async function () {
+            const currentTime = {Timestamp: new Date('2020-11-18T00:10:00Z')};
+            // Expect to keep exactly five minute older messages
+            const fiveMinutesOlder = {Timestamp: new Date('2020-11-18T00:05:00Z')};
+            const sixMinutesOlder = {Timestamp: new Date('2020-11-18T00:04:00Z')};
+            const shipOne = {MMSI: 1, MsgType: 'position_report'};
+            const shipTwo = {MMSI: 2, MsgType: 'position_report'};
+            const shipThree = {MMSI: 3, MsgType: 'position_report'};
+            await database.collection('aisdk_20201118').insertMany([
+                {...shipOne, ...currentTime},
+                {...shipThree, ...currentTime},
+                {...shipOne, ...fiveMinutesOlder},
+                {...shipTwo, ...sixMinutesOlder},
+                {...shipOne, ...sixMinutesOlder},
+                {...shipTwo, ...fiveMinutesOlder}
+            ]);
+
+            const deletedMessageCount = await aisMessageDaoMongo.deleteMessagesFiveMinutesOlderThanTime(currentTime.Timestamp);
+            expect(deletedMessageCount).to.be.equal(2);
+        });
+
+        it('should delete messages more than five minutes older than given time of midnight', async function () {
+            const currentTime = {Timestamp: new Date('2020-11-18T00:00:00Z')};
+            // Expect to keep exactly five minute older messages
+            const fiveMinutesOlder = {Timestamp: new Date('2020-11-17T23:55:00Z')};
+            const sixMinutesOlder = {Timestamp: new Date('2020-11-17T23:54:00Z')};
+            const shipOne = {MMSI: 1, MsgType: 'position_report'};
+            const shipTwo = {MMSI: 2, MsgType: 'position_report'};
+            const shipThree = {MMSI: 3, MsgType: 'position_report'};
+            await database.collection('aisdk_20201118').insertMany([
+                {...shipOne, ...currentTime},
+                {...shipThree, ...currentTime},
+                {...shipOne, ...fiveMinutesOlder},
+                {...shipTwo, ...sixMinutesOlder},
+                {...shipOne, ...sixMinutesOlder},
+                {...shipTwo, ...fiveMinutesOlder}
+            ]);
+
+            const deletedMessageCount = await aisMessageDaoMongo.deleteMessagesFiveMinutesOlderThanTime(currentTime.Timestamp);
+            expect(deletedMessageCount).to.be.equal(2);
+
+        });
+    });
+
+    describe('findMostRecentPositionForMmsi()', function () {
+        it('should find the most recent ship position for MMSI', async function () {
+            const positionOne = {Position: {'type': "Point", "coordinates": [1, 2]}};
+            const positionTwo = {Position: {'type': "Point", "coordinates": [3, 4]}};
+            const positionThree = {Position: {'type': "Point", "coordinates": [5, 6]}};
+            const minuteZero = {Timestamp: new Date('2020-11-18T00:00:00Z')};
+            const minuteOne = {Timestamp: new Date('2020-11-18T00:00:01Z')};
+            const minuteTwo = {Timestamp: new Date('2020-11-18T00:00:02Z')};
+            const shipOne = {MMSI: 1, MsgType: 'position_report', IMO: 11};
+            const shipTwo = {MMSI: 2, MsgType: 'position_report', IMO: 22};
+            const shipThree = {MMSI: 3, MsgType: 'position_report', IMO: 33};
+
+
+            await database.collection('aisdk_20201118').insertMany([
+                {...shipOne, ...positionOne, ...minuteZero},
+                {...shipOne, ...positionTwo, ...minuteOne},
+                {...shipOne, ...positionThree, ...minuteTwo},
+                {...shipThree, ...minuteZero, ...positionTwo},
+                {...shipTwo, ...minuteTwo, ...positionTwo},
+                {...shipTwo, ...minuteOne, ...positionOne}
+            ]);
+
+            let mostRecentPosition = await aisMessageDaoMongo.findMostRecentPositionForMmsi(shipOne.MMSI);
+            expect(mostRecentPosition.MMSI).to.be.equal(shipOne.MMSI);
+            expect(mostRecentPosition.lat).to.be.equal(positionThree.Position.coordinates[0]);
+            expect(mostRecentPosition.long).to.be.equal(positionThree.Position.coordinates[1]);
+            expect(mostRecentPosition.IMO).to.be.equal(shipOne.IMO);
+            mostRecentPosition = await aisMessageDaoMongo.findMostRecentPositionForMmsi(shipTwo.MMSI);
+            expect(mostRecentPosition.MMSI).to.be.equal(shipTwo.MMSI);
+            expect(mostRecentPosition.lat).to.be.equal(positionTwo.Position.coordinates[0]);
+            expect(mostRecentPosition.long).to.be.equal(positionTwo.Position.coordinates[1]);
+            expect(mostRecentPosition.IMO).to.be.equal(shipTwo.IMO);
+        });
+    });
+
+    describe('findMostRecentPositionsInTile()', function () {
+        it('should find the most recent ship positions within a tile', async function () {
+            const positionOneInTileOne = {Position: {'type': "Point", "coordinates": [30, 20]}};
+            const positionTwoInTileOne = {Position: {'type': "Point", "coordinates": [31, 21]}};
+            const positionThreeInTileTwo = {Position: {'type': "Point", "coordinates": [39, 30]}};
+            const minuteZero = {Timestamp: new Date('2020-11-18T00:00:00Z')};
+            const minuteOne = {Timestamp: new Date('2020-11-18T00:00:01Z')};
+            const minuteTwo = {Timestamp: new Date('2020-11-18T00:00:02Z')};
+            const shipOne = {MMSI: 1, MsgType: 'position_report', IMO: 11};
+            const shipTwo = {MMSI: 2, MsgType: 'position_report', IMO: 22};
+            const shipThree = {MMSI: 3, MsgType: 'position_report', IMO: 33};
+
+            await database.collection('mapviews').insertMany([
+                {id: 1, image_north: 35, image_south: 25, image_east: 15, image_west: 25},
+                {id: 2, image_north: 45, image_south: 36, image_east: 26, image_west: 35}
+            ])
+
+            await database.collection('aisdk_20201118').insertMany([
+                {...shipOne, ...positionOneInTileOne, ...minuteZero},
+                {...shipOne, ...positionTwoInTileOne, ...minuteOne},
+                {...shipOne, ...positionThreeInTileTwo, ...minuteTwo},
+                {...shipThree, ...minuteZero, ...positionTwoInTileOne},
+                {...shipTwo, ...minuteTwo, ...positionTwoInTileOne},
+                {...shipTwo, ...minuteOne, ...positionOneInTileOne}
+            ]);
+
+            let mostRecentPositions = await aisMessageDaoMongo.findMostRecentPositionsInTile(1);
+            expect(mostRecentPositions.length).to.be.equal(2);
+            expect(mostRecentPositions[0]?.MMSI).to.be.equal(2);
+            expect(mostRecentPositions[0]?.Position).to.deep.equal(positionTwoInTileOne.Position);
+            expect(mostRecentPositions[1]?.MMSI).to.be.equal(3);
+            expect(mostRecentPositions[1]?.Position).to.deep.equal(positionTwoInTileOne.Position);
         });
     });
 });

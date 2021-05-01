@@ -2,7 +2,6 @@ import Tile from "../../models/Tile";
 import DaoMongoCrud from "./DaoMongoCrud";
 import {Db} from "mongodb";
 import CrudDao from "../interface/CrudDao";
-import * as fs from "fs";
 
 /**
  * Creates Tile DAO for MongoDB. Includes specialized methods beyond basic CRUD to retrieve tile image files, find
@@ -73,24 +72,12 @@ export default class TileDaoMongo extends DaoMongoCrud<Tile> implements CrudDao<
         return document;
     }
 
-    async insertTileImages() {
-        let tileImageDirectory = './src/images/'
-        let tileImages = fs.readdirSync(tileImageDirectory);
-
-        tileImages.forEach( tileImage => {
-            let binaryImage = fs.readFileSync(tileImageDirectory+tileImage).toString('binary');
-            this.database.collection(this.collectionName).updateOne({filename: tileImage},{$set: {image_file: binaryImage}});
-        });
-    }
-
     /**
      * Queries database for tile image file by tile id.
      * @param tileId
      */
-    async getTileImage(tileId: number) : Promise<Tile>
-    {
-        const image = await this.database.collection(this.collectionName).findOne({ id: tileId });
-
+    async getTileImage(tileId: number): Promise<Tile> {
+        const image = await this.database.collection(this.collectionName).findOne({id: tileId});
         // @ts-ignore
         // Cannot use reflection with typescript, so the ModelImpl prototype is used to call its static method.
         return this.mongoModel.constructor.fromJson(JSON.stringify(image));

@@ -13,11 +13,11 @@ export default http.createServer(async (request: IncomingMessage, response: Serv
 
     if (requestUrl.pathname == '/vessels' && request.method === 'GET') {
         await VesselController.getVessels(request, response, requestUrl);
-    } else if (/^\/vessels\/*/.test(requestUrl.pathname) && request.method === 'GET') {
+    } else if (/^\/vessels\//.test(requestUrl.pathname) && request.method === 'GET') {
         await VesselController.findVessel(request, response, requestUrl);
-    } else if (/^\/vessels\/*/.test(requestUrl.pathname) && request.method === 'PUT') {
+    } else if (/^\/vessels\//.test(requestUrl.pathname) && request.method === 'PUT') {
         await VesselController.updateVessel(request, response, requestUrl);
-    } else if (/^\/vessels\/*/.test(requestUrl.pathname) && request.method === 'DELETE') {
+    } else if (/^\/vessels\//.test(requestUrl.pathname) && request.method === 'DELETE') {
         await VesselController.deleteVessel(request, response, requestUrl);
     } else if (requestUrl.pathname == '/vessels' && request.method === 'POST') {
         await VesselController.createVessel(request, response);
@@ -29,9 +29,9 @@ export default http.createServer(async (request: IncomingMessage, response: Serv
         await TileController.findTile(request, response, requestUrl);
     } else if (/^\/tiles/.test(requestUrl.pathname) && request.method === 'GET') {
         await TileController.getTiles(request, response, requestUrl);
-    } else if (/^\/tiles\/*/.test(requestUrl.pathname) && request.method === 'PUT') {
+    } else if (/^\/tiles\//.test(requestUrl.pathname) && request.method === 'PUT') {
         await TileController.updateTile(request, response, requestUrl);
-    } else if (/^\/tiles\/*/.test(requestUrl.pathname) && request.method === 'DELETE') {
+    } else if (/^\/tiles\//.test(requestUrl.pathname) && request.method === 'DELETE') {
         await TileController.deleteTile(request, response, requestUrl);
     }  else if (/^\/tiles/.test(requestUrl.pathname) && request.method === 'POST') {
         await TileController.createTile(request, response);
@@ -39,16 +39,20 @@ export default http.createServer(async (request: IncomingMessage, response: Serv
         await TileController.findContainedTiles(request, response, requestUrl);
     } else if (requestUrl.pathname == '/ports' && request.method === 'GET') {
         await PortController.getPorts(request, response, requestUrl);
-    }  else if (/^\/ports\/*/.test(requestUrl.pathname) && request.method === 'GET') {
+    }  else if (/^\/ports\//.test(requestUrl.pathname) && request.method === 'GET') {
         await PortController.findPort(request, response, requestUrl);
-    } else if (/^\/ports\/*/.test(requestUrl.pathname) && request.method === 'PUT') {
+    } else if (/^\/ports\//.test(requestUrl.pathname) && request.method === 'PUT') {
         await PortController.updatePort(request, response, requestUrl);
-    } else if (/^\/ports\/*/.test(requestUrl.pathname) && request.method === 'DELETE') {
+    } else if (/^\/ports\//.test(requestUrl.pathname) && request.method === 'DELETE') {
         await PortController.deletePort(request, response, requestUrl);
     } else if (requestUrl.pathname === '/ports' && request.method === 'POST') {
         await PortController.createPort(request, response);
     }  else if (requestUrl.pathname === '/recent-ship-positions' && request.method === 'GET') {
-        await AisMessageController.getRecentShipPositions(response);
+        await AisMessageController.getPositions(response, requestUrl);
+    } else if (/^\/ais-messages/.test(requestUrl.pathname) && request.method === 'DELETE') {
+        await AisMessageController.deleteAisMessagesFiveMinutesOlderThanTime(request, response, requestUrl);
+    } else if (requestUrl.pathname === '/ais-messages' && request.method === 'POST') {
+        await AisMessageController.createAisMessages(request, response);
     } else {
         invalidUrl(request, response);
     }
