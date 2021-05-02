@@ -42,7 +42,7 @@ describe('AisMessageIntegration', function () {
     })
 
     describe('getPositions()', function () {
-        it('should get array of postions', async function () {
+        it('should get array of positions', async function () {
             const positionOne = {Position: {'type': "Point", "coordinates": [1, 2]}};
             const positionTwo = {Position: {'type': "Point", "coordinates": [3, 4]}};
             const positionThree = {Position: {'type': "Point", "coordinates": [5, 6]}};

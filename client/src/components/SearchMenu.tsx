@@ -96,14 +96,6 @@ const SearchMenu = ({ zoomMode, setZoomMode, mmsi, setMmsi }: {
                                     </form>
                                 </section>
                             </section>
-                            <section className={`panel-container`}>
-                                <section className={`panel-inner`}>
-                                    Search by Destination Port
-                                    <form>
-                                        <input type={`text`} placeholder={`Port Name`}/>
-                                    </form>
-                                </section>
-                            </section>
                         </section>
                     </section>
                 </section>
