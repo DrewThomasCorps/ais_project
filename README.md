@@ -160,13 +160,37 @@ This application follows the criteria for **Option C** outlined in the *project_
 - Finds the most recent ship positions within a tile
     - Curl Command
     ```bash
-
+      curl --location --request GET 'http://localhost:3001/recent-ship-positions?tile_id=54294'
     ```
-
-    - Response
+  
+    - Response (trimmed)
     ```json
-
+      [
+        {
+        "Timestamp": "2020-11-18T02:38:15.000Z",
+        "Position": {
+        "type": "Point",
+        "coordinates": [
+        55.052153,
+        11.988527
+        ]
+        },
+        "MMSI": 2190051
+        },
+        {
+        "Timestamp": "2020-11-18T02:36:57.000Z",
+        "Position": {
+        "type": "Point",
+        "coordinates": [
+        54.998457,
+        11.88004
+        ]
+        },
+        "MMSI": 209718000
+        }
+      ]
     ```
+  
 
 - Read permanent or transient vessel information matching the given MMSI, and 0 or more additional criteria: IMO, Name, CallSign
     - Curl Command
