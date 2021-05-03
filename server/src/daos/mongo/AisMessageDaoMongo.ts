@@ -27,11 +27,11 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
      * @param models to be created
      * @return Promise<number> of number of models inserted
      */
-    async insertBatch(models: AisMessage[]): Promise<number> {
-        models.map((model) => {
-            this.toDocument(model)
+    async insertBatch(models: []): Promise<number> {
+        const documents = models.map((model) => {
+            return this.toDocument(model)
         })
-        const insertWriteOpResult = await this.database.collection(this.collectionName).insertMany(models);
+        const insertWriteOpResult = await this.database.collection(this.collectionName).insertMany(documents);
         return insertWriteOpResult.insertedCount;
     }
 
