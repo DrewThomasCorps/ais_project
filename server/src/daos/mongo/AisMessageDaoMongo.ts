@@ -4,6 +4,7 @@ import AisMessage from "../../models/AisMessage";
 import DaoFactory from "../factory/DaoFactory";
 import {DatabaseConfig} from "../../config/DatabaseConfig";
 import AisMessageDao from "../interface/AisMessageDao";
+import Port from "../../models/Port";
 
 /**
  * Mongo implementation of the `AisMessageDao` interface
@@ -189,16 +190,36 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
         vessel_static_data = await this.database.collection(this.collectionName).aggregate([
             {$match: queryObject},
             {$sort: {'Timestamp': -1}}, {$limit: 1},
-            {$lookup: { from: 'vessels', localField: 'MMSI', foreignField: 'MMSI', as: 'Vessel_Data'}}
+            {$lookup: {from: 'vessels', localField: 'MMSI', foreignField: 'MMSI', as: 'Vessel_Data'}}
         ]).toArray();
 
         const vessel = vessel_static_data[0];
 
-        if ( filterModel.mmsi !== null && vessel) {
+        if (filterModel.mmsi !== null && vessel) {
             vessel['PositionData'] = await this.findMostRecentPositionForMmsi(filterModel.mmsi);
         }
 
         return vessel;
+    }
+
+    /**
+     * Finds the most recent ship positions in tile of scall 3 containing the port specified. If the specified port matches multiple ports,
+     * then each of the matched ports is returned.
+     * @param portName
+     * @param country
+     */
+    async findAllShipPositionsInTileContainingPort(portName: string, country: string): Promise<any> {
+        const portsAndTiles = await this.database.collection('ports').aggregate([{
+            $match: {
+                port_location: portName,
+                country: country
+            }
+        }]).toArray();
+        if (portsAndTiles.length > 1) {
+            return portsAndTiles.map((port) => Port.fromJson(JSON.stringify(port)))
+        } else {
+            return this.findMostRecentPositionsInTile(portsAndTiles[0]?.mapview_3)
+        }
     }
 
     /**

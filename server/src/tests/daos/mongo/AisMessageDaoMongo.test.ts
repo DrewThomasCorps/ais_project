@@ -57,6 +57,13 @@ describe('AisMessageDaoMongo', function () {
             await database.dropCollection('vessels');
         }
         await database.createCollection('vessels');
+
+        if (collections.find((collection: Collection) => {
+            return collection.collectionName === 'ports';
+        })) {
+            await database.dropCollection('ports');
+        }
+        await database.createCollection('ports');
     })
 
     after(async function () {
@@ -420,6 +427,96 @@ describe('AisMessageDaoMongo', function () {
             expect(mostRecentPositions[0]?.Position).to.deep.equal(positionTwoInTileOne.Position);
             expect(mostRecentPositions[1]?.MMSI).to.be.equal(3);
             expect(mostRecentPositions[1]?.Position).to.deep.equal(positionTwoInTileOne.Position);
+        });
+    });
+
+    describe('findAllShipPositionsInTileContainingPort()', function () {
+        it('should return array of ports if multiple ports found', async function () {
+            await database.collection('ports').insertMany([
+                {
+                    'id': 1234,
+                    'un/locode': 'PPPPP',
+                    'port_location': 'same',
+                    'country': 'Denmark',
+                    'longitude': 10.665278,
+                    'latitude': 55.451389,
+                    'website': 'www.portone.dk',
+                    'mapview_1': 1,
+                    'mapview_2': 1111,
+                    'mapview_3': 11112
+                },
+                {
+                    'id': 5678,
+                    'un/locode': 'OOOOO',
+                    'port_location': 'same',
+                    'country': 'Denmark',
+                    'longitude': 11.665278,
+                    'latitude': 56.451389,
+                    'website': 'www.porttwo.dk',
+                    'mapview_1': 1,
+                    'mapview_2': 2221,
+                    'mapview_3': 22212
+                }
+            ])
+
+            const ports = await aisMessageDaoMongo.findAllShipPositionsInTileContainingPort("same", "Denmark");
+            expect(ports.length).to.be.equal(2);
+            expect(ports[0].port_location).to.be.equal("same");
+        });
+        it('should return locations for matching port', async function () {
+            await database.collection('ports').insertMany([
+                {
+                    'id': 1234,
+                    'un/locode': 'PPPPP',
+                    'port_location': 'one',
+                    'country': 'Denmark',
+                    'longitude': 20,
+                    'latitude': 30,
+                    'website': 'www.portone.dk',
+                    'mapview_1': 1,
+                    'mapview_2': 1111,
+                    'mapview_3': 11112
+                },
+                {
+                    'id': 5678,
+                    'un/locode': 'OOOOO',
+                    'port_location': 'two',
+                    'country': 'Denmark',
+                    'longitude': 30,
+                    'latitude': 39,
+                    'website': 'www.porttwo.dk',
+                    'mapview_1': 1,
+                    'mapview_2': 2221,
+                    'mapview_3': 22212
+                }
+            ])
+
+            await database.collection('mapviews').insertMany([
+                {id: 11112, image_north: 35, image_south: 25, image_east: 25, image_west: 15},
+                {id: 22212, image_north: 45, image_south: 36, image_east: 35, image_west: 26}
+            ])
+
+            const positionTwoInTileOne = {Position: {'type': "Point", "coordinates": [31, 21]}};
+            const positionThreeInTileTwo = {Position: {'type': "Point", "coordinates": [39, 30]}};
+            const minuteZero = {Timestamp: new Date('2020-11-18T00:00:00Z')};
+            const minuteTwo = {Timestamp: new Date('2020-11-18T00:00:02Z')};
+            const shipOne = {MMSI: 1, MsgType: 'position_report', IMO: 11};
+            const shipTwo = {MMSI: 2, MsgType: 'position_report', IMO: 22};
+            const shipThree = {MMSI: 3, MsgType: 'position_report', IMO: 33};
+
+            await database.collection('aisdk_20201118').insertMany([
+                {...shipOne, ...positionThreeInTileTwo, ...minuteTwo},
+                {...shipThree, ...minuteZero, ...positionTwoInTileOne},
+                {...shipTwo, ...minuteTwo, ...positionTwoInTileOne},
+            ]);
+
+            let positions = await aisMessageDaoMongo.findAllShipPositionsInTileContainingPort('one', 'Denmark');
+            expect(positions.length).to.be.equal(2);
+            expect(positions[0]?.MMSI).to.be.equal(2);
+            expect(positions[0]?.Position).to.deep.equal(positionTwoInTileOne.Position);
+            expect(positions[1]?.MMSI).to.be.equal(3);
+            expect(positions[1]?.Position).to.deep.equal(positionTwoInTileOne.Position);
+
         });
     });
 });

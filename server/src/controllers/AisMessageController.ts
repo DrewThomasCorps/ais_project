@@ -63,7 +63,12 @@ export default class AisMessageController {
      * Finds the most recent positions as found in position_report documents.
      *
      * If a MMSI is passed in the query string, the last position for that vessel will be returned.
+     *
      * If a tile ID is passed in the query string, all most recent positions within that tile will be returned.
+     *
+     * If a port name and country is passed in the query string, all positions contained within the scale 3 tile containing that port will be returned.
+     * If multiple ports are found, an array of ports will be returned.
+     *
      * Else all the most recent positions for every ship will be returned.
      * @param response
      * @param requestUrl
@@ -72,11 +77,15 @@ export default class AisMessageController {
         let positions;
         const aisMessageDao = await DaoFactory.getAisMessageDao(DatabaseConfig.Config)
         const mmsi = requestUrl.searchParams.get(('mmsi'));
-        const tileId = requestUrl.searchParams.get(('tile_id'))
+        const tileId = requestUrl.searchParams.get(('tile_id'));
+        const portName = requestUrl.searchParams.get(('port_name'));
+        const country = requestUrl.searchParams.get(('country'));
         if (mmsi) {
             positions = await aisMessageDao.findMostRecentPositionForMmsi(Number.parseInt(mmsi));
         } else if (tileId) {
-            positions = await aisMessageDao.findMostRecentPositionsInTile(parseInt(tileId, 10))
+            positions = await aisMessageDao.findMostRecentPositionsInTile(parseInt(tileId, 10));
+        } else if (portName && country) {
+           positions = await aisMessageDao.findAllShipPositionsInTileContainingPort(portName, country);
         } else {
             positions =  await aisMessageDao.findMostRecentShipPositions();
         }
