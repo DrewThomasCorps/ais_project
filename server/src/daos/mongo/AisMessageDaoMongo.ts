@@ -161,8 +161,8 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
                 $and: [
                     {'Position.coordinates.0': {$lte: tile.image_north}},
                     {'Position.coordinates.0': {$gt: tile.image_south}},
-                    {'Position.coordinates.1': {$gte: tile.image_east}},
-                    {'Position.coordinates.1': {$lt: tile.image_west}}
+                    {'Position.coordinates.1': {$lte: tile.image_east}},
+                    {'Position.coordinates.1': {$gt: tile.image_west}}
                 ]
             }
         }, {

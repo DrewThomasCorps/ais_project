@@ -76,7 +76,7 @@ export default class AisMessageController {
         if (mmsi) {
             positions = await aisMessageDao.findMostRecentPositionForMmsi(Number.parseInt(mmsi));
         } else if (tileId) {
-            positions = await aisMessageDao.findMostRecentPositionsInTile(Number.parseInt(tileId))
+            positions = await aisMessageDao.findMostRecentPositionsInTile(parseInt(tileId, 10))
         } else {
             positions =  await aisMessageDao.findMostRecentShipPositions();
         }

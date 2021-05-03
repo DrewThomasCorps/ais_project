@@ -122,8 +122,8 @@ describe('AisMessageIntegration', function () {
             const shipThree = {MMSI: 3, MsgType: 'position_report', IMO: 33};
 
             await database.collection('mapviews').insertMany([
-                {id: 1, image_north: 35, image_south: 25, image_east: 15, image_west: 25},
-                {id: 2, image_north: 45, image_south: 36, image_east: 26, image_west: 35}
+                {id: 1, image_north: 35, image_south: 25, image_east: 25, image_west: 15},
+                {id: 2, image_north: 45, image_south: 36, image_east: 35, image_west: 26}
             ])
 
             await database.collection('aisdk_20201118').insertMany([
