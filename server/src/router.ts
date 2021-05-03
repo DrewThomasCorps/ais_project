@@ -53,6 +53,8 @@ export default http.createServer(async (request: IncomingMessage, response: Serv
         await AisMessageController.deleteAisMessagesFiveMinutesOlderThanTime(request, response, requestUrl);
     } else if (requestUrl.pathname === '/ais-messages' && request.method === 'POST') {
         await AisMessageController.createAisMessages(request, response);
+    } else if (requestUrl.pathname === '/vessel-data' && request.method === 'GET') {
+        await AisMessageController.findStaticAndTransientData(response, requestUrl);
     } else {
         invalidUrl(request, response);
     }

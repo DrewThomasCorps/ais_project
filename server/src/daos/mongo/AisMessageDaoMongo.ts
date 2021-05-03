@@ -118,7 +118,7 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
         },
             {$limit: 1}
         ]).toArray()
-        const aisMessage = AisMessage.fromJson(JSON.stringify(recentPosition[0]))
+        const aisMessage = AisMessage.fromJson(JSON.stringify(recentPosition[0] ?? ''));
         return {
             MMSI: aisMessage.mmsi,
             lat: aisMessage.position?.latitude,
@@ -175,6 +175,30 @@ export default class AisMessageDaoMongo extends DaoMongoCrud<AisMessage> impleme
             }
         }
         ], {allowDiskUse: true}).toArray();
+    }
+
+    /**
+     * Finds the latest ship positions, static data; and vessel data given an MMSI, Name, Call Sign, or IMO.
+     * @param filterModel
+     * @return array
+     */
+    async findStaticAndTransientData(filterModel: AisMessage): Promise<any> {
+        let vessel_static_data: any;
+        let queryObject = {...this.toDocument(filterModel), "MsgType": "static_data"};
+
+        vessel_static_data = await this.database.collection(this.collectionName).aggregate([
+            {$match: queryObject},
+            {$sort: {'Timestamp': -1}}, {$limit: 1},
+            {$lookup: { from: 'vessels', localField: 'MMSI', foreignField: 'MMSI', as: 'Vessel_Data'}}
+        ]).toArray();
+
+        const vessel = vessel_static_data[0];
+
+        if ( filterModel.mmsi !== null && vessel) {
+            vessel['PositionData'] = await this.findMostRecentPositionForMmsi(filterModel.mmsi);
+        }
+
+        return vessel;
     }
 
     /**
