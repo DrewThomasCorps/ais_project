@@ -3,6 +3,7 @@ import {DatabaseConfig} from "../config/DatabaseConfig";
 import DaoFactory from "../daos/factory/DaoFactory";
 import AisMessage from "../models/AisMessage";
 import {URL} from "url";
+import AisMessageQueryBuilder from "../queryBuilder/AisMessageQueryBuilder";
 
 /**
  * Controller to handle server requests for AIS Messages
@@ -84,6 +85,23 @@ export default class AisMessageController {
         response.setHeader('Content-Type', 'application/json');
         response.setHeader('Access-Control-Allow-Origin', '*');
         response.end(JSON.stringify(positions));
+    }
+
+    /**
+     * Finds the latest ship positions, static data; and vessel data given an MMSI, Name, Call Sign, or IMO.
+     * @param response
+     * @param requestUrl
+     */
+    static findStaticAndTransientData = async (response: ServerResponse, requestUrl: URL) => {
+        const aisMessageDao = await DaoFactory.getAisMessageDao(DatabaseConfig.Config)
+        const aisQueryBuilder = new AisMessageQueryBuilder(requestUrl);
+
+        const data = await aisMessageDao.findStaticAndTransientData(aisQueryBuilder.buildFilterModel());
+
+        response.statusCode = 200;
+        response.setHeader('Content-Type', 'application/json');
+        response.setHeader('Access-Control-Allow-Origin', '*');
+        response.end(JSON.stringify(data));
     }
 }
 

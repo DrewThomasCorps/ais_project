@@ -168,29 +168,60 @@ project.
 - Read permanent or transient vessel information matching the given MMSI, and 0 or more additional criteria: IMO, Name, CallSign
     - Curl Command
     ```bash
-      curl --location --request GET 'http://localhost:3001/vessels?imo=1000033&name=Astralium&mmsi=234028000'
+      curl --location --request GET 'http://localhost:3001/vessel-data?mmsi=265866000&imo=9217242&name=PETER%20PAN'
     ```
 
     - Response
     ```json
-        [
-            {
-            "imo": 1000033,
-            "id": "60799cb1a6a6ddd4f72b80ba",
-            "flag": "United Kingdom",
-            "name": "Astralium",
-            "built": 1995,
-            "length": 31,
-            "breadth": 7,
-            "tonnage": 178,
-            "mmsi": 234028000,
-            "vessel_type": "Yacht",
-            "owner": null,
-            "former_names": [
-            "POWERFUL"
-            ]
-            }
+      {
+      "_id": "6079924fbe22b8f9c1eea8cf",
+      "Timestamp": "2020-11-18T02:33:14.000Z",
+      "Class": "Class A",
+      "MMSI": 265866000,
+      "MsgType": "static_data",
+      "IMO": 9217242,
+      "CallSign": "SGUH",
+      "Name": "PETER PAN",
+      "VesselType": "Passenger",
+      "CargoTye": "No additional information",
+      "Length": 220,
+      "Breadth": 30,
+      "Draught": 6.1,
+      "Destination": "TRAVEMUNDE",
+      "ETA": "2020-11-18T06:00:00.000Z",
+      "A": 21,
+      "B": 199,
+      "C": 15,
+      "D": 15,
+      "Vessel_Data": [
+        {
+        "_id": "60799cb6a6a6ddd4f72dd0df",
+        "IMO": 9217242,
+        "Flag": "Sweden",
+        "Name": "Peter Pan",
+        "Built": 2001,
+        "Length": 219,
+        "Breadth": 29,
+        "Tonnage": 44245,
+        "MMSI": 265866000,
+        "VesselType": "Ro-Ro",
+        "Owner": 10279,
+        "FormerNames": [
+        "PHT (2018, Sweden)",
+        "PEPPADER (2013, Sweden)",
+        "PB PANETEP (2013, Sweden)",
+        "ETER PAN (2013, Sweden)",
+        "HDER PAN (2013, Sweden)"
         ]
+        }
+      ],
+      "PositionData": {
+      "MMSI": 265866000,
+      "lat": 54.3614,
+      "long": 11.7873,
+      "IMO": null
+      }
+      }
     ```
 
 - Given a background map tile for zoom level 1 (2), find the 4 tiles of zoom level 2 (3) that are contained in it

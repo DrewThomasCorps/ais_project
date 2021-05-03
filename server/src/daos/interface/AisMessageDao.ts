@@ -59,4 +59,11 @@ export default interface AisMessageDao extends CrudDao<AisMessage> {
      * @return Promise<number> of number of messages deleted
      */
     deleteMessagesFiveMinutesOlderThanTime(time: Date): Promise<number>
+
+    /**
+     * Finds a vessel's most recent static_data from ais_messages with vessel data from vessels, then
+     * finds a vessel's most recent position_report and appends that to the data object.
+     * @param filterModel
+     */
+    findStaticAndTransientData(filterModel: AisMessage): Promise<any>
 }

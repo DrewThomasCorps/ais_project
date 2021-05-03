@@ -1,6 +1,6 @@
 import chai, {expect} from 'chai';
 import chaiHttp from 'chai-http'
-import {Collection, Db} from "mongodb";
+import {Collection, Db, ObjectId} from "mongodb";
 import Mongo from "../../daos/databases/Mongo";
 import app from '../../index';
 import {DatabaseConfig} from "../../config/DatabaseConfig";
@@ -29,12 +29,20 @@ describe('AisMessageIntegration', function () {
             await database.dropCollection('aisdk_20201118');
         }
         await database.createCollection('aisdk_20201118');
+
         if (collections.find((collection: Collection) => {
             return collection.collectionName === 'mapviews';
         })) {
             await database.dropCollection('mapviews');
         }
         await database.createCollection('mapviews');
+
+        if (collections.find((collection: Collection) => {
+            return collection.collectionName === 'vessels';
+        })) {
+            await database.dropCollection('vessels');
+        }
+        await database.createCollection('vessels');
     })
 
     after(async function () {
@@ -132,6 +140,74 @@ describe('AisMessageIntegration', function () {
             expect(response.body[0]?.Position).to.deep.equal(positionTwoInTileOne.Position);
             expect(response.body[1]?.MMSI).to.be.equal(3);
             expect(response.body[1]?.Position).to.deep.equal(positionTwoInTileOne.Position);
+        });
+    });
+    describe('findStaticAndTransientData()', function () {
+        it('should find most recent vessel position report, static data, and vessel data', async function () {
+            await database.collection('vessels').insertOne({
+                '_id': new ObjectId('b2-a3-d4-d5z'),
+                "IMO": 9217242,
+                "Flag": "Sweden",
+                "Name": "Peter Pan",
+                "Built": 2001,
+                "Length": 219,
+                "Breadth": 29,
+                "Tonnage": 44245,
+                "MMSI": 265866000,
+                "VesselType": "Ro-Ro",
+                "Owner": 10279,
+                "FormerNames": [
+                    "PHT (2018, Sweden)",
+                    "PEPPADER (2013, Sweden)",
+                    "PB PANETEP (2013, Sweden)",
+                    "ETER PAN (2013, Sweden)",
+                    "HDER PAN (2013, Sweden)"
+                ]
+            });
+
+            await database.collection('aisdk_20201118').insertMany([{
+                '_id': new ObjectId('a2-b3-c4-d5z'),
+                "Timestamp": new Date("2020-11-18T00:00:00Z"),
+                "Class": "Class A",
+                "MMSI": 265866000,
+                "MsgType": "static_data",
+                "IMO": 9217242,
+                "CallSign": "SGUH",
+                "Name": "PETER PAN",
+                "VesselType": "Passenger",
+                "CargoTye": "No additional information",
+                "Length": 220,
+                "Breadth": 30,
+                "Draught": 6.1,
+                "Destination": "TRAVEMUNDE",
+                "ETA": "2020-11-18T06:00:00.000Z",
+                "A": 21,
+                "B": 199,
+                "C": 15,
+                "D": 15,
+            },
+                {
+                    '_id': new ObjectId('c1-b2-a3-e4z'),
+                    'Timestamp': new Date("2020-11-18T00:00:00Z"),
+                    'Class': 'Class A',
+                    'MsgType': 'position_report',
+                    'MMSI': 265866000,
+                    'Position': {'type': "Point", "coordinates": [55.516188, 10.56997]},
+                    'Status': 'Under way using engine',
+                    'Rot': 0,
+                    'SoG': 0,
+                    'CoG': 159,
+                    'Heading': 214,
+                }
+            ]);
+
+            const response = await chai.request(app).get('/vessel-data?mmsi=265866000');
+            expect(response.body.MMSI).to.be.equal(265866000);
+            expect(response.body.Name).to.be.equal('PETER PAN');
+            expect(response.body.CallSign).to.be.equal('SGUH');
+            expect(response.body.IMO).to.be.equal(9217242);
+            expect(response.body.Vessel_Data[0].MMSI).to.be.equal(265866000);
+            expect(response.body.PositionData.MMSI).to.be.equal(265866000);
         });
     });
 

@@ -5,6 +5,8 @@ import Mongo from "../../../daos/databases/Mongo";
 import DaoFactory from "../../../daos/factory/DaoFactory";
 import AisMessage from "../../../models/AisMessage";
 import AisMessageDao from "../../../daos/interface/AisMessageDao";
+import {URL} from "url";
+import AisMessageQueryBuilder from "../../../queryBuilder/AisMessageQueryBuilder";
 
 describe('AisMessageDaoMongo', function () {
     let database: Db;
@@ -41,12 +43,20 @@ describe('AisMessageDaoMongo', function () {
             await database.dropCollection('aisdk_20201118');
         }
         await database.createCollection('aisdk_20201118');
+
         if (collections.find((collection: Collection) => {
             return collection.collectionName === 'mapviews';
         })) {
             await database.dropCollection('mapviews');
         }
         await database.createCollection('mapviews');
+
+        if (collections.find((collection: Collection) => {
+            return collection.collectionName === 'vessels';
+        })) {
+            await database.dropCollection('vessels');
+        }
+        await database.createCollection('vessels');
     })
 
     after(async function () {
@@ -217,6 +227,84 @@ describe('AisMessageDaoMongo', function () {
             expect(mostRecentPositions[1]?.Position).to.deep.equal(positionTwo.Position);
             expect(mostRecentPositions[2]?.MMSI).to.be.equal(3);
             expect(mostRecentPositions[2]?.Position).to.deep.equal(positionTwo.Position);
+        });
+    });
+
+
+    describe('findStaticAndTransientData()', function () {
+        it('should find the most recent ship position, static data, and vessel data', async function () {
+            const requestUrl = new URL('', 'http://localhost:3000');
+            requestUrl.searchParams.set('mmsi', '265866000');
+
+            await database.collection('vessels').insertOne({
+                '_id': new ObjectId('b2-a3-d4-d5z'),
+                "IMO": 9217242,
+                "Flag": "Sweden",
+                "Name": "Peter Pan",
+                "Built": 2001,
+                "Length": 219,
+                "Breadth": 29,
+                "Tonnage": 44245,
+                "MMSI": 265866000,
+                "VesselType": "Ro-Ro",
+                "Owner": 10279,
+                "FormerNames": [
+                    "PHT (2018, Sweden)",
+                    "PEPPADER (2013, Sweden)",
+                    "PB PANETEP (2013, Sweden)",
+                    "ETER PAN (2013, Sweden)",
+                    "HDER PAN (2013, Sweden)"
+                ]
+            });
+
+            await database.collection('aisdk_20201118').insertMany([{
+                '_id': new ObjectId('a2-b3-c4-d5z'),
+                "Timestamp": new Date("2020-11-18T00:00:00Z"),
+                "Class": "Class A",
+                "MMSI": 265866000,
+                "MsgType": "static_data",
+                "IMO": 9217242,
+                "CallSign": "SGUH",
+                "Name": "PETER PAN",
+                "VesselType": "Passenger",
+                "CargoTye": "No additional information",
+                "Length": 220,
+                "Breadth": 30,
+                "Draught": 6.1,
+                "Destination": "TRAVEMUNDE",
+                "ETA": "2020-11-18T06:00:00.000Z",
+                "A": 21,
+                "B": 199,
+                "C": 15,
+                "D": 15,
+            },
+                {
+                    '_id': new ObjectId('c1-b2-a3-e4z'),
+                    'Timestamp': new Date("2020-11-18T00:00:00Z"),
+                    'Class': 'Class A',
+                    'MsgType': 'position_report',
+                    'MMSI': 265866000,
+                    'Position': {'type': "Point", "coordinates": [55.516188, 10.56997]},
+                    'Status': 'Under way using engine',
+                    'Rot': 0,
+                    'SoG': 0,
+                    'CoG': 159,
+                    'Heading': 214,
+                }
+            ]);
+
+            const aisQueryBuilder = new AisMessageQueryBuilder(requestUrl);
+
+            let vesselData = await aisMessageDaoMongo.findStaticAndTransientData(aisQueryBuilder.buildFilterModel());
+
+            vesselData['PositionData'] = await aisMessageDaoMongo.findMostRecentPositionForMmsi(265866000);
+
+            expect(vesselData.MMSI).to.be.equal(265866000);
+            expect(vesselData.Name).to.be.equal('PETER PAN');
+            expect(vesselData.CallSign).to.be.equal('SGUH');
+            expect(vesselData.IMO).to.be.equal(9217242);
+            expect(vesselData.Vessel_Data[0].MMSI).to.be.equal(265866000);
+            expect(vesselData.PositionData.MMSI).to.be.equal(265866000);
         });
     });
 
