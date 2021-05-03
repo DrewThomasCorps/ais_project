@@ -6,6 +6,19 @@
 
 ## Set Up & Installation
 
+### Required Dependencies
+- [Yarn](https://classic.yarnpkg.com/en/docs/install/) is used for package management. It can be installed via npm with `npm install --global yarn`
+- [Mongo and mongoimport](https://docs.mongodb.com/database-tools/installation/installation/)
+
+### Set up process
+Once yarn and mongo are installed the project can be set up.
+
+1. Clone the repository. `git clone https://github.com/Adbauer89/ais_project.git`
+2. Switch to the repositories `server` directory `cd ais_project/server`
+3. Install the dependencies and set up the database with `yarn run setup`
+4. Start the server and frontend with `yarn run dev`
+
+
 ## Documentation
 
 This repository includes TypeDoc generated documentation for the traffic monitoring backend, REST layer, 
