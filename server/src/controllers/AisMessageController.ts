@@ -112,6 +112,5 @@ export default class AisMessageController {
         response.setHeader('Access-Control-Allow-Origin', '*');
         response.end(JSON.stringify(data));
     }
-
 }
 
