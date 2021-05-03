@@ -5,6 +5,7 @@ import TileData from "../interfaces/TileData";
 import CurrentFocusCoordinates from "../interfaces/CurrentFocusCoordinates";
 import Requests from "../Requests";
 import MapHelpers from "../MapHelpers";
+import Alert from "./Alert";
 
 /**
  * `MapContainer` contains the state and state handlers for a rendered map. `MapContainer` passes app level GUI logic
@@ -34,6 +35,7 @@ const MapContainer = () => {
      */
     const [currentZoom, setCurrentZoom] = useState<number>(1);
     const [zoomMode, setZoomMode] = useState<string>('');
+    const [showAlert, setShowAlert] = useState<boolean>(false);
     const [currentFocus, setCurrentFocus] = useState<CurrentFocusCoordinates>({ longitude: 0, latitude: 0 });
     const [tile, setTile] = useState<TileData>(rootTile);
     const [mmsi, setMmsi] = useState('');
@@ -53,12 +55,22 @@ const MapContainer = () => {
      */
     useEffect(() => {
         if (tile === null) {
-            // TODO Create alert component
-            console.log('Target image does not exist');
+            renderAlert();
             setDefaultState();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tile]);
+
+    /**
+     * Renders an alert if the target image for a zoom level and mouse click was not given in the mapviews dataset.
+     * Clicking just south of Aalborg is expected to produce this alert.
+     */
+    const renderAlert = () => {
+        setShowAlert(true);
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 5000)
+    }
 
     /**
      * This method sets the container to its default state.
@@ -133,6 +145,8 @@ const MapContainer = () => {
 
     return (
         <section className={`map-container ${zoomMode}`}>
+            { showAlert &&
+                <Alert alertText={`Target image for coordinates: (${currentFocus.latitude}, ${currentFocus.longitude}) not provided in mapviews dataset`}/>}
             <SearchMenu zoomMode={zoomMode} setZoomMode={setZoomMode} mmsi={mmsi} setMmsi={setMmsi}/>
             {tile && <Map tile={tile} currentZoom={currentZoom} handleClick={handleClick} mmsi={mmsi}/> }
         </section>
