@@ -66,4 +66,12 @@ export default interface AisMessageDao extends CrudDao<AisMessage> {
      * @param filterModel
      */
     findStaticAndTransientData(filterModel: AisMessage): Promise<any>
+
+    /**
+     * Finds the most recent ship positions in tile of scall 3 containing the port specified. If the specified port matches multiple ports,
+     * then each of the matched ports is returned.
+     * @param portName
+     * @param country
+     */
+    findAllShipPositionsInTileContainingPort(portName: string, country: string): Promise<any>
 }

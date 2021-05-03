@@ -1,16 +1,20 @@
 # AIS Project
 
 ## Team Members
+
 - Drew Thomas
 - Alan Bauer
 
 ## Set Up & Installation
 
 ### Required Dependencies
-- [Yarn](https://classic.yarnpkg.com/en/docs/install/) is used for package management. It can be installed via npm with `npm install --global yarn`
+
+- [Yarn](https://classic.yarnpkg.com/en/docs/install/) is used for package management. It can be installed via npm
+  with `npm install --global yarn`
 - [Mongo and mongoimport](https://docs.mongodb.com/database-tools/installation/installation/)
 
 ### Set up process
+
 Once yarn and mongo are installed the project can be set up.
 
 1. Clone the repository. `git clone https://github.com/Adbauer89/ais_project.git`
@@ -18,20 +22,19 @@ Once yarn and mongo are installed the project can be set up.
 3. Install the dependencies and set up the database with `yarn run setup`
 4. Start the server and frontend with `yarn run dev`
 
-
 ## Documentation
 
-This repository includes TypeDoc generated documentation for the traffic monitoring backend, REST layer, 
-and Browser-displayed map. The repository also includes code level documentation for critical methods and components
-for each of the previously mentioned layers.
+This repository includes TypeDoc generated documentation for the traffic monitoring backend, REST layer, and Browser-displayed map. The
+repository also includes code level documentation for critical methods and components for each of the previously mentioned layers.
 
 The following documentation is best view in a web browser:
+
 - `docs/client/index.html`
 - `docs/server/index.html`
 
 ## Summary
-This application follows the criteria for **Option C** outlined in the *project_tasks.html* document provided for the
-project.
+
+This application follows the criteria for **Option C** outlined in the *project_tasks.html* document provided for the project.
 
 ## Traffic Monitoring Backend
 
@@ -49,7 +52,7 @@ project.
       {"Timestamp":"2020-11-18T00:00:00.000Z","Class":"AtoN","MMSI":992111840,"MsgType":"static_data","IMO":"Unknown","Name":"WIND FARM BALTIC1NW","VesselType":"Undefined","Length":60,"Breadth":60,"A":30,"B":30,"C":30,"D":30}
     ]'
     ```
-    
+
     - Response
     ```json
     {
@@ -65,7 +68,7 @@ project.
         --data-raw '{"Timestamp":"2020-11-18T00:00:00.000Z","Class":"Class A","MMSI":257385000,"MsgType":"position_report","Position":{"type":"Point","coordinates":[55.219403,13.127725]},"Status":"Under way using engine","RoT":25.7,"SoG":12.3,"CoG":96.5,"Heading":101
         }'
     ```
-  
+
     - Response
     ```json
         {
@@ -338,11 +341,45 @@ project.
     ]
     ```
 
+- Read all ship positions in the tile of scale 3 containing the given port. If multiple ports are found an array of ports is returned.
+    - Curl Command
+      ```bash
+          curl --location --request GET 'http://localhost:3001/recent-ship-positions?port_name=Ebeltoft&country=Denmark'
+      ```
+
+    - Response
+      ```json
+        [
+      {"Timestamp":"2020-11-18T02:38:17.000Z",
+      "Position":{"type":"Point","coordinates":[56.053985,10.861367]},
+      "MMSI":210008000},
+      {"Timestamp":"2020-11-18T02:38:18.000Z",
+      "Position":{"type":"Point","coordinates":[56.19394,10.668388]},
+      "MMSI":219011321},
+      {"Timestamp":"2020-11-18T02:38:13.000Z",
+      "Position":{"type":"Point","coordinates":[56.193807,10.668115]},
+      "MMSI":219020150},
+      {"Timestamp":"2020-11-18T02:35:27.000Z",
+      "Position":{"type":"Point","coordinates":[56.153913,10.66674]},
+      "MMSI":219601000},
+      {"Timestamp":"2020-11-18T02:38:21.000Z",
+      "Position":{"type":"Point","coordinates":[56.071877,10.818295]},
+      "MMSI":219997000},
+      {"Timestamp":"2020-11-18T02:38:19.000Z",
+      "Position":{"type":"Point","coordinates":[56.074927,10.556448]},
+      "MMSI":305575000},
+      {"Timestamp":"2020-11-18T02:38:19.000Z",
+      "Position":{"type":"Point","coordinates":[56.012912,10.536257]},
+      "MMSI":377085000
+      }]
+      ```
+
 ## Browser-displayed map
 
 ### Features
 
 #### Display
+
 - Regular interval queries for updating vessel positions
 - Dynamic rendering of ports and port names based on background tile
 - Dynamic rendering of most recent vessel location based on background tile
@@ -352,6 +389,7 @@ project.
 - Animated vessel when target of a search
 
 #### Zoom
+
 - Zoom in/out views of map
 - GUI for toggling zoom modes
 - Three zoom levels
@@ -359,4 +397,5 @@ project.
 - Error protection from zooming to undefined tiles or tiles that have not been provided
 
 #### Search
+
 - Input fields for searching vessels by MMSI
