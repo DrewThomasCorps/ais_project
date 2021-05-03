@@ -20,7 +20,10 @@ Once yarn and mongo are installed the project can be set up.
 1. Clone the repository. `git clone https://github.com/Adbauer89/ais_project.git`
 2. Switch to the repositories `server` directory `cd ais_project/server`
 3. Install the dependencies and set up the database with `yarn run setup`
-4. Start the server and frontend with `yarn run dev`
+4. Start the server, frontend, and ais_feed with `yarn run dev`
+
+The ais feed will populate the database's ais_messages. The ais_messages will be empty until `yarn run dev` is ran.
+The frontend will display the positions as they update every 60 seconds, it will start out with 0 vessels displayed until the ais_feed starts posting.
 
 ## Documentation
 
@@ -94,10 +97,7 @@ This application follows the criteria for **Option C** outlined in the *project_
 - Delete all AIS messages whose timestamp is more than 5 minutes older than current time
     - Curl Command
     ```bash
-        curl --location --request DELETE 'http://localhost:3001/ais-messages?time=2020-11-18T02:33:00Z' \
-        --header 'Content-Type: application/json' \
-        --data-raw '{"Timestamp":"2020-11-18T00:00:00.000Z","Class":"Class A","MMSI":257385000,"MsgType":"position_report","Position":{"type":"Point","coordinates":[55.219403,13.127725]},"Status":"Under way using engine","RoT":25.7,"SoG":12.3,"CoG":96.5,"Heading":101
-        }'
+        curl --location --request DELETE 'http://localhost:3001/ais-messages?time=2020-11-18T02:33:00Z'        }'
     ```
 
     - Response

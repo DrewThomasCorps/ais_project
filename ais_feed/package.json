@@ -1,0 +1,17 @@
+{
+  "name": "ais_feed",
+  "version": "2.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "mongodb": "^3.6"
+  },
+  "devDependencies": {},
+  "description": ""
+}

@@ -43,7 +43,7 @@ const Map = ({ handleClick, currentZoom, tile, mmsi }: {currentZoom: number, han
     const updateVesselPositions = ()  => {
         getVesselPositions();
 
-        const interval = setInterval(() => getVesselPositions(), 60000);
+        const interval = setInterval(() => getVesselPositions(), 60 * 1000);
 
         return () => {
             clearInterval(interval);

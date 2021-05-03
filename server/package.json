@@ -26,7 +26,8 @@
     "test": "env mocha -r ts-node/register 'src/tests/**/*.ts'",
     "client": "cd ../client && yarn start",
     "setup": "./setup.sh",
-    "dev": "concurrently \"yarn run start:dev\" \"yarn run client\"",
+    "datafeed": "sleep 10 && cd ../ais_feed && node index.js",
+    "dev": "concurrently \"yarn run start:dev\" \"yarn run client\" \"yarn run datafeed\"",
     "client:typedoc": "cd ../client && yarn typedoc --watch --readme ../README.md --out ../docs/client src/",
     "server:typedoc": "yarn typedoc --watch --readme ../README.md --out ../docs/server src/",
     "dev:typedoc": "concurrently \"yarn run client:typedoc\" \"yarn run server:typedoc\""

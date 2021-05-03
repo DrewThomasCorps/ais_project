@@ -195,9 +195,9 @@ describe('AisMessageDaoMongo', function () {
 
     describe('insertBatch()', function () {
         it('should insert AIS messages of different types', async function () {
-            const messageJson = JSON.parse(readFileSync('src/tests/resources/models/ais_messages_500_batch.json').toString())
-            messageJson.map((message: any) => {
-                AisMessage.fromJson(JSON.stringify(message));
+            let messageJson = JSON.parse(readFileSync('src/tests/resources/models/ais_messages_500_batch.json').toString())
+            messageJson = messageJson.map((message: any) => {
+                return AisMessage.fromJson(JSON.stringify(message));
             })
             const insertedAisMessageCount = await aisMessageDaoMongo.insertBatch(messageJson);
             expect(insertedAisMessageCount).to.be.equal(500);
