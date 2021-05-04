@@ -4,6 +4,7 @@ import {Collection, Db, ObjectId} from "mongodb";
 import Mongo from "../../daos/databases/Mongo";
 import app from '../../index';
 import {DatabaseConfig} from "../../config/DatabaseConfig";
+import * as fs from "fs";
 
 describe('TileIntegration', function () {
     let database: Db;
@@ -206,6 +207,11 @@ describe('TileIntegration', function () {
             );
             expect(response.status).to.be.equal(200);
         });
+
+        it('should return null if no tiles are found', async function () {
+            const response = await chai.request(app).get('/tiles?longitude=9.494252873563218&scale=3&latitude=57.04808806488992');
+            expect(response.body).to.be.null;
+        });
     })
 
 
@@ -235,6 +241,19 @@ describe('TileIntegration', function () {
                     west: null,
                 }
             ]);
+            expect(response.status).to.be.equal(200);
+        });
+    });
+
+    describe('getImageBinary()', function () {
+        it('should get binary for image', async function () {
+            await insertTestTiles();
+            let binaryImage = fs.readFileSync('src/tests/resources/images/43F9.png').toString('binary');
+            await database.collection('mapviews').updateOne({filename: '43F9.png'}, {$set: {image_file: binaryImage}});
+
+            const response = await chai.request(app).get('/tile-image/1');
+
+            expect(response.body.toString('binary')).to.be.equal(binaryImage);
             expect(response.status).to.be.equal(200);
         });
     });

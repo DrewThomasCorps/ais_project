@@ -88,9 +88,14 @@
 					<li>Switch to the repositories <code>server</code> directory <code>cd ais_project/server</code></li>
 					<li>Install the dependencies and set up the database with <code>yarn run setup</code></li>
 					<li>Start the server, frontend, and ais_feed with <code>yarn run dev</code></li>
+					<li>View the frontend in your web browser at <code>http://localhost:3000</code></li>
 				</ol>
 				<p>The ais feed will populate the database&#39;s ais_messages. The ais_messages will be empty until <code>yarn run dev</code> is ran.
-				The frontend will display the positions as they update every 60 seconds, it will start out with 0 vessels displayed until the ais_feed starts posting.</p>
+				The frontend will display the positions as they update every 5 seconds, it will start out with 0 vessels displayed until the ais_feed starts posting.</p>
+				<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
+					<h3>Testing</h3>
+				</a>
+				<p>Tests are located in <code>server/src/tests</code>. To run the tests, make sure you are in the <code>server</code> directory and run <code>yarn run test</code></p>
 				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 					<h2>Documentation</h2>
 				</a>
