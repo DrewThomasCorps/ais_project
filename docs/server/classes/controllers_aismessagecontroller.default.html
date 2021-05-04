@@ -68,6 +68,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Controller to handle server requests for AIS Messages</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -91,6 +98,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="controllers_aismessagecontroller.default.html#createaismessages" class="tsd-kind-icon">create<wbr>Ais<wbr>Messages</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="controllers_aismessagecontroller.default.html#deleteaismessagesfiveminutesolderthantime" class="tsd-kind-icon">delete<wbr>Ais<wbr>Messages<wbr>Five<wbr>Minutes<wbr>Older<wbr>Than<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="controllers_aismessagecontroller.default.html#findstaticandtransientdata" class="tsd-kind-icon">find<wbr>Static<wbr>And<wbr>Transient<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="controllers_aismessagecontroller.default.html#getpositions" class="tsd-kind-icon">get<wbr>Positions</a></li>
 							</ul>
 						</section>
@@ -126,9 +134,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/405af00/server/src/controllers/AisMessageController.ts#L9">src/controllers/AisMessageController.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/a07b80b/server/src/controllers/AisMessageController.ts#L19">src/controllers/AisMessageController.ts:19</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a batch of AIS messages if an array is passed, or a single position_report or static_data message if an
+									abject is passed.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -136,6 +150,8 @@
 								</li>
 								<li>
 									<h5>response: <span class="tsd-signature-type">ServerResponse</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -152,9 +168,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/405af00/server/src/controllers/AisMessageController.ts#L35">src/controllers/AisMessageController.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/a07b80b/server/src/controllers/AisMessageController.ts#L51">src/controllers/AisMessageController.ts:51</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deletes all AIS messages more than 5 minutes older than the time passed in the query string.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -165,6 +186,41 @@
 								</li>
 								<li>
 									<h5>requestUrl: <span class="tsd-signature-type">URL</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="findstaticandtransientdata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> find<wbr>Static<wbr>And<wbr>Transient<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Static<wbr>And<wbr>Transient<wbr>Data<span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServerResponse</span>, requestUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/a07b80b/server/src/controllers/AisMessageController.ts#L104">src/controllers/AisMessageController.ts:104</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Finds the latest ship positions, static data; and vessel data given an MMSI, Name, Call Sign, or IMO.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>response: <span class="tsd-signature-type">ServerResponse</span></h5>
+								</li>
+								<li>
+									<h5>requestUrl: <span class="tsd-signature-type">URL</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -181,9 +237,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/405af00/server/src/controllers/AisMessageController.ts#L46">src/controllers/AisMessageController.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/Adbauer89/ais_project/blob/a07b80b/server/src/controllers/AisMessageController.ts#L76">src/controllers/AisMessageController.ts:76</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Finds the most recent positions as found in position_report documents.</p>
+								</div>
+								<p>If a MMSI is passed in the query string, the last position for that vessel will be returned.</p>
+								<p>If a tile ID is passed in the query string, all most recent positions within that tile will be returned.</p>
+								<p>If a port name and country is passed in the query string, all positions contained within the scale 3 tile containing that port will be returned.
+								If multiple ports are found, an array of ports will be returned.</p>
+								<p>Else all the most recent positions for every ship will be returned.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -191,6 +257,8 @@
 								</li>
 								<li>
 									<h5>requestUrl: <span class="tsd-signature-type">URL</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -225,6 +293,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="controllers_aismessagecontroller.default.html#deleteaismessagesfiveminutesolderthantime" class="tsd-kind-icon">delete<wbr>Ais<wbr>Messages<wbr>Five<wbr>Minutes<wbr>Older<wbr>Than<wbr>Time</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="controllers_aismessagecontroller.default.html#findstaticandtransientdata" class="tsd-kind-icon">find<wbr>Static<wbr>And<wbr>Transient<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="controllers_aismessagecontroller.default.html#getpositions" class="tsd-kind-icon">get<wbr>Positions</a>

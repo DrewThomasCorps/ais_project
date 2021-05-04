@@ -21,9 +21,10 @@ Once yarn and mongo are installed the project can be set up.
 2. Switch to the repositories `server` directory `cd ais_project/server`
 3. Install the dependencies and set up the database with `yarn run setup`
 4. Start the server, frontend, and ais_feed with `yarn run dev`
+5. View the frontend in your web browser at `localhost:3000`
 
 The ais feed will populate the database's ais_messages. The ais_messages will be empty until `yarn run dev` is ran.
-The frontend will display the positions as they update every 60 seconds, it will start out with 0 vessels displayed until the ais_feed starts posting.
+The frontend will display the positions as they update every 5 seconds, it will start out with 0 vessels displayed until the ais_feed starts posting.
 
 ## Documentation
 

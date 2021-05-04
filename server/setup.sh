@@ -6,3 +6,4 @@ cp -n .env.example .env
 node ./setup.js
 
 cd ../client && yarn
+cd ../ais_feed && yarn

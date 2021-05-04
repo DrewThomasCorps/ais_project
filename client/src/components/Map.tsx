@@ -25,7 +25,7 @@ const Map = ({ handleClick, currentZoom, tile, mmsi }: {currentZoom: number, han
      */
     useEffect(() => {
         getPorts();
-        updateVesselPositions();
+        return updateVesselPositions();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
@@ -43,7 +43,7 @@ const Map = ({ handleClick, currentZoom, tile, mmsi }: {currentZoom: number, han
     const updateVesselPositions = ()  => {
         getVesselPositions();
 
-        const interval = setInterval(() => getVesselPositions(), 60 * 1000);
+        const interval = setInterval(() => getVesselPositions(), 5000);
 
         return () => {
             clearInterval(interval);
